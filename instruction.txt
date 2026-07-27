@@ -1,0 +1,102 @@
+ wget tcgcsv.com/tcgplayer/1/1/ProductsAndPrices.csv
+
+Security Warning: Script Execution Risk
+Invoke-WebRequest parses the content of the web page. Script code in the web page might be run when the page is parsed.
+      RECOMMENDED ACTION:
+      Use the -UseBasicParsing switch to avoid script code execution.
+
+      Do you want to continue?
+
+[Y] Yes  [A] Yes to All  [N] No  [L] No to All  [S] Suspend  [?] Help (default is "N"): Y
+
+
+StatusCode        : 200
+StatusDescription : OK
+Content           : productId,name,cleanName,imageUrl,categoryId,groupId,url,modifiedOn,imageCount,extRarity,extNumber,extSubType,extOracleText,lowPrice,midPrice,highPrice,marketPrice,directLowPrice,subTypeNa
+                    me,extP,extT...
+RawContent        : HTTP/1.1 200 OK
+                    Connection: keep-alive
+                    x-amz-server-side-encryption: AES256
+                    X-Robots-Tag: noindex
+                    Content-Disposition: attachment; filename="10thEditionProductsAndPrices.csv"
+                    X-Cache: Hit from cl...
+Forms             : {}
+Headers           : {[Connection, keep-alive], [x-amz-server-side-encryption, AES256], [X-Robots-Tag, noindex], [Content-Disposition, attachment; filename="10thEditionProductsAndPrices.csv"]...}
+Images            : {}
+InputFields       : {}
+Links             : {}
+ParsedHtml        : mshtml.HTMLDocumentClass
+RawContentLength  : 304154
+
+
+this is json format to extract all categoryId:
+the url to access categoryId is: https://tcgcsv.com/tcgplayer/categories
+the url include all categoryId
+{
+  "totalItems": 90,
+  "success": true,
+  "errors": [],
+  "results": [
+    {
+      "categoryId": 1,
+      "name": "Magic",
+      "modifiedOn": "2026-07-24T20:52:08.73",
+      "displayName": "Magic: The Gathering",
+      "seoCategoryName": "Magic the Gathering TCG (MTG)",
+      "categoryDescription": "Ignite your Planeswalker spark with Magic: The Gathering! Buy MTG singles, booster packs, Commander decks, and the latest sets from thousands of trusted sellers. Whether you're building your first deck or growing your collection, you'll find everything you need on TCGplayer.",
+      "categoryPageTitle": "TCGplayer - Buy Magic: The Gathering Cards, Singles, and Set",
+      "sealedLabel": "Sealed Products",
+      "nonSealedLabel": "Single Cards",
+      "conditionGuideUrl": "https://store.tcgplayer.com/conditions/magic.aspx",
+      "isScannable": true,
+      "popularity": 7233794,
+      "isDirect": true
+    },
+    {
+      "categoryId": 2,
+      "name": "YuGiOh",
+      "modifiedOn": "2026-07-24T17:23:24.18",
+      "displayName": "YuGiOh",
+      "seoCategoryName": "YuGiOh",
+      "categoryDescription": "It's time to duel! Browse Yu-Gi-Oh singles, booster boxes, Structure Decks, and the latest sets from thousands of trusted sellers. Whether you're building your first deck or chasing tournament staples, you'll find everything you need on TCGplayer.",
+      "categoryPageTitle": "TCGplayer - Buy YuGiOh TCG Cards, Singles, and Set",
+      "sealedLabel": "Sealed Products",
+      "nonSealedLabel": "Single Cards",
+      "conditionGuideUrl": "https://store.tcgplayer.com/help/yugiohconditions",
+      "isScannable": true,
+      "popularity": 1058057,
+      "isDirect": true
+    },
+    {
+      "categoryId": 3,
+      "name": "Pokemon",
+      "modifiedOn": "2026-07-25T00:10:31.347",
+      "displayName": "Pokemon",
+      "seoCategoryName": "Pokemon",
+      "categoryDescription": "Trainers, your Pokémon adventure starts here! Whether you're a champ in the making or trying to catch 'em all from the latest sets, browse and buy Pokémon cards, booster boxes, Elite Trainer Boxes, and card packs at the best prices from thousands of sellers.",
+      "categoryPageTitle": "TCGplayer - Buy Pokémon TCG Cards, Singles, and Pack",
+      "sealedLabel": "Sealed Products",
+      "nonSealedLabel": "Single Cards",
+      "conditionGuideUrl": "https://store.tcgplayer.com/help/cardconditionguide",
+      "isScannable": true,
+      "popularity": 576635,
+      "isDirect": true
+    }
+  ]
+}
+
+this is the url to access one group with a groupId based on categoryId. 
+https://tcgcsv.com/tcgplayer/7/groups
+
+let's say, the categroryId is 1, then to extract all relevant groupId, the url to extract json is https://tcgcsv.com/tcgplayer/1/groups
+
+this is the url to access 
+this is json format groupId:
+{"totalItems": 2, "success": true, "errors": [], "results": [{"groupId": 960, "name": "Core Set", "abbreviation": null, "isSupplemental": false, "publishedOn": "2026-07-25T20:00:05.4653075Z", "modifiedOn": "2023-07-25T16:40:39.377", "categoryId": 7}, {"groupId": 961, "name": "Prize Card", "abbreviation": null, "isSupplemental": false, "publishedOn": "2026-07-25T20:00:05.4653075Z", "modifiedOn": "2017-03-01T11:03:36.18", "categoryId": 7}]}
+
+create a oop format python program to download the file based on url and save it in the current program folder. 
+the dyanmic input will be 1/1.
+tcgcsv.com/tcgplayer/1/1/ProductsAndPrices.csv
+
+the first 1 is categoryId and the second is groupId.
+

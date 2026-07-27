@@ -1,0 +1,161 @@
+# ==================================
+# Python bytecode and cache files
+# ==================================
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.pyd
+*.pyo
+*.pyc
+
+# ==================================
+# Virtual environments
+# ==================================
+venv/
+env/
+ENV/
+.venv/
+.env/
+virtualenv/
+pyenv/
+.venv/
+venv.bak/
+env.bak/
+ENV.bak/
+virtualenv.bak/
+
+# ==================================
+# Distribution / packaging
+# ==================================
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+pip-wheel-metadata/
+share/python-wheels/
+
+# ==================================
+# PyInstaller
+# ==================================
+*.manifest
+*.spec
+
+# ==================================
+# Installer logs
+# ==================================
+pip-log.txt
+pip-delete-this-directory.txt
+
+# ==================================
+# Testing
+# ==================================
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+.tox/
+.nox/
+.coverage
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+.pytest_cache/
+test-results/
+
+# ==================================
+# Environments and configuration
+# ==================================
+.env
+.venv
+.env.local
+.env.*.local
+*.env
+.envrc
+
+
+# ==================================
+# OS specific files
+# ==================================
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+*.tmp
+
+# ==================================
+# Logs and databases
+# ==================================
+*.log
+*.sqlite
+*.sqlite3
+*.db
+*.pid
+
+
+# ==================================
+# Project specific files
+# ==================================
+# If you have a custom data directory
+/data/
+/datasets/
+/checkpoints/
+/outputs/
+/runs/
+/logs/
+
+# Compiled Python files
+*.pyc
+*.pyo
+
+# C extensions
+*.so
+
+
+# ==================================
+# pyenv
+# ==================================
+.python-version
+
+
+# ==================================
+# Secret / sensitive data
+# ==================================
+*.key
+*.pem
+*.crt
+*.csr
+*.p12
+secrets.json
+secrets.yaml
+credentials.json
+*.secret
+
+# ==================================
+# Compiled distribution files
+# ==================================
+*.exe
+*.msi
+*.dmg
+*.deb
+*.rpm
+*.tar.gz
+*.zip
+

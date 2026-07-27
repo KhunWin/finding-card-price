@@ -1,3 +1,18 @@
 www.cardmarket.com
 Performing security verification
 This website uses a security service to protect against malicious bots. This page is displayed while the website verifies you are not a bot.
+
+https://tcgdex.dev/faq (Why do some cards show no pricing data?)
+
+
+Original URL: https://tcgplayer-cdn.tcgplayer.com/product/451396_200w.jpg
+Improved URL: https://tcgplayer-cdn.tcgplayer.com/product/451396_in_1000x1000.jpg
+
+###
+for category and group id reference
+
+https://tcgcsv.com/ 
+
+#for short testing, use the following info
+category ids- 85
+group ids-24781
