@@ -229,7 +229,7 @@ class TCGScraperGUI:
         
         # Group IDs
         self.group_entry = self.create_input_row(input_card, "Group IDs", "", 
-                                                  "e.g., 24721, 24653 (leave empty for all)")
+                                                  "e.g., 24721, 24653 (this field cannot be empty.)")
         
         # Output Folder
         self.create_folder_selector(input_card)

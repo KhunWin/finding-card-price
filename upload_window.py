@@ -9,6 +9,7 @@ import threading
 import tkinter as tk
 from tkinter import filedialog, messagebox, scrolledtext
 import logging
+from excel_transformer import ExcelTransformer
 
 
 class UploadWindow:
@@ -29,6 +30,9 @@ class UploadWindow:
         self.email_var = tk.StringVar()
         self.password_var = tk.StringVar()
         self.file_path_var = tk.StringVar(value="No file selected")
+        self.transformed_file_path = None
+        self.upload_stop_flag = False
+        self.transformer = ExcelTransformer()
         
         # Create GUI
         self.create_widgets()
@@ -172,16 +176,43 @@ class UploadWindow:
                                     activeforeground='white')
         browse_file_btn.pack(fill=tk.X)
         
-        # Run Upload Button in left column
-        run_btn = tk.Button(left_scrollable_frame, text="▶ RUN UPLOAD", 
-                           command=self.start_upload,
-                           bg='#10b981', fg='white', 
-                           font=('Segoe UI', 14, 'bold'),
-                           relief='flat', cursor='hand2', 
-                           padx=40, pady=15,
-                           activebackground='#059669', 
-                           activeforeground='white')
-        run_btn.pack(fill=tk.X, pady=(20, 0))
+        # Buttons Frame
+        buttons_frame = tk.Frame(left_scrollable_frame, bg='#0a0e1a')
+        buttons_frame.pack(fill=tk.X, pady=(20, 0))
+        
+        # Transform Excel File Button
+        self.transform_btn = tk.Button(buttons_frame, text="🔄 Transform Excel File", 
+                                       command=self.transform_excel,
+                                       bg='#f59e0b', fg='white', 
+                                       font=('Segoe UI', 12, 'bold'),
+                                       relief='flat', cursor='hand2', 
+                                       padx=30, pady=12,
+                                       activebackground='#d97706', 
+                                       activeforeground='white')
+        self.transform_btn.pack(fill=tk.X, pady=(0, 10))
+        
+        # Stop Button
+        self.stop_btn = tk.Button(buttons_frame, text="⏹ Stop", 
+                                  command=self.stop_upload,
+                                  bg='#ef4444', fg='white', 
+                                  font=('Segoe UI', 12, 'bold'),
+                                  relief='flat', cursor='hand2', 
+                                  padx=30, pady=12,
+                                  activebackground='#dc2626', 
+                                  activeforeground='white',
+                                  state='disabled')
+        self.stop_btn.pack(fill=tk.X, pady=(0, 10))
+        
+        # Run Upload Button
+        self.run_btn = tk.Button(buttons_frame, text="▶ RUN UPLOAD", 
+                                 command=self.start_upload,
+                                 bg='#10b981', fg='white', 
+                                 font=('Segoe UI', 14, 'bold'),
+                                 relief='flat', cursor='hand2', 
+                                 padx=40, pady=15,
+                                 activebackground='#059669', 
+                                 activeforeground='white')
+        self.run_btn.pack(fill=tk.X)
         
         # RIGHT COLUMN - Terminal
         right_frame = tk.Frame(columns_frame, bg='#0a0e1a')
@@ -190,7 +221,7 @@ class UploadWindow:
         # Terminal Card
         terminal_card = self.create_card(right_frame, "💻 Upload Progress")
         
-        self.terminal = scrolledtext.ScrolledText(terminal_card.content, height=20,
+        self.terminal = scrolledtext.ScrolledText(terminal_card.content, height=40,
                                                   bg='#0a0e1a', fg='#10b981',
                                                   font=('Consolas', 9), wrap=tk.WORD,
                                                   relief='flat', insertbackground='#8b5cf6',
@@ -217,7 +248,67 @@ class UploadWindow:
         )
         if file_path:
             self.file_path_var.set(file_path)
+            self.transformed_file_path = None  # Reset transformed file
             self.append_terminal(f"✅ File selected: {file_path}\n", '#10b981')
+    
+    def transform_excel(self):
+        """Transform Excel file to Boutir format"""
+        excel_file = self.file_path_var.get()
+        
+        # Validation
+        if excel_file == "No file selected" or not os.path.exists(excel_file):
+            messagebox.showerror("Error", "Please select an Excel file first")
+            return
+        
+        try:
+            self.append_terminal("\n" + "=" * 70 + "\n", '#f59e0b')
+            self.append_terminal("🔄 Starting Excel Transformation...\n", '#f59e0b')
+            self.append_terminal("=" * 70 + "\n\n", '#f59e0b')
+            
+            # Validate input file
+            is_valid, message = self.transformer.validate_input_file(excel_file)
+            if not is_valid:
+                self.append_terminal(f"❌ Validation failed: {message}\n", '#ef4444')
+                messagebox.showerror("Validation Error", message)
+                return
+            
+            self.append_terminal(f"✅ Input file validated\n", '#10b981')
+            self.append_terminal(f"📁 Input file: {excel_file}\n", '#e6eaef')
+            
+            # Get output directory (same as exe/script location)
+            if getattr(sys, 'frozen', False):
+                # Running as compiled exe
+                output_dir = os.path.dirname(sys.executable)
+            else:
+                # Running as script
+                output_dir = os.getcwd()
+            
+            self.append_terminal(f"📂 Output directory: {output_dir}\n", '#e6eaef')
+            self.append_terminal("\n🔄 Transforming...\n", '#f59e0b')
+            
+            # Transform the file
+            self.transformed_file_path = self.transformer.transform(excel_file, output_dir)
+            
+            self.append_terminal(f"\n✅ Transformation completed!\n", '#10b981')
+            self.append_terminal(f"📄 Transformed file: {self.transformed_file_path}\n", '#22d3ee')
+            self.append_terminal("\n" + "=" * 70 + "\n", '#10b981')
+            self.append_terminal("✅ Ready for upload! Click 'RUN UPLOAD' to proceed.\n", '#10b981')
+            self.append_terminal("=" * 70 + "\n\n", '#10b981')
+            
+            messagebox.showinfo("Success", 
+                              f"Excel file transformed successfully!\n\n"
+                              f"Output file:\n{os.path.basename(self.transformed_file_path)}\n\n"
+                              f"The transformed file will be used for upload.")
+            
+        except Exception as e:
+            self.append_terminal(f"\n❌ Transformation failed: {str(e)}\n", '#ef4444')
+            messagebox.showerror("Error", f"Failed to transform Excel file:\n\n{str(e)}")
+    
+    def stop_upload(self):
+        """Stop the upload process"""
+        self.upload_stop_flag = True
+        self.append_terminal("\n⏹ Stop requested by user...\n", '#fbbf24')
+        self.stop_btn.config(state='disabled')
     
     def append_terminal(self, message, color='#10b981'):
         """Append message to terminal with color"""
@@ -250,19 +341,40 @@ class UploadWindow:
             messagebox.showerror("Error", "Please select an Excel file (.xlsx or .xls)")
             return
         
+        # Use transformed file if available, otherwise use original
+        upload_file = self.transformed_file_path if self.transformed_file_path else excel_file
+        
+        # Verify upload file exists
+        if not os.path.exists(upload_file):
+            messagebox.showerror("Error", "Upload file not found. Please transform the file first.")
+            return
+        
         # Clear terminal and start upload
         self.terminal.delete(1.0, tk.END)
         self.append_terminal("=" * 70 + "\n", '#22d3ee')
         self.append_terminal("🚀 Starting Upload Process\n", '#22d3ee')
         self.append_terminal("=" * 70 + "\n\n", '#22d3ee')
         self.append_terminal(f"📧 Email: {email}\n", '#e6eaef')
-        self.append_terminal(f"📁 Excel File: {excel_file}\n", '#e6eaef')
+        
+        if self.transformed_file_path:
+            self.append_terminal(f"📁 Original File: {excel_file}\n", '#e6eaef')
+            self.append_terminal(f"✨ Using Transformed File: {upload_file}\n", '#22d3ee')
+        else:
+            self.append_terminal(f"📁 Excel File: {upload_file}\n", '#e6eaef')
+            self.append_terminal(f"⚠️  Warning: Using original file (not transformed)\n", '#fbbf24')
+        
         self.append_terminal("\n")
+        
+        # Reset stop flag and enable stop button
+        self.upload_stop_flag = False
+        self.stop_btn.config(state='normal')
+        self.run_btn.config(state='disabled')
+        self.transform_btn.config(state='disabled')
         
         # Run upload in thread
         upload_thread = threading.Thread(
             target=self.run_upload_thread, 
-            args=(email, password, excel_file),
+            args=(email, password, upload_file),
             daemon=True
         )
         upload_thread.start()
@@ -270,6 +382,11 @@ class UploadWindow:
     def run_upload_thread(self, email, password, excel_file):
         """Run the upload process in a separate thread"""
         try:
+            # Check stop flag
+            if self.upload_stop_flag:
+                self.append_terminal("\n⏹ Upload stopped by user\n", '#fbbf24')
+                return
+            
             # Try Playwright first
             self.append_terminal("=" * 70 + "\n", '#8b5cf6')
             self.append_terminal("🎭 Attempting upload with Playwright...\n", '#8b5cf6')
@@ -282,6 +399,11 @@ class UploadWindow:
                 from uploaders.playwright_uploader import PlaywrightUploader
                 from utils.config import Config
                 
+                # Check stop flag
+                if self.upload_stop_flag:
+                    self.append_terminal("\n⏹ Upload stopped by user\n", '#fbbf24')
+                    return
+                
                 # Update config with credentials from GUI
                 Config.BOUTIR_EMAIL = email
                 Config.BOUTIR_PASSWORD = password
@@ -293,16 +415,22 @@ class UploadWindow:
                 
                 success = uploader.run(excel_file)
                 
-                if success:
+                if success and not self.upload_stop_flag:
                     self.append_terminal("\n" + "=" * 70 + "\n", '#10b981')
                     self.append_terminal("✅ UPLOAD COMPLETED SUCCESSFULLY!\n", '#10b981')
                     self.append_terminal("=" * 70 + "\n", '#10b981')
                     self.window.after(0, messagebox.showinfo, "Success", 
                                      "Upload completed successfully!")
+                elif self.upload_stop_flag:
+                    self.append_terminal("\n⏹ Upload stopped by user\n", '#fbbf24')
                 else:
                     raise Exception("Playwright upload failed")
                     
             except Exception as playwright_error:
+                if self.upload_stop_flag:
+                    self.append_terminal("\n⏹ Upload stopped by user\n", '#fbbf24')
+                    return
+                
                 self.append_terminal(f"\n⚠️ Playwright failed: {str(playwright_error)}\n\n", 
                                    '#fbbf24')
                 self.append_terminal("=" * 70 + "\n", '#f97316')
@@ -313,6 +441,11 @@ class UploadWindow:
                     from uploaders.selenium_uploader import SeleniumUploader
                     from utils.config import Config
                     
+                    # Check stop flag
+                    if self.upload_stop_flag:
+                        self.append_terminal("\n⏹ Upload stopped by user\n", '#fbbf24')
+                        return
+                    
                     # Update config with credentials from GUI
                     Config.BOUTIR_EMAIL = email
                     Config.BOUTIR_PASSWORD = password
@@ -321,16 +454,22 @@ class UploadWindow:
                     
                     success = uploader.run(excel_file)
                     
-                    if success:
+                    if success and not self.upload_stop_flag:
                         self.append_terminal("\n" + "=" * 70 + "\n", '#10b981')
                         self.append_terminal("✅ UPLOAD COMPLETED (Selenium)!\n", '#10b981')
                         self.append_terminal("=" * 70 + "\n", '#10b981')
                         self.window.after(0, messagebox.showinfo, "Success", 
                                          "Upload completed successfully using Selenium!")
+                    elif self.upload_stop_flag:
+                        self.append_terminal("\n⏹ Upload stopped by user\n", '#fbbf24')
                     else:
                         raise Exception("Selenium upload failed")
                         
                 except Exception as selenium_error:
+                    if self.upload_stop_flag:
+                        self.append_terminal("\n⏹ Upload stopped by user\n", '#fbbf24')
+                        return
+                    
                     self.append_terminal(f"\n❌ Selenium failed: {str(selenium_error)}\n", 
                                        '#ef4444')
                     self.append_terminal("\n" + "=" * 70 + "\n", '#ef4444')
@@ -345,6 +484,11 @@ class UploadWindow:
             self.append_terminal(f"\n❌ CRITICAL ERROR: {str(e)}\n", '#ef4444')
             self.window.after(0, messagebox.showerror, "Error", 
                             f"Critical error during upload:\n\n{str(e)}")
+        finally:
+            # Re-enable buttons
+            self.window.after(0, lambda: self.run_btn.config(state='normal'))
+            self.window.after(0, lambda: self.transform_btn.config(state='normal'))
+            self.window.after(0, lambda: self.stop_btn.config(state='disabled'))
     
     def setup_logging(self):
         """Setup logging to redirect to terminal"""

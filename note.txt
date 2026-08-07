@@ -26,3 +26,27 @@ things to add
 - transform the downloaded csv file to the given excel format
 - add a new button for upload option
 - add product key (license key) 
+
+before uploading, we need to change the excel data into the designated excel format.
+this is the input excel column:
+groupId	groupName	groupAbbreviation	groupIsSupplemental	groupPublishedOn	groupModifiedOn	productId	productName	cleanName	imageUrl	categoryId	productUrl	productModifiedOn	imageCount	isPresale	releasedOn	subTypeName	lowPrice	midPrice	highPrice	marketPrice	directLowPrice
+
+these are the columns we need to follow so the follwing excel should be like the following (this is the second excel file):
+URL,Product ID,Title,Description,Product Option 1 - Type,Product Option 1 - Name,Product Option 2 - Type,Product Option 2 - Name,Product Option 3 - Type,Product Option 3 - Name,Product Option Image URLs,Product Option Video URLs,Categories,Cost,Price,Discounted Price,Member Price,Enable volume price,Volume price tier 1 - quantity,Volume price tier 1 - unit price,Volume price tier 2 - quantity,Volume price tier 2 - unit price,Volume price tier 3 - quantity,Volume price tier 3 - unit price,Unlimited stock,Stock,Unlimited backorder,Backorder limit,Backorder remark,Purchase Limit,Minimum order quantity,Weight (kg),SKU,Image URLs,Video URLs,Hashtags,Enable Pre Order,Pre Order Est. Shipping Date (date-YYYY-MM-DD),Pre Order Remark,Purchase start time,Purchase end time,Auto-unpublish when purchase ended,Publish Status,Listing status,Barcode,All campaigns (except free shipping),Free shipping campaign,Promo code,Supplier,Merchant Remark,Meta keywords,Meta title,Meta description
+
+change the following columns from the input file:
+imageURL to Image URLs
+productName to Title
+marketPrice to Price 
+groupName to Categories
+
+so the rest of the column from the input excel should be removed. so the output excel will be like the second excel file. since we are modifying the input excel files and it does not have all the other columns from the second excel, it should following the following rules. 
+Unlimited stock is always 1.
+unlimited backorder is always 0.
+Backorder limit is always 0.
+Enable Pre Order is always 0.
+Public Status is always 1. 
+Listing status is always 0. 
+the rest of the columns should be empty. 
+
+let's add a new button "Tranform Excel File" before Upload. Make a new class for this button so it's easy to integrate. When the button is clicked it will take the input excel file and output the excel file (like the second excel format) in the current directory of the application (.exe) or python code. The transform excel file should be used when uploading. so after the transform, take the transform excel file automatically before uploading. show this result that the transform excel file was selected for upload. also add Stop button to stop uploading process. so there should be three buttons: Tranform Excel File, Stop, Run Upload. 
