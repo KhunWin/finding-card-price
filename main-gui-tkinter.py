@@ -8,6 +8,7 @@ import threading
 import tkinter as tk
 from tkinter import ttk, filedialog, messagebox, scrolledtext
 from main_tcg_extract import TCGCSVScraperGUI
+from upload_window import UploadWindow
 
 
 class ModernButton(tk.Canvas):
@@ -227,7 +228,7 @@ class TCGScraperGUI:
                                                      "e.g., 1, 3, 85 (comma-separated)")
         
         # Group IDs
-        self.group_entry = self.create_input_row(input_card, "Group IDs (Optional)", "", 
+        self.group_entry = self.create_input_row(input_card, "Group IDs", "", 
                                                   "e.g., 24721, 24653 (leave empty for all)")
         
         # Output Folder
@@ -538,8 +539,15 @@ class TCGScraperGUI:
         self.reset_btn = ModernButton(btn_container, "RESET", 
                                       self.reset_fields, '#6366f1', '#4f46e5',
                                       icon="🔄")
-        self.reset_btn.pack(side=tk.LEFT, fill=tk.X, expand=True)
+        self.reset_btn.pack(side=tk.LEFT, fill=tk.X, expand=True, padx=(0, 10))
         self.reset_btn.config(width=150)
+        
+        # Upload button (purple)
+        self.upload_btn = ModernButton(btn_container, "UPLOAD", 
+                                       self.open_upload_window, '#8b5cf6', '#7c3aed',
+                                       icon="📤")
+        self.upload_btn.pack(side=tk.LEFT, fill=tk.X, expand=True)
+        self.upload_btn.config(width=150)
         
         # Bind resize event
         self.root.bind('<Configure>', self._on_resize)
@@ -550,6 +558,7 @@ class TCGScraperGUI:
             self.start_btn.draw_button(self.start_btn.bg_color)
             self.stop_btn.draw_button(self.stop_btn.bg_color if self.stop_btn.is_enabled else '#2d2d2d')
             self.reset_btn.draw_button(self.reset_btn.bg_color)
+            self.upload_btn.draw_button(self.upload_btn.bg_color)
         if hasattr(self, 'progress_canvas'):
             self.draw_progress_bar()
     
@@ -629,7 +638,10 @@ class TCGScraperGUI:
             return
         
         group_ids_text = self.group_entry.get().strip()
-        group_ids = [g.strip() for g in group_ids_text.split(',') if g.strip()] if group_ids_text else None
+        if not group_ids_text:
+            messagebox.showerror("⚠️ Input Error", "Please enter at least one Group ID.")
+            return
+        group_ids = [g.strip() for g in group_ids_text.split(',') if g.strip()]
         
         output_folder = self.folder_entry.get().strip()
         if not output_folder or not os.path.exists(output_folder):
@@ -766,6 +778,10 @@ class TCGScraperGUI:
             self.append_log("❌ SCRAPING FAILED\n", "red")
             self.append_log("=" * 60 + "\n\n", "red")
             messagebox.showerror("❌ Error", f"Scraping failed:\n\n{message}")
+    
+    def open_upload_window(self):
+        """Open upload window for Boutir product upload"""
+        UploadWindow(self.root)
 
 
 def main():

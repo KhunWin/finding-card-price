@@ -16,3 +16,13 @@ https://tcgcsv.com/
 #for short testing, use the following info
 category ids- 85
 group ids-24781
+
+files that are used
+- main-gui-tkinter.py
+- main_tgc_extract.py
+
+
+things to add 
+- transform the downloaded csv file to the given excel format
+- add a new button for upload option
+- add product key (license key) 
