@@ -594,15 +594,13 @@ class PlaywrightUploader:
                     logger.debug(f"Selector {selector} failed: {e}")
                     continue
             
-            if third_next_clicked:
-                return True
-            else:
-                logger.info("No third 'Next' button found or it's disabled")
+            if not third_next_clicked:
+                error_msg = "❌ ERROR: No clickable third 'Next' button found. Upload cannot be completed."
+                logger.error(error_msg)
+                logger.error("The upload process has been stopped due to missing third 'Next' button.")
+                raise Exception(error_msg)
             
-            # # Wait for completion
-            # self.wait_for_upload_completion()
-            
-            logger.info(f"Excel file uploaded successfully: {file_path}")
+            logger.info(f"✅ Excel file uploaded successfully: {file_path}")
             return True
             
         except Exception as e:

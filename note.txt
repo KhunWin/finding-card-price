@@ -53,3 +53,21 @@ Listing status is always 0.
 the rest of the columns should be empty. 
 
 let's add a new button "Tranform Excel File" before Upload. Make a new class for this button so it's easy to integrate. When the button is clicked it will take the input excel file and output the excel file (like the second excel format) in the current directory of the application (.exe) or python code. The transform excel file should be used when uploading. so after the transform, take the transform excel file automatically before uploading. show this result that the transform excel file was selected for upload. also add Stop button to stop uploading process. so there should be three buttons: Tranform Excel File, Stop, Run Upload. 
+
+======================================================================
+🎭 Attempting upload with Playwright...
+======================================================================
+
+
+⚠️ Playwright failed: No module named 'uploaders'
+
+======================================================================
+🔄 Attempting upload with Selenium...
+======================================================================
+
+
+❌ Selenium failed: No module named 'uploaders'
+
+======================================================================
+❌ UPLOAD FAILED - Both methods failed
+======================================================================

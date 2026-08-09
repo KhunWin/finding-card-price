@@ -353,9 +353,7 @@ class SeleniumUploader:
             logger.info("Looking for first 'Next' button...")
             next_button_selectors = [
                 (By.XPATH, '//button[contains(text(), "Next")]'),
-                (By.XPATH, '//button[contains(text(), "下一步")]'),
-                (By.CSS_SELECTOR, 'button[type="button"]'),
-                (By.CSS_SELECTOR, 'button[type="submit"]')
+                (By.XPATH, '//button[contains(text(), "下一步")]')
             ]
             
             next_clicked = False
@@ -449,17 +447,13 @@ class SeleniumUploader:
                 except NoSuchElementException:
                     continue
             
-
-            if third_next_clicked:
-                logger.info("✅ Upload successful - third 'Next' button clicked")
-                return True
-            else:
-                logger.info("No third 'Next' button found or it's disabled")
+            if not third_next_clicked:
+                error_msg = "❌ ERROR: No clickable third 'Next' button found. Upload cannot be completed."
+                logger.error(error_msg)
+                logger.error("The upload process has been stopped due to missing third 'Next' button.")
+                raise Exception(error_msg)
             
-            # Wait for completion
-            # self.wait_for_upload_completion()
-            
-            logger.info(f"Excel file uploaded successfully: {file_path}")
+            logger.info(f"✅ Excel file uploaded successfully: {file_path}")
             return True
             
         except Exception as e:

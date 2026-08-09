@@ -13,6 +13,7 @@ pip install openpyxl
 pip install pandas
 pip install selenium
 pip install webdriver-manager
+pip install supabase python-dotenv
 
 pip install playwright openpyxl pandas selenium webdriver-manager
 
