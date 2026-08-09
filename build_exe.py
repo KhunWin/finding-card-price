@@ -64,6 +64,19 @@ def build_exe():
         '--hidden-import=tkinter.filedialog',
         '--hidden-import=tkinter.messagebox',
         '--hidden-import=tkinter.scrolledtext',
+        '--hidden-import=tkinter.simpledialog',
+        '--hidden-import=product_keys',
+        '--hidden-import=product_keys_supabase',
+        '--hidden-import=supabase',
+        '--hidden-import=dotenv',
+        '--hidden-import=json',
+        '--hidden-import=hashlib',
+        '--hidden-import=uuid',
+        '--hidden-import=platform',
+        '--hidden-import=datetime',
+        
+        # Add .env file as data
+        '--add-data=.env:.',
         
         # Optimize
         '--strip',                         # Strip symbols

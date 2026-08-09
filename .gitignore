@@ -13,13 +13,9 @@ __pycache__/
 # Virtual environments
 # ==================================
 venv/
-env/
 ENV/
-.venv/
-.env/
 virtualenv/
 pyenv/
-.venv/
 venv.bak/
 env.bak/
 ENV.bak/

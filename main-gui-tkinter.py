@@ -6,9 +6,10 @@ import sys
 import os
 import threading
 import tkinter as tk
-from tkinter import ttk, filedialog, messagebox, scrolledtext
+from tkinter import ttk, filedialog, messagebox, scrolledtext, simpledialog
 from main_tcg_extract import TCGCSVScraperGUI
 from upload_window import UploadWindow
+from product_keys_supabase import SupabaseProductKeyManager as ProductKeyManager
 
 
 class ModernButton(tk.Canvas):
@@ -147,6 +148,9 @@ class TCGScraperGUI:
         
         self.scraper_thread = None
         self.is_running = False
+        
+        # Initialize Product Key Manager
+        self.key_manager = ProductKeyManager()
         
         # Configure style
         self.setup_styles()
@@ -631,6 +635,33 @@ class TCGScraperGUI:
     
     def start_scraping(self):
         """Start the scraping process"""
+        # Check product key access
+        if not self.key_manager.has_scraping_access():
+            # Prompt for product key
+            key = simpledialog.askstring(
+                "🔑 Product Key Required",
+                "Please enter your product key to use the scraping feature:\n\n"
+                "• Scraping Only Key (SCRP-XXXX-XXXX-XXXX-XXXX)\n"
+                "• Full Access Key (FULL-XXXX-XXXX-XXXX-XXXX)",
+                parent=self.root
+            )
+            
+            if not key:
+                messagebox.showwarning("⚠️ Cancelled", "Product key is required to use this feature.")
+                return
+            
+            # Activate the key
+            success, key_type, message = self.key_manager.activate_key(key)
+            
+            if not success:
+                messagebox.showerror("❌ Invalid Key", message)
+                return
+            
+            # Show success message
+            key_type_name = "Scraping Only" if key_type == self.key_manager.KEY_TYPE_SCRAPING else "Full Access"
+            messagebox.showinfo("✅ Key Activated", f"Product key activated successfully!\n\nKey Type: {key_type_name}")
+            self.append_log(f"🔑 Product key activated: {key_type_name}\n", "green")
+        
         # Validate inputs
         category_ids = [c.strip() for c in self.category_entry.get().split(',') if c.strip()]
         if not category_ids:
@@ -781,6 +812,86 @@ class TCGScraperGUI:
     
     def open_upload_window(self):
         """Open upload window for Boutir product upload"""
+        # Check product key access for upload
+        if not self.key_manager.has_upload_access():
+            # Check if user has scraping-only key
+            if self.key_manager.has_scraping_access():
+                # User has scraping key, prompt them to enter Full Access key
+                response = messagebox.askyesno(
+                    "🔑 Full Access Key Required",
+                    "Your current key only allows scraping.\n\n"
+                    "To use the Upload feature, you need a Full Access key.\n\n"
+                    "Would you like to enter a Full Access key now?"
+                )
+                
+                if not response:
+                    return
+                
+                # Prompt for Full Access key
+                key = simpledialog.askstring(
+                    "🔑 Enter Full Access Key",
+                    "Please enter your Full Access product key:\n\n"
+                    "Full Access Key format: FULL-XXXX-XXXX-XXXX-XXXX",
+                    parent=self.root
+                )
+                
+                if not key:
+                    messagebox.showwarning("⚠️ Cancelled", "Full Access key is required to use the upload feature.")
+                    return
+                
+                # Activate the key
+                success, key_type, message = self.key_manager.activate_key(key)
+                
+                if not success:
+                    messagebox.showerror("❌ Invalid Key", message)
+                    return
+                
+                # Check if it's a full access key
+                if key_type != self.key_manager.KEY_TYPE_FULL:
+                    messagebox.showerror(
+                        "❌ Wrong Key Type",
+                        "This key only allows scraping.\n\n"
+                        "To use the Upload feature, you need a Full Access key (FULL-XXXX-XXXX-XXXX-XXXX)."
+                    )
+                    return
+                
+                # Show success message
+                messagebox.showinfo("✅ Key Activated", "Full Access key activated successfully!\n\nYou can now use both Scraping and Upload features.")
+                self.append_log("🔑 Full Access key activated\n", "green")
+            else:
+                # No key activated yet, prompt for full access key
+                key = simpledialog.askstring(
+                    "🔑 Full Access Key Required",
+                    "Please enter your Full Access product key to use the upload feature:\n\n"
+                    "Full Access Key format: FULL-XXXX-XXXX-XXXX-XXXX",
+                    parent=self.root
+                )
+                
+                if not key:
+                    messagebox.showwarning("⚠️ Cancelled", "Full Access key is required to use the upload feature.")
+                    return
+                
+                # Activate the key
+                success, key_type, message = self.key_manager.activate_key(key)
+                
+                if not success:
+                    messagebox.showerror("❌ Invalid Key", message)
+                    return
+                
+                # Check if it's a full access key
+                if key_type != self.key_manager.KEY_TYPE_FULL:
+                    messagebox.showerror(
+                        "❌ Wrong Key Type",
+                        "This key only allows scraping.\n\n"
+                        "To use the Upload feature, you need a Full Access key (FULL-XXXX-XXXX-XXXX-XXXX)."
+                    )
+                    return
+                
+                # Show success message
+                messagebox.showinfo("✅ Key Activated", "Full Access key activated successfully!\n\nYou can now use both Scraping and Upload features.")
+                self.append_log("🔑 Full Access key activated\n", "green")
+        
+        # Open upload window
         UploadWindow(self.root)
 
 
