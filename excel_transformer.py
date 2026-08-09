@@ -44,7 +44,7 @@ class ExcelTransformer:
     
     # Default values for required fields
     DEFAULT_VALUES = {
-        # 'Unlimited stock': 1,
+        'Unlimited stock': 1,
         'Unlimited backorder': 0,
         'Backorder limit': 0,
         'Enable Pre Order': 0,
