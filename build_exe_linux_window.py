@@ -344,12 +344,12 @@ def clean_build():
 
 def check_icon():
     """Check if icon file exists and is valid"""
-    icon_path = 'icon.png'
+    icon_path = 'icon.ico'
     if os.path.exists(icon_path):
         print(f"   ✓ Found icon: {icon_path}")
         return icon_path
     else:
-        print(f"   ⚠ Warning: icon.png not found in root directory")
+        print(f"   ⚠ Warning: icon.ico not found in root directory")
         return None
 
 
@@ -363,7 +363,7 @@ def get_platform_config():
             'name_suffix': '',
             'windowed': True,
             'platform_name': 'Windows',
-            'icon_arg': '--icon=icon.png'  # PyInstaller supports PNG on Windows
+            'icon_arg': '--icon=icon.ico'  # PyInstaller supports ICO on Windows
         }
     elif system == 'linux':
         return {
@@ -454,6 +454,7 @@ def get_common_args(use_icon=True, version_file='version.txt'):
         icon_path = check_icon()
         if icon_path:
             args.append(f'--icon={icon_path}')
+            args.append(f'--add-data={icon_path}:.')
             print(f"   ✓ Added icon: {icon_path}")
     
     # Add version file if it exists
@@ -531,7 +532,7 @@ def build_exe():
         # Additional info for Windows
         if config['platform_name'] == 'Windows':
             print("\n💡 Windows Build Info:")
-            print("   - Icon embedded: icon.png")
+            print("   - Icon embedded: icon.ico")
             print("   - Version info embedded: version.txt")
             print("   - The executable should now have proper file properties")
             print("   - Right-click the .exe → Properties → Details to verify")

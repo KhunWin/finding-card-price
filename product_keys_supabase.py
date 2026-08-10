@@ -31,7 +31,6 @@ class SupabaseProductKeyManager:
         
         self.supabase: Client = create_client(self.supabase_url, self.supabase_key)
         self.machine_id = self._generate_machine_id()
-        self.machine_name = self._get_machine_name()
         
         # Cache for activated keys (to reduce API calls)
         self._cache = {}
@@ -68,15 +67,7 @@ class SupabaseProductKeyManager:
         
         return machine_hash
     
-    def _get_machine_name(self) -> str:
-        """Get a human-readable machine name"""
-        try:
-            hostname = platform.node()
-            system = platform.system()
-            return f"{hostname} ({system})"
-        except:
-            return "Unknown Machine"
-    
+
     def _load_cache(self):
         """Load activated keys for this machine from Supabase"""
         if self._cache_loaded:
@@ -190,7 +181,6 @@ class SupabaseProductKeyManager:
             update_data = {
                 'is_activated': True,
                 'machine_id': self.machine_id,
-                'machine_name': self.machine_name,
                 'activated_at': activation_time.isoformat(),
                 'expires_at': expiration_time.isoformat()
             }

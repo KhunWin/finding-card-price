@@ -897,6 +897,22 @@ class TCGScraperGUI:
 
 def main():
     root = tk.Tk()
+    
+    # Set application icon
+    try:
+        icon_path = os.path.join(os.path.dirname(__file__), 'icon.ico')
+        if os.path.exists(icon_path):
+            root.iconbitmap(icon_path)
+        else:
+            # When running as PyInstaller executable, try to get from temp directory
+            if getattr(sys, 'frozen', False):
+                icon_path = os.path.join(sys._MEIPASS, 'icon.ico')
+                if os.path.exists(icon_path):
+                    root.iconbitmap(icon_path)
+    except Exception as e:
+        # Icon setting failed, continue without icon
+        print(f"Could not set icon: {e}")
+    
     app = TCGScraperGUI(root)
     root.mainloop()
 

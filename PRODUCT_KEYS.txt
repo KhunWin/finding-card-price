@@ -16,7 +16,7 @@ Total Keys: 100
 These keys allow users to use the "Start Scraping" feature only.
 Upload feature will be disabled.
 
-SCRP-A7K9-M2X4-P8Q1-W5E3
+SCRP-A7K9-M2X4-P8Q1-W5E3 (used)
 SCRP-B3N6-L9Y2-R4T7-U1I8
 SCRP-C8H5-K1M3-V6B9-N2J4
 SCRP-D4F7-G2A5-S9D1-F3H6
@@ -73,8 +73,8 @@ SCRP-X5K4-L6Z8-X1C3-V5B7
 These keys allow users to use BOTH "Start Scraping" AND "Upload" features.
 Complete access to all application functionality.
 
-FULL-A9M7-K3X5-P2Q8-W6E4
-FULL-B5N8-L2Y4-R6T9-U3I1
+FULL-A9M7-K3X5-P2Q8-W6E4 (used)
+FULL-B5N8-L2Y4-R6T9-U3I1 (used)
 FULL-C1H6-K9M4-V2B7-N5J8
 FULL-D7F3-G5A8-S2D6-F9H1
 FULL-E4J1-K8L5-Z3X7-C2V9

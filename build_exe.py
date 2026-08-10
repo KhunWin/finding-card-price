@@ -52,8 +52,11 @@ def build_exe():
         '--windowed',                      # No console window (GUI app)
         '--noconfirm',                     # Overwrite without asking
         
-        # Icon (create one or remove this line)
-        # '--icon=app_icon.ico',
+        # Icon
+        '--icon=icon.ico',
+        
+        # Add data files
+        '--add-data=icon.ico:.',
         
         # Add data files if needed
         # '--add-data=main_tcg_extract.py;.',
@@ -121,6 +124,8 @@ def build_with_console():
         '--onefile',
         # '--windowed',  # REMOVED - shows console for debugging
         '--noconfirm',
+        '--icon=icon.ico',
+        '--add-data=icon.ico:.',
         '--hidden-import=tkinter',
         '--hidden-import=tkinter.ttk',
         '--hidden-import=tkinter.filedialog',
