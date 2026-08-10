@@ -20,18 +20,58 @@ class PlaywrightUploader:
     def setup_browser(self):
         """Initialize Playwright browser"""
         try:
+            import os
+            import sys
+            
             self.playwright = sync_playwright().start()
-            self.browser = self.playwright.chromium.launch(
-                headless=self.headless,
-                args=[
-                    '--no-sandbox', 
-                    '--disable-dev-shm-usage', 
-                    '--disable-blink-features=AutomationControlled',
-                    '--disable-web-security',
-                    '--disable-features=IsolateOrigins,site-per-process',
-                    '--disable-site-isolation-trials'
-                ]
-            )
+            
+            # Use Chrome browser installed on the system instead of Playwright's bundled browsers
+            # This avoids the need for 'playwright install' in bundled executables
+            chrome_path = None
+            
+            # Try to find Chrome in common locations
+            chrome_locations = [
+                r"C:\Program Files\Google\Chrome\Application\chrome.exe",
+                r"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe",
+                os.path.expandvars(r"%LOCALAPPDATA%\Google\Chrome\Application\chrome.exe"),
+                os.path.expandvars(r"%PROGRAMFILES%\Google\Chrome\Application\chrome.exe"),
+                os.path.expandvars(r"%PROGRAMFILES(X86)%\Google\Chrome\Application\chrome.exe"),
+            ]
+            
+            for location in chrome_locations:
+                if os.path.exists(location):
+                    chrome_path = location
+                    logger.info(f"Found Chrome at: {chrome_path}")
+                    break
+            
+            if chrome_path:
+                # Use the system's Chrome browser
+                self.browser = self.playwright.chromium.launch(
+                    headless=self.headless,
+                    executable_path=chrome_path,
+                    args=[
+                        '--no-sandbox', 
+                        '--disable-dev-shm-usage', 
+                        '--disable-blink-features=AutomationControlled',
+                        '--disable-web-security',
+                        '--disable-features=IsolateOrigins,site-per-process',
+                        '--disable-site-isolation-trials'
+                    ]
+                )
+            else:
+                # Fallback to default Chromium (requires playwright install)
+                logger.warning("Chrome not found in standard locations, using Playwright's Chromium")
+                self.browser = self.playwright.chromium.launch(
+                    headless=self.headless,
+                    args=[
+                        '--no-sandbox', 
+                        '--disable-dev-shm-usage', 
+                        '--disable-blink-features=AutomationControlled',
+                        '--disable-web-security',
+                        '--disable-features=IsolateOrigins,site-per-process',
+                        '--disable-site-isolation-trials'
+                    ]
+                )
             self.context = self.browser.new_context(
                 viewport={'width': 1920, 'height': 1080},
                 user_agent='Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',

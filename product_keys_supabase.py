@@ -178,10 +178,10 @@ class SupabaseProductKeyManager:
                         'activated_at': key_data['activated_at'],
                         'expires_at': key_data['expires_at']
                     }
-                    return False, key_data['key_type'], "This product key has already been activated on this system."
+                    return False, key_data['key_type'], "This product key has already been used."
                 else:
                     # Activated on a different machine
-                    return False, "", f"This product key has already been activated on another machine ({key_data['machine_name']})."
+                    return False, "", f"This product key has already been used."
             
             # Key is not activated, activate it now
             activation_time = datetime.utcnow()

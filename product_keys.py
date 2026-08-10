@@ -181,7 +181,7 @@ class ProductKeyManager:
         
         # Check if key has already been used
         if key in self.used_keys:
-            return (False, None, "This product key has already been activated on this system.")
+            return (False, None, "This product key has already been used.")
         
         # Get key type
         key_type = self.valid_keys[key]
