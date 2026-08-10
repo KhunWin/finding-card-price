@@ -166,7 +166,8 @@ class TCGCSVScraperGUI:
         return None
     
     def export_to_csv(self, data):
-        csv_file = os.path.join(self.output_folder, f'tcg_data_categoryId{"_".join(self.category_ids)}.csv')
+        # csv_file = os.path.join(self.output_folder, f'tcg_data_categoryId{"_".join(self.category_ids)}.csv')
+        excel_file = os.path.join(self.output_folder, f'tcg_data_categoryId{"_".join(self.category_ids)}.xlsx')
         
         rows = []
         for group_data in data:
@@ -226,14 +227,20 @@ class TCGCSVScraperGUI:
                     }
                     rows.append(row)
         
-        if rows:
-            with open(csv_file, 'w', newline='', encoding='utf-8') as f:
-                writer = csv.DictWriter(f, fieldnames=rows[0].keys())
-                writer.writeheader()
-                writer.writerows(rows)
-            self.log(f"✓ CSV saved: {csv_file}", "green")
+        # if rows:
+            # with open(excel_file, 'w', newline='', encoding='utf-8') as f:
+            #     writer = csv.DictWriter(f, fieldnames=rows[0].keys())
+            #     writer.writeheader()
+            #     writer.writerows(rows)
+            # self.log(f"✓ Excel file saved: {excel_file}", "green")
         
-        return csv_file
+        if rows:
+            import pandas as pd
+            df = pd.DataFrame(rows)
+            df.to_excel(excel_file, index=False, engine='openpyxl')
+            self.log(f"✓ Excel saved: {excel_file}", "green")
+        
+        return excel_file
     
     def scrape_data(self):
         self.log("=" * 60, "cyan")

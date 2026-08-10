@@ -23,6 +23,9 @@ class UploadWindow:
         self.window.configure(bg='#0a0e1a')
         self.window.resizable(True, True)
         
+        # Set window icon
+        self.set_window_icon()
+        
         # Center the window
         self.center_window()
         
@@ -36,6 +39,22 @@ class UploadWindow:
         
         # Create GUI
         self.create_widgets()
+    
+    def set_window_icon(self):
+        """Set the window icon for both title bar and taskbar"""
+        try:
+            icon_path = os.path.join(os.path.dirname(__file__), 'icon.ico')
+            if os.path.exists(icon_path):
+                self.window.iconbitmap(icon_path)
+            else:
+                # When running as PyInstaller executable, try to get from temp directory
+                if getattr(sys, 'frozen', False):
+                    icon_path = os.path.join(sys._MEIPASS, 'icon.ico')
+                    if os.path.exists(icon_path):
+                        self.window.iconbitmap(icon_path)
+        except Exception as e:
+            # Icon setting failed, continue without icon
+            print(f"Could not set icon for upload window: {e}")
     
     def center_window(self):
         """Center the window on screen"""

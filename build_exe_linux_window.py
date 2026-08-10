@@ -403,8 +403,13 @@ def get_common_args(use_icon=True, version_file='version.txt'):
         '--hidden-import=tkinter.simpledialog',
         '--hidden-import=product_keys',
         '--hidden-import=product_keys_supabase',
+        '--hidden-import=supabase',
+        '--hidden-import=dotenv',
         '--hidden-import=json',
         '--hidden-import=hashlib',
+        '--hidden-import=uuid',
+        '--hidden-import=platform',
+        '--hidden-import=datetime',
         '--hidden-import=requests',
         '--hidden-import=PIL',
         '--hidden-import=openpyxl',
@@ -441,6 +446,9 @@ def get_common_args(use_icon=True, version_file='version.txt'):
         
         # Add web-upload-bulk directory and its contents
         '--add-data=web-upload-bulk;web-upload-bulk',
+        
+        # Add .env file as data
+        '--add-data=.env:.',
         
         # Collect all submodules from web-upload-bulk and dependencies
         '--collect-all=uploaders',

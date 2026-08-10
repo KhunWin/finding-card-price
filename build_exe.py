@@ -126,11 +126,15 @@ def build_with_console():
         '--noconfirm',
         '--icon=icon.ico',
         '--add-data=icon.ico:.',
+        '--add-data=.env:.',
         '--hidden-import=tkinter',
         '--hidden-import=tkinter.ttk',
         '--hidden-import=tkinter.filedialog',
         '--hidden-import=tkinter.messagebox',
         '--hidden-import=tkinter.scrolledtext',
+        '--hidden-import=product_keys_supabase',
+        '--hidden-import=supabase',
+        '--hidden-import=dotenv',
         '--clean',
     ]
     

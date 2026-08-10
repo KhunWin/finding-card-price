@@ -7,13 +7,25 @@ import os
 import hashlib
 import platform
 import uuid
+import sys
 from datetime import datetime, timedelta
 from typing import Tuple, Optional
 from supabase import create_client, Client
 from dotenv import load_dotenv
 
 # Load environment variables
-load_dotenv()
+# Handle PyInstaller bundled .env file
+if getattr(sys, 'frozen', False):
+    # Running as compiled executable
+    bundle_dir = sys._MEIPASS
+    env_path = os.path.join(bundle_dir, '.env')
+    if os.path.exists(env_path):
+        load_dotenv(env_path)
+    else:
+        load_dotenv()  # Try default location as fallback
+else:
+    # Running as script
+    load_dotenv()
 
 class SupabaseProductKeyManager:
     """Manages product keys with server-based validation using Supabase"""

@@ -22,6 +22,7 @@ class PlaywrightUploader:
         try:
             import os
             import sys
+            import subprocess
             
             self.playwright = sync_playwright().start()
             
@@ -36,42 +37,77 @@ class PlaywrightUploader:
                 os.path.expandvars(r"%LOCALAPPDATA%\Google\Chrome\Application\chrome.exe"),
                 os.path.expandvars(r"%PROGRAMFILES%\Google\Chrome\Application\chrome.exe"),
                 os.path.expandvars(r"%PROGRAMFILES(X86)%\Google\Chrome\Application\chrome.exe"),
+                # Additional Windows locations
+                os.path.expanduser(r"~\AppData\Local\Google\Chrome\Application\chrome.exe"),
+                r"C:\Users\Public\Desktop\Google Chrome.lnk",
             ]
             
+            # Try Windows registry to find Chrome
+            if sys.platform == 'win32':
+                try:
+                    import winreg
+                    # Try to get Chrome path from registry
+                    reg_paths = [
+                        (winreg.HKEY_LOCAL_MACHINE, r"SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\chrome.exe"),
+                        (winreg.HKEY_CURRENT_USER, r"SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\chrome.exe"),
+                    ]
+                    
+                    for hkey, reg_path in reg_paths:
+                        try:
+                            with winreg.OpenKey(hkey, reg_path) as key:
+                                chrome_reg_path = winreg.QueryValue(key, None)
+                                if chrome_reg_path and os.path.exists(chrome_reg_path):
+                                    chrome_locations.insert(0, chrome_reg_path)
+                                    logger.info(f"Found Chrome in registry: {chrome_reg_path}")
+                        except WindowsError:
+                            continue
+                except ImportError:
+                    pass
+            
+            # Check all locations
             for location in chrome_locations:
-                if os.path.exists(location):
+                if location and os.path.exists(location):
                     chrome_path = location
-                    logger.info(f"Found Chrome at: {chrome_path}")
+                    logger.info(f"✅ Found Chrome at: {chrome_path}")
                     break
             
             if chrome_path:
                 # Use the system's Chrome browser
-                self.browser = self.playwright.chromium.launch(
-                    headless=self.headless,
-                    executable_path=chrome_path,
-                    args=[
-                        '--no-sandbox', 
-                        '--disable-dev-shm-usage', 
-                        '--disable-blink-features=AutomationControlled',
-                        '--disable-web-security',
-                        '--disable-features=IsolateOrigins,site-per-process',
-                        '--disable-site-isolation-trials'
-                    ]
-                )
+                try:
+                    self.browser = self.playwright.chromium.launch(
+                        headless=self.headless,
+                        executable_path=chrome_path,
+                        args=[
+                            '--no-sandbox', 
+                            '--disable-dev-shm-usage', 
+                            '--disable-blink-features=AutomationControlled',
+                            '--disable-web-security',
+                            '--disable-features=IsolateOrigins,site-per-process',
+                            '--disable-site-isolation-trials'
+                        ]
+                    )
+                    logger.info("✅ Browser initialized successfully with system Chrome")
+                except Exception as e:
+                    logger.error(f"Failed to launch with Chrome at {chrome_path}: {e}")
+                    raise Exception(
+                        f"Failed to initialize browser with Chrome.\n\n"
+                        f"Chrome was found at: {chrome_path}\n"
+                        f"But failed to launch: {str(e)}\n\n"
+                        f"Please ensure Google Chrome is properly installed."
+                    )
             else:
-                # Fallback to default Chromium (requires playwright install)
-                logger.warning("Chrome not found in standard locations, using Playwright's Chromium")
-                self.browser = self.playwright.chromium.launch(
-                    headless=self.headless,
-                    args=[
-                        '--no-sandbox', 
-                        '--disable-dev-shm-usage', 
-                        '--disable-blink-features=AutomationControlled',
-                        '--disable-web-security',
-                        '--disable-features=IsolateOrigins,site-per-process',
-                        '--disable-site-isolation-trials'
-                    ]
+                # Chrome not found - raise error instead of falling back to Playwright's Chromium
+                error_msg = (
+                    "❌ Google Chrome browser not found on this system!\n\n"
+                    "This application requires Google Chrome to be installed.\n\n"
+                    "Please install Google Chrome from:\n"
+                    "https://www.google.com/chrome/\n\n"
+                    "After installation, restart this application.\n\n"
+                    "Chrome was searched in the following locations:\n" +
+                    "\n".join(f"  - {loc}" for loc in chrome_locations)
                 )
+                logger.error(error_msg)
+                raise Exception(error_msg)
             self.context = self.browser.new_context(
                 viewport={'width': 1920, 'height': 1080},
                 user_agent='Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
