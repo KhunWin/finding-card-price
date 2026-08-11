@@ -173,6 +173,8 @@ class TCGCSVScraperGUI:
         for group_data in data:
             group = group_data['group']
             for product in group_data['products']:
+                image_download_success = product.get('image_download_success', False)
+
                 if product['prices']:
                     for price in product['prices']:
                         row = {
@@ -223,7 +225,9 @@ class TCGCSVScraperGUI:
                         'midPrice': None,
                         'highPrice': None,
                         'marketPrice': None,
-                        'directLowPrice': None
+                        'directLowPrice': None,
+                        'image_download_success': image_download_success
+
                     }
                     rows.append(row)
         
@@ -337,6 +341,25 @@ class TCGCSVScraperGUI:
                         })
                 
                 # Download images for this group
+                # if self.download_images:
+                #     self.log(f"  📷 Downloading images...", "cyan")
+                #     for product in product_dict.values():
+                #         if not self.is_running():
+                #             break
+                #         image_url = product.get('imageUrl')
+                #         if image_url:
+                #             result = self.download_image(
+                #                 image_url, 
+                #                 product.get('productId'),
+                #                 product.get('name')
+                #             )
+                #             if result:
+                #                 downloaded_images += 1
+                #             else:
+                #                 failed_images += 1
+                #             time.sleep(0.05)
+
+                # Download images for this group
                 if self.download_images:
                     self.log(f"  📷 Downloading images...", "cyan")
                     for product in product_dict.values():
@@ -344,17 +367,24 @@ class TCGCSVScraperGUI:
                             break
                         image_url = product.get('imageUrl')
                         if image_url:
-                            result = self.download_image(
+                            # Download the image and store the result
+                            download_result = self.download_image(
                                 image_url, 
                                 product.get('productId'),
                                 product.get('name')
                             )
-                            if result:
+                            # Store the download status in the product dict
+                            product['image_download_success'] = download_result is not None
+                            
+                            if download_result:
                                 downloaded_images += 1
                             else:
                                 failed_images += 1
                             time.sleep(0.05)
-                
+                        else:
+                            # No image URL available
+                            product['image_download_success'] = False
+
                 group_data = {
                     'categoryId': category_id,
                     'group': group,
@@ -393,3 +423,6 @@ class TCGCSVScraperGUI:
         self.log("=" * 60, "cyan")
         
         return stats
+
+
+

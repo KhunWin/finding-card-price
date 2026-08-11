@@ -75,3 +75,8 @@ key 1: when 'Start Scraping" is clicked, if a product key is not provided before
 key 2: after providing this key, the user will be able to click 'Start scraping' and 'Upload' buttons. 
 there should be only 50 for key 1 and 50 for key 2. so in total, there should be only 100. i will change this python program to an executable program (.exe). so the code must work when the program is exported to exe program. so modify build_exe py to be able to run exe file. 
 give me the 100 keys too. i will run testing to see if these keys work. 
+
+
+##not all images can be downloaded
+#marketPrice column cannot be empty before uploading. 
+#it's suggested to download maximum 5 groupids. 

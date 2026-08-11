@@ -408,10 +408,58 @@ class SeleniumUploader:
             time.sleep(3)
             
             
+            # # Step 5: Click second 'Next' button
+            # logger.info("Looking for second 'Next' button...")
+            # time.sleep(2)
+            
+            # second_next_clicked = False
+            # for by, selector in next_button_selectors:
+            #     try:
+            #         btn = self.driver.find_element(by, selector)
+            #         if btn.is_displayed() and btn.is_enabled():
+            #             btn.click()
+            #             logger.info(f"Clicked second 'Next' button using selector: {selector}")
+            #             second_next_clicked = True
+            #             time.sleep(2)
+            #             break
+            #     except NoSuchElementException:
+            #         continue
+            
+            # if not second_next_clicked:
+            #     logger.warning("Could not find second 'Next' button, upload might complete automatically")
+            
+            
+            # # Check for third Next button
+            # logger.info("Looking for third 'Next' button...")
+            # time.sleep(2)
+            
+            # third_next_clicked = False
+            # for by, selector in next_button_selectors:
+            #     try:
+            #         btn = self.driver.find_element(by, selector)
+            #         if btn.is_displayed() and btn.is_enabled():
+            #             logger.info(f"Found third 'Next' button with selector: {selector}")
+            #             btn.click()
+            #             logger.info("Clicked third 'Next' button")
+            #             third_next_clicked = True
+            #             time.sleep(3)
+            #             break
+            #     except NoSuchElementException:
+            #         continue
+            
+            # if not third_next_clicked:
+            #     error_msg = "❌ ERROR: No clickable third 'Next' button found. Upload cannot be completed."
+            #     logger.error(error_msg)
+            #     logger.error("The upload process has been stopped due to missing third 'Next' button.")
+            #     raise Exception(error_msg)
+            
+            # logger.info(f"✅ Excel file uploaded successfully: {file_path}")
+            # return True
+
             # Step 5: Click second 'Next' button
             logger.info("Looking for second 'Next' button...")
             time.sleep(2)
-            
+
             second_next_clicked = False
             for by, selector in next_button_selectors:
                 try:
@@ -424,37 +472,194 @@ class SeleniumUploader:
                         break
                 except NoSuchElementException:
                     continue
-            
+
             if not second_next_clicked:
                 logger.warning("Could not find second 'Next' button, upload might complete automatically")
-            
-            
-            # Check for third Next button
+
+
+            # Step 5.5: Handle "New categories found" popup if it appears
+            logger.info("Checking for 'New categories found' popup...")
+            time.sleep(2)
+
+            try:
+                # Check for popup dialog with text "New categories found"
+                popup_selectors = [
+                    (By.XPATH, '//div[contains(text(), "New categories found")]'),
+                    (By.XPATH, '//div[contains(text(), "new categories found")]'),
+                    (By.XPATH, '//*[contains(@class, "modal") and contains(., "categor")]'),
+                    (By.XPATH, '//*[contains(@class, "dialog") and contains(., "categor")]')
+                ]
+                
+                popup_found = False
+                for by, selector in popup_selectors:
+                    try:
+                        popup = self.driver.find_element(by, selector)
+                        if popup.is_displayed():
+                            logger.info("Found 'New categories found' popup")
+                            popup_found = True
+                            
+                            # Look for "Create All" button
+                            create_all_selectors = [
+                                (By.XPATH, '//button[contains(text(), "Create All")]'),
+                                (By.XPATH, '//button[contains(text(), "create all")]'),
+                                (By.XPATH, '//button[contains(text(), "Create")]'),
+                                (By.XPATH, '//button[contains(text(), "確認")]'),
+                                (By.CSS_SELECTOR, 'button[type="submit"]')
+                            ]
+                            
+                            create_clicked = False
+                            for create_by, create_selector in create_all_selectors:
+                                try:
+                                    create_btn = self.driver.find_element(create_by, create_selector)
+                                    if create_btn.is_displayed():
+                                        create_btn.click()
+                                        logger.info(f"Clicked 'Create All' button using selector: {create_selector}")
+                                        create_clicked = True
+                                        time.sleep(2)
+                                        break
+                                except NoSuchElementException:
+                                    continue
+                            
+                            if not create_clicked:
+                                logger.warning("Could not click 'Create All' button in popup")
+                            
+                            break
+                    except NoSuchElementException:
+                        continue
+                
+                if not popup_found:
+                    logger.info("No 'New categories found' popup detected")
+
+            except Exception as e:
+                logger.warning(f"Error checking for popup: {e}")
+
+            # Wait for popup to close and page to update
+            time.sleep(3)
+
+
+            # Step 6: Check for errors before clicking third 'Next' button
+            logger.info("Checking for upload errors...")
+
+            try:
+                # Check for error message like "45 products with errors will not be created"
+                error_message_selectors = [
+                    (By.XPATH, '//div[contains(text(), "products with errors will not be created")]'),
+                    (By.XPATH, '//div[contains(text(), "product with errors will not be created")]'),
+                    (By.XPATH, '//span[contains(text(), "products with errors")]'),
+                    (By.XPATH, '//*[contains(@class, "error") and contains(., "products")]')
+                ]
+                
+                has_errors = False
+                error_count = None
+                
+                for by, selector in error_message_selectors:
+                    try:
+                        error_msg = self.driver.find_element(by, selector)
+                        if error_msg.is_displayed():
+                            error_text = error_msg.text
+                            logger.warning(f"Found error message: {error_text}")
+                            has_errors = True
+                            
+                            # Try to extract error count
+                            import re
+                            match = re.search(r'(\d+)\s+products?\s+with\s+errors', error_text, re.IGNORECASE)
+                            if match:
+                                error_count = match.group(1)
+                                logger.error(f"❌ {error_count} products have errors")
+                            
+                            break
+                    except NoSuchElementException:
+                        continue
+                
+                if has_errors:
+                    # Check which columns have errors
+                    logger.info("Detecting error columns...")
+                    error_columns = []
+                    
+                    try:
+                        # Look for cells with error indicators
+                        error_cell_selectors = [
+                            (By.XPATH, '//td[contains(text(), "Invalid")]'),
+                            (By.XPATH, '//td[contains(text(), "invalid")]'),
+                            (By.CSS_SELECTOR, 'td[class*="error"]'),
+                            (By.CSS_SELECTOR, 'td[style*="color: red"]')
+                        ]
+                        
+                        for by, selector in error_cell_selectors:
+                            try:
+                                error_cells = self.driver.find_elements(by, selector)
+                                for cell in error_cells:
+                                    if cell.is_displayed():
+                                        text = cell.text.strip()
+                                        if "Invalid" in text or "invalid" in text:
+                                            error_columns.append(text)
+                            except NoSuchElementException:
+                                continue
+                        
+                        # Remove duplicates and log
+                        error_columns = list(set(error_columns))
+                        if error_columns:
+                            logger.error(f"❌ Errors found in columns: {', '.join(error_columns)}")
+                        else:
+                            logger.error("❌ Errors detected but could not identify specific columns")
+                    
+                    except Exception as e:
+                        logger.warning(f"Could not detect specific error columns: {e}")
+                    
+                    # Stop the upload process
+                    error_msg = f"❌ ERROR: {error_count or 'Some'} products have errors. Upload cannot be completed."
+                    if error_columns:
+                        error_msg += f"\n❌ Error columns: {', '.join(error_columns)}"
+                    
+                    logger.error(error_msg)
+                    logger.error("The upload process has been stopped due to data errors.")
+                    logger.error("Please fix the errors in the Excel file and try again.")
+                    raise Exception(error_msg)
+                
+                else:
+                    logger.info("✅ No errors detected in upload data")
+
+            except Exception as e:
+                if "ERROR:" in str(e) or "products have errors" in str(e):
+                    # Re-raise our error
+                    raise
+                else:
+                    logger.warning(f"Error checking for upload errors: {e}")
+                    logger.info("Proceeding to check third 'Next' button...")
+
+
+            # Step 7: Check for third Next button
             logger.info("Looking for third 'Next' button...")
             time.sleep(2)
-            
+
             third_next_clicked = False
             for by, selector in next_button_selectors:
                 try:
                     btn = self.driver.find_element(by, selector)
-                    if btn.is_displayed() and btn.is_enabled():
-                        logger.info(f"Found third 'Next' button with selector: {selector}")
-                        btn.click()
-                        logger.info("Clicked third 'Next' button")
-                        third_next_clicked = True
-                        time.sleep(3)
-                        break
+                    if btn.is_displayed():
+                        # Check if button is enabled
+                        if btn.is_enabled():
+                            logger.info(f"Found enabled third 'Next' button with selector: {selector}")
+                            btn.click()
+                            logger.info("✅ Clicked third 'Next' button")
+                            third_next_clicked = True
+                            time.sleep(3)
+                            break
+                        else:
+                            logger.warning(f"Third 'Next' button is disabled with selector: {selector}")
                 except NoSuchElementException:
                     continue
-            
+
             if not third_next_clicked:
                 error_msg = "❌ ERROR: No clickable third 'Next' button found. Upload cannot be completed."
                 logger.error(error_msg)
-                logger.error("The upload process has been stopped due to missing third 'Next' button.")
+                logger.error("The third 'Next' button is either missing or disabled due to errors.")
+                logger.error("Please check the uploaded data for errors.")
                 raise Exception(error_msg)
-            
+
             logger.info(f"✅ Excel file uploaded successfully: {file_path}")
             return True
+
             
         except Exception as e:
             logger.error(f"Upload failed: {e}")

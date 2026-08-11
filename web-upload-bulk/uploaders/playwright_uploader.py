@@ -611,12 +611,78 @@ class PlaywrightUploader:
             time.sleep(3)
             
             
-            # Step 5: Click second 'Next' button (after file upload)
-            logger.info("Looking for second 'Next' button...")
+            # # Step 5: Click second 'Next' button (after file upload)
+            # logger.info("Looking for second 'Next' button...")
             
+            # # Wait for the Next button to become enabled
+            # time.sleep(2)
+            
+            # second_next_clicked = False
+            # for selector in next_button_selectors:
+            #     try:
+            #         btn = self.page.locator(selector).first
+            #         if btn.count() > 0 and btn.is_visible() and btn.is_enabled():
+            #             btn.click()
+            #             logger.info(f"Clicked second 'Next' button using selector: {selector}")
+            #             second_next_clicked = True
+            #             time.sleep(2)
+            #             break
+            #     except Exception as e:
+            #         logger.debug(f"Selector {selector} failed: {e}")
+            #         continue
+            
+            # if not second_next_clicked:
+            #     logger.warning("Could not find second 'Next' button, upload might complete automatically")
+            
+            
+            # # DEBUG: Check if there's a third 'Next' button
+            # logger.info("=== DEBUGGING: Checking for third 'Next' button ===")
+            # time.sleep(2)
+            # try:
+            #     all_buttons = self.page.locator('button').all()
+            #     logger.info(f"Found {len(all_buttons)} buttons on the page")
+            #     for i, btn in enumerate(all_buttons):
+            #         try:
+            #             if btn.is_visible():
+            #                 text = btn.inner_text().strip()
+            #                 is_enabled = btn.is_enabled()
+            #                 classes = btn.get_attribute('class') or ''
+            #                 logger.info(f"Button {i+1}: text='{text}', enabled={is_enabled}, class='{classes[:100]}'")
+            #         except Exception as e:
+            #             logger.debug(f"Could not get info for button {i+1}: {e}")
+            # except Exception as e:
+            #     logger.error(f"Error listing buttons: {e}")
+            
+            # # Check for third Next button
+            # logger.info("Looking for third 'Next' button...")
+            # third_next_clicked = False
+            # for selector in next_button_selectors:
+            #     try:
+            #         btn = self.page.locator(selector).first
+            #         if btn.count() > 0 and btn.is_visible() and btn.is_enabled():
+            #             logger.info(f"Found third 'Next' button with selector: {selector}")
+            #             btn.click()
+            #             logger.info("Clicked third 'Next' button")
+            #             third_next_clicked = True
+            #             time.sleep(3)
+            #             break
+            #     except Exception as e:
+            #         logger.debug(f"Selector {selector} failed: {e}")
+            #         continue
+            
+            # if not third_next_clicked:
+            #     error_msg = "❌ ERROR: No clickable third 'Next' button found. Upload cannot be completed."
+            #     logger.error(error_msg)
+            #     logger.error("The upload process has been stopped due to missing third 'Next' button.")
+            #     raise Exception(error_msg)
+
+
+
+            logger.info("Looking for second 'Next' button...")
+
             # Wait for the Next button to become enabled
             time.sleep(2)
-            
+
             second_next_clicked = False
             for selector in next_button_selectors:
                 try:
@@ -630,54 +696,203 @@ class PlaywrightUploader:
                 except Exception as e:
                     logger.debug(f"Selector {selector} failed: {e}")
                     continue
-            
+
             if not second_next_clicked:
                 logger.warning("Could not find second 'Next' button, upload might complete automatically")
-            
-            
-            # DEBUG: Check if there's a third 'Next' button
-            logger.info("=== DEBUGGING: Checking for third 'Next' button ===")
+
+
+            # Step 5.5: Handle "New categories found" popup if it appears
+            logger.info("Checking for 'New categories found' popup...")
             time.sleep(2)
+
             try:
-                all_buttons = self.page.locator('button').all()
-                logger.info(f"Found {len(all_buttons)} buttons on the page")
-                for i, btn in enumerate(all_buttons):
+                # Check for popup dialog with text "New categories found"
+                popup_selectors = [
+                    'div:has-text("New categories found")',
+                    'div:has-text("new categories found")',
+                    '[class*="modal"]:has-text("categor")',
+                    '[class*="dialog"]:has-text("categor")'
+                ]
+                
+                popup_found = False
+                for selector in popup_selectors:
                     try:
-                        if btn.is_visible():
-                            text = btn.inner_text().strip()
-                            is_enabled = btn.is_enabled()
-                            classes = btn.get_attribute('class') or ''
-                            logger.info(f"Button {i+1}: text='{text}', enabled={is_enabled}, class='{classes[:100]}'")
+                        popup = self.page.locator(selector).first
+                        if popup.count() > 0 and popup.is_visible():
+                            logger.info("Found 'New categories found' popup")
+                            popup_found = True
+                            
+                            # Look for "Create All" button
+                            create_all_selectors = [
+                                'button:has-text("Create All")',
+                                'button:has-text("create all")',
+                                'button:has-text("Create")',
+                                'button:has-text("確認")',
+                                'button[type="submit"]'
+                            ]
+                            
+                            create_clicked = False
+                            for create_selector in create_all_selectors:
+                                try:
+                                    create_btn = self.page.locator(create_selector).first
+                                    if create_btn.count() > 0 and create_btn.is_visible():
+                                        create_btn.click()
+                                        logger.info(f"Clicked 'Create All' button using selector: {create_selector}")
+                                        create_clicked = True
+                                        time.sleep(2)
+                                        break
+                                except Exception as e:
+                                    logger.debug(f"Create button selector {create_selector} failed: {e}")
+                                    continue
+                            
+                            if not create_clicked:
+                                logger.warning("Could not click 'Create All' button in popup")
+                            
+                            break
                     except Exception as e:
-                        logger.debug(f"Could not get info for button {i+1}: {e}")
+                        logger.debug(f"Popup selector {selector} failed: {e}")
+                        continue
+                
+                if not popup_found:
+                    logger.info("No 'New categories found' popup detected")
+
             except Exception as e:
-                logger.error(f"Error listing buttons: {e}")
-            
-            # Check for third Next button
+                logger.warning(f"Error checking for popup: {e}")
+
+            # Wait for popup to close and page to update
+            time.sleep(3)
+
+
+            # Step 6: Check for errors before clicking third 'Next' button
+            logger.info("Checking for upload errors...")
+
+            try:
+                # Check for error message like "45 products with errors will not be created"
+                error_message_selectors = [
+                    'div:has-text("products with errors will not be created")',
+                    'div:has-text("product with errors will not be created")',
+                    'span:has-text("products with errors")',
+                    '[class*="error"]:has-text("products")'
+                ]
+                
+                has_errors = False
+                error_count = None
+                
+                for selector in error_message_selectors:
+                    try:
+                        error_msg = self.page.locator(selector).first
+                        if error_msg.count() > 0 and error_msg.is_visible():
+                            error_text = error_msg.inner_text()
+                            logger.warning(f"Found error message: {error_text}")
+                            has_errors = True
+                            
+                            # Try to extract error count
+                            import re
+                            match = re.search(r'(\d+)\s+products?\s+with\s+errors', error_text, re.IGNORECASE)
+                            if match:
+                                error_count = match.group(1)
+                                logger.error(f"❌ {error_count} products have errors")
+                            
+                            break
+                    except Exception as e:
+                        logger.debug(f"Error selector {selector} failed: {e}")
+                        continue
+                
+                if has_errors:
+                    # Check which columns have errors
+                    logger.info("Detecting error columns...")
+                    error_columns = []
+                    
+                    try:
+                        # Look for cells with error indicators
+                        error_cell_selectors = [
+                            'td:has-text("Invalid")',
+                            'td:has-text("invalid")',
+                            '[class*="error"]',
+                            'td[style*="color: red"]',
+                            'td:has([class*="error"])'
+                        ]
+                        
+                        for selector in error_cell_selectors:
+                            try:
+                                error_cells = self.page.locator(selector).all()
+                                for cell in error_cells:
+                                    if cell.is_visible():
+                                        text = cell.inner_text().strip()
+                                        if "Invalid" in text or "invalid" in text:
+                                            error_columns.append(text)
+                            except Exception as e:
+                                logger.debug(f"Error cell selector {selector} failed: {e}")
+                                continue
+                        
+                        # Remove duplicates and log
+                        error_columns = list(set(error_columns))
+                        if error_columns:
+                            logger.error(f"❌ Errors found in columns: {', '.join(error_columns)}")
+                        else:
+                            logger.error("❌ Errors detected but could not identify specific columns")
+                    
+                    except Exception as e:
+                        logger.warning(f"Could not detect specific error columns: {e}")
+                    
+                    # Stop the upload process
+                    error_msg = f"❌ ERROR: {error_count or 'Some'} products have errors. Upload cannot be completed."
+                    if error_columns:
+                        error_msg += f"\n❌ Error columns: {', '.join(error_columns)}"
+                    
+                    logger.error(error_msg)
+                    logger.error("The upload process has been stopped due to data errors.")
+                    logger.error("Please fix the errors in the Excel file and try again.")
+                    raise Exception(error_msg)
+                
+                else:
+                    logger.info("✅ No errors detected in upload data")
+
+            except Exception as e:
+                if "ERROR:" in str(e) or "products have errors" in str(e):
+                    # Re-raise our error
+                    raise
+                else:
+                    logger.warning(f"Error checking for upload errors: {e}")
+                    logger.info("Proceeding to check third 'Next' button...")
+
+
+            # Step 7: Check for third Next button
             logger.info("Looking for third 'Next' button...")
+            time.sleep(2)
+
             third_next_clicked = False
             for selector in next_button_selectors:
                 try:
                     btn = self.page.locator(selector).first
-                    if btn.count() > 0 and btn.is_visible() and btn.is_enabled():
-                        logger.info(f"Found third 'Next' button with selector: {selector}")
-                        btn.click()
-                        logger.info("Clicked third 'Next' button")
-                        third_next_clicked = True
-                        time.sleep(3)
-                        break
+                    if btn.count() > 0 and btn.is_visible():
+                        # Check if button is enabled
+                        if btn.is_enabled():
+                            logger.info(f"Found enabled third 'Next' button with selector: {selector}")
+                            btn.click()
+                            logger.info("✅ Clicked third 'Next' button")
+                            third_next_clicked = True
+                            time.sleep(3)
+                            break
+                        else:
+                            logger.warning(f"Third 'Next' button is disabled with selector: {selector}")
                 except Exception as e:
                     logger.debug(f"Selector {selector} failed: {e}")
                     continue
-            
+
             if not third_next_clicked:
                 error_msg = "❌ ERROR: No clickable third 'Next' button found. Upload cannot be completed."
                 logger.error(error_msg)
-                logger.error("The upload process has been stopped due to missing third 'Next' button.")
+                logger.error("The third 'Next' button is either missing or disabled due to errors.")
+                logger.error("Please check the uploaded data for errors.")
                 raise Exception(error_msg)
-            
+
             logger.info(f"✅ Excel file uploaded successfully: {file_path}")
             return True
+
+            # Step 5: Click second 'Next' button (after file upload)
+            # logger.info(f"✅ Excel file uploaded successfully: {file_path}")
+            # return True
             
         except Exception as e:
             logger.error(f"Upload failed: {e}")
