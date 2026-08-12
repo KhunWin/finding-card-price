@@ -65,14 +65,14 @@ class ExcelTransformer:
                 return name
         return None
     
-    def transform(self, input_file_path, output_dir=None):
+    def transform(self, input_file_path, output_dir=None, usd_to_hkd_rate=1.0):
         """
         Transform input Excel file to Boutir format
         
         Args:
             input_file_path: Path to input Excel file
             output_dir: Directory to save output file (defaults to same as input)
-            
+            usd_to_hkd_rate: Exchange rate from USD to HKD
         Returns:
             Path to transformed Excel file
         """
@@ -80,6 +80,17 @@ class ExcelTransformer:
             # Read input Excel file
             df_input = pd.read_excel(input_file_path)
             input_columns = df_input.columns.tolist()
+
+            # Remove rows with FALSE in image_download_success column
+            if 'image_download_success' in input_columns:
+                initial_count = len(df_input)
+                df_input = df_input[df_input['image_download_success'] != False]
+                df_input = df_input[df_input['image_download_success'] != 'FALSE']
+                df_input = df_input[df_input['image_download_success'] != 'False']
+                removed_count = initial_count - len(df_input)
+                if removed_count > 0:
+                    print(f"Removed {removed_count} rows with failed image downloads")
+            
             
             # Create empty DataFrame with output columns
             df_output = pd.DataFrame(columns=self.OUTPUT_COLUMNS)
@@ -89,6 +100,11 @@ class ExcelTransformer:
                 input_col = self._find_column(input_columns, possible_input_cols)
                 if input_col:
                     df_output[output_col] = df_input[input_col]
+
+             # Apply USD to HKD conversion to Price column
+            if 'Price' in df_output.columns and not df_output['Price'].isna().all():
+                df_output['Price'] = pd.to_numeric(df_output['Price'], errors='coerce') * usd_to_hkd_rate
+                print(f"Applied USD to HKD conversion rate: {usd_to_hkd_rate}")
             
             # Set default values for required fields
             for col, value in self.DEFAULT_VALUES.items():
@@ -149,3 +165,6 @@ class ExcelTransformer:
             
         except Exception as e:
             return False, f"Error reading file: {str(e)}"
+
+
+

@@ -33,6 +33,7 @@ class UploadWindow:
         self.email_var = tk.StringVar()
         self.password_var = tk.StringVar()
         self.file_path_var = tk.StringVar(value="No file selected")
+        self.usd_to_hkd_var = tk.StringVar(value="7.8")  # Default HKD rate
         self.transformed_file_path = None
         self.upload_stop_flag = False
         self.transformer = ExcelTransformer()
@@ -157,6 +158,8 @@ class UploadWindow:
                              bg='#141824', fg='#9ca3af',
                              font=('Segoe UI', 9, 'bold'), anchor='w')
         pass_label.pack(anchor=tk.W, pady=(0, 5))
+
+
         
         pass_container = tk.Frame(cred_card.content, bg='#1e2332')
         pass_container.pack(fill=tk.X)
@@ -166,6 +169,28 @@ class UploadWindow:
                                    font=('Segoe UI', 11), relief='flat', 
                                    insertbackground='#8b5cf6', bd=0, show='*')
         self.pass_entry.pack(fill=tk.X, padx=12, pady=10)
+
+        # Exchange Rate Card
+        rate_card = self.create_card(left_scrollable_frame, "💱 Currency Exchange Rate")
+
+        rate_label = tk.Label(rate_card.content, text="1 USD to HKD Rate", 
+                            bg='#141824', fg='#9ca3af',
+                            font=('Segoe UI', 9, 'bold'), anchor='w')
+        rate_label.pack(anchor=tk.W, pady=(0, 5))
+
+        rate_container = tk.Frame(rate_card.content, bg='#1e2332')
+        rate_container.pack(fill=tk.X)
+
+        self.rate_entry = tk.Entry(rate_container, textvariable=self.usd_to_hkd_var,
+                                bg='#1e2332', fg='#e6eaef',
+                                font=('Segoe UI', 11), relief='flat', 
+                                insertbackground='#8b5cf6', bd=0)
+        self.rate_entry.pack(fill=tk.X, padx=12, pady=10)
+
+        rate_info = tk.Label(rate_card.content, text="💡 Prices will be multiplied by this rate", 
+                            bg='#141824', fg='#6b7280',
+                            font=('Segoe UI', 8), anchor='w')
+        rate_info.pack(anchor=tk.W, pady=(5, 0))
         
         # File Selection Card
         file_card = self.create_card(left_scrollable_frame, "📁 Excel File Selection")
@@ -270,6 +295,61 @@ class UploadWindow:
             self.transformed_file_path = None  # Reset transformed file
             self.append_terminal(f"✅ File selected: {file_path}\n", '#10b981')
     
+    # def transform_excel(self):
+    #     """Transform Excel file to Boutir format"""
+    #     excel_file = self.file_path_var.get()
+        
+    #     # Validation
+    #     if excel_file == "No file selected" or not os.path.exists(excel_file):
+    #         messagebox.showerror("Error", "Please select an Excel file first")
+    #         return
+
+
+        
+    #     try:
+    #         self.append_terminal("\n" + "=" * 70 + "\n", '#f59e0b')
+    #         self.append_terminal("🔄 Starting Excel Transformation...\n", '#f59e0b')
+    #         self.append_terminal("=" * 70 + "\n\n", '#f59e0b')
+            
+    #         # Validate input file
+    #         is_valid, message = self.transformer.validate_input_file(excel_file)
+    #         if not is_valid:
+    #             self.append_terminal(f"❌ Validation failed: {message}\n", '#ef4444')
+    #             messagebox.showerror("Validation Error", message)
+    #             return
+            
+    #         self.append_terminal(f"✅ Input file validated\n", '#10b981')
+    #         self.append_terminal(f"📁 Input file: {excel_file}\n", '#e6eaef')
+            
+    #         # Get output directory (same as exe/script location)
+    #         if getattr(sys, 'frozen', False):
+    #             # Running as compiled exe
+    #             output_dir = os.path.dirname(sys.executable)
+    #         else:
+    #             # Running as script
+    #             output_dir = os.getcwd()
+            
+    #         self.append_terminal(f"📂 Output directory: {output_dir}\n", '#e6eaef')
+    #         self.append_terminal("\n🔄 Transforming...\n", '#f59e0b')
+            
+    #         # Transform the file
+    #         self.transformed_file_path = self.transformer.transform(excel_file, output_dir)
+            
+    #         self.append_terminal(f"\n✅ Transformation completed!\n", '#10b981')
+    #         self.append_terminal(f"📄 Transformed file: {self.transformed_file_path}\n", '#22d3ee')
+    #         self.append_terminal("\n" + "=" * 70 + "\n", '#10b981')
+    #         self.append_terminal("✅ Ready for upload! Click 'RUN UPLOAD' to proceed.\n", '#10b981')
+    #         self.append_terminal("=" * 70 + "\n\n", '#10b981')
+            
+    #         messagebox.showinfo("Success", 
+    #                           f"Excel file transformed successfully!\n\n"
+    #                           f"Output file:\n{os.path.basename(self.transformed_file_path)}\n\n"
+    #                           f"The transformed file will be used for upload.")
+            
+    #     except Exception as e:
+    #         self.append_terminal(f"\n❌ Transformation failed: {str(e)}\n", '#ef4444')
+    #         messagebox.showerror("Error", f"Failed to transform Excel file:\n\n{str(e)}")
+
     def transform_excel(self):
         """Transform Excel file to Boutir format"""
         excel_file = self.file_path_var.get()
@@ -277,6 +357,16 @@ class UploadWindow:
         # Validation
         if excel_file == "No file selected" or not os.path.exists(excel_file):
             messagebox.showerror("Error", "Please select an Excel file first")
+            return
+        
+        # Validate exchange rate
+        try:
+            usd_to_hkd_rate = float(self.usd_to_hkd_var.get())
+            if usd_to_hkd_rate <= 0:
+                messagebox.showerror("Error", "Exchange rate must be greater than 0")
+                return
+        except ValueError:
+            messagebox.showerror("Error", "Please enter a valid exchange rate (e.g., 7.8)")
             return
         
         try:
@@ -293,6 +383,7 @@ class UploadWindow:
             
             self.append_terminal(f"✅ Input file validated\n", '#10b981')
             self.append_terminal(f"📁 Input file: {excel_file}\n", '#e6eaef')
+            self.append_terminal(f"💱 Exchange rate: 1 USD = {usd_to_hkd_rate} HKD\n", '#e6eaef')
             
             # Get output directory (same as exe/script location)
             if getattr(sys, 'frozen', False):
@@ -305,8 +396,8 @@ class UploadWindow:
             self.append_terminal(f"📂 Output directory: {output_dir}\n", '#e6eaef')
             self.append_terminal("\n🔄 Transforming...\n", '#f59e0b')
             
-            # Transform the file
-            self.transformed_file_path = self.transformer.transform(excel_file, output_dir)
+            # Transform the file with exchange rate
+            self.transformed_file_path = self.transformer.transform(excel_file, output_dir, usd_to_hkd_rate)
             
             self.append_terminal(f"\n✅ Transformation completed!\n", '#10b981')
             self.append_terminal(f"📄 Transformed file: {self.transformed_file_path}\n", '#22d3ee')
@@ -315,14 +406,17 @@ class UploadWindow:
             self.append_terminal("=" * 70 + "\n\n", '#10b981')
             
             messagebox.showinfo("Success", 
-                              f"Excel file transformed successfully!\n\n"
-                              f"Output file:\n{os.path.basename(self.transformed_file_path)}\n\n"
-                              f"The transformed file will be used for upload.")
+                            f"Excel file transformed successfully!\n\n"
+                            f"Output file:\n{os.path.basename(self.transformed_file_path)}\n\n"
+                            f"Exchange rate applied: 1 USD = {usd_to_hkd_rate} HKD\n\n"
+                            f"The transformed file will be used for upload.")
             
         except Exception as e:
             self.append_terminal(f"\n❌ Transformation failed: {str(e)}\n", '#ef4444')
             messagebox.showerror("Error", f"Failed to transform Excel file:\n\n{str(e)}")
-    
+
+
+
     def stop_upload(self):
         """Stop the upload process"""
         self.upload_stop_flag = True
