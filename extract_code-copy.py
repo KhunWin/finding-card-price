@@ -201,7 +201,6 @@ class TCGCSVScraperGUI:
                             'marketPrice': price.get('marketPrice'),
                             'directLowPrice': price.get('directLowPrice'),
                             'image_download_success': image_download_success
-
                         }
                         rows.append(row)
                 else:
@@ -342,6 +341,25 @@ class TCGCSVScraperGUI:
                             'directLowPrice': price.get('directLowPrice'),
                             'subTypeName': price.get('subTypeName', '')
                         })
+                
+                # Download images for this group
+                # if self.download_images:
+                #     self.log(f"  📷 Downloading images...", "cyan")
+                #     for product in product_dict.values():
+                #         if not self.is_running():
+                #             break
+                #         image_url = product.get('imageUrl')
+                #         if image_url:
+                #             result = self.download_image(
+                #                 image_url, 
+                #                 product.get('productId'),
+                #                 product.get('name')
+                #             )
+                #             if result:
+                #                 downloaded_images += 1
+                #             else:
+                #                 failed_images += 1
+                #             time.sleep(0.05)
 
                 # Download images for this group
                 if self.download_images:
@@ -407,7 +425,8 @@ class TCGCSVScraperGUI:
         self.log("=" * 60, "cyan")
         
         return stats
-     ##to modify imageUrl in the excel file
+
+    ##to modify imageUrl in the excel file
     def get_modified_image_url(self, image_url):
         """Apply image size modification to URL"""
         if not image_url:
