@@ -1,0 +1,90 @@
+<a
+href="#" onClick="CheckAllBoxVersPhone(true)">全選択</a>
+｜
+<a
+href="#" onClick="CheckAllBoxVersPhone(false)">全解除</a></p></div></div><div
+class="modal-body"><ul
+class="search-title-list mx-auto my-1 text-primary fs-13 lh-sm"><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="OS01" id="OS01VersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="OS01VersPhone" class="label py-2 ps-2 pe-2">ゆずソフト</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="OS02" id="OS02VersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="OS02VersPhone" class="label py-2 ps-2 pe-2">魔法少女にあこがれて</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="os03" id="os03VersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="os03VersPhone" class="label py-2 ps-2 pe-2">HARUKAZE</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="os04" id="os04VersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="os04VersPhone" class="label py-2 ps-2 pe-2">異種族レビュアーズ</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="os05" id="os05VersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="os05VersPhone" class="label py-2 ps-2 pe-2">sprite</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="os06" id="os06VersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="os06VersPhone" class="label py-2 ps-2 pe-2">枕</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="os07" id="os07VersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="os07VersPhone" class="label py-2 ps-2 pe-2">Lose&amp;Whisp</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="os08" id="os08VersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="os08VersPhone" class="label py-2 ps-2 pe-2">AQUAPLUS</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="os09" id="os09VersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="os09VersPhone" class="label py-2 ps-2 pe-2">アリスソフト</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="os10" id="os10VersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="os10VersPhone" class="label py-2 ps-2 pe-2">Navel</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="os11" id="os11VersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="os11VersPhone" class="label py-2 ps-2 pe-2">Purple software</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="os12" id="os12VersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="os12VersPhone" class="label py-2 ps-2 pe-2">ぬきたし THE ANIMATION</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="promo" id="promoVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="promoVersPhone" class="label py-2 ps-2 pe-2">その他プロモーションカード</label></div></li></ul></div><div
+class="modal-footer row justify-content-between px-1 py-1">
+<button
+type="button" class="btn btn-default rounded-0 col-3 p-0 fs-12" data-bs-dismiss="modal" onClick="ReturnCheckStatusVersPhone()">
+閉じる
+</button>

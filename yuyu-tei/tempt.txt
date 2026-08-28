@@ -1,0 +1,2 @@
+CheckAllBoxVersPhone(true)
+returnCheckStatusVersPhone()

@@ -1,0 +1,2496 @@
+<a
+href="#" onClick="CheckAllBoxVersPhone(true)">全選択</a>
+｜
+<a
+href="#" onClick="CheckAllBoxVersPhone(false)">全解除</a></p></div></div><div
+class="modal-body"><ul
+class="search-title-list mx-auto my-1 text-primary fs-13 lh-sm"><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="dc" id="dcVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="dcVersPhone" class="label py-2 ps-2 pe-2">D.C./D.C.II</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="dcext1.0" id="dcext1.0VersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="dcext1.0VersPhone" class="label py-2 ps-2 pe-2">D.C./D.C.II Extra</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="dcext2.0" id="dcext2.0VersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="dcext2.0VersPhone" class="label py-2 ps-2 pe-2">D.C.II P.C. Extra</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="dcchronicle" id="dcchronicleVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="dcchronicleVersPhone" class="label py-2 ps-2 pe-2">ヴァイスシュヴァルツクロニクル D.C./D.C.II</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="dcpc" id="dcpcVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="dcpcVersPhone" class="label py-2 ps-2 pe-2">D.C./D.C.II プラスコミュニケーション</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="dcext3.0" id="dcext3.0VersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="dcext3.0VersPhone" class="label py-2 ps-2 pe-2">D.C./D.C.II プラスコミュニケーション Extra</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="dc3" id="dc3VersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="dc3VersPhone" class="label py-2 ps-2 pe-2">D.C.III</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="animedcext1.0" id="animedcext1.0VersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="animedcext1.0VersPhone" class="label py-2 ps-2 pe-2">アニメ「D.C.III〜ダ・カーポIII〜」 Extra</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="dc10th" id="dc10thVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="dc10thVersPhone" class="label py-2 ps-2 pe-2">D.C. 10thアニバーサリーミックス</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="dcsakuraext" id="dcsakuraextVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="dcsakuraextVersPhone" class="label py-2 ps-2 pe-2">D.C. サクラサクパック Extra</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="dsdc" id="dsdcVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="dsdcVersPhone" class="label py-2 ps-2 pe-2">「D.S. -Dal Segno-」＆「D.C.III With You 〜ダ・カーポIII〜 ウィズユー」</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="dcvslbdc" id="dcvslbdcVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="dcvslbdcVersPhone" class="label py-2 ps-2 pe-2">ダ・カーポ vs リトルバスターズ!【DC】 Extra</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="dc20th" id="dc20thVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="dc20thVersPhone" class="label py-2 ps-2 pe-2">サーカス 20th Anniversary</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="dc3stageext" id="dc3stageextVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="dc3stageextVersPhone" class="label py-2 ps-2 pe-2">ポートレートブースター 舞台「D.C.III ～ダ・カーポIII～君と旅する時の魔法」</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="dc20thext" id="dc20thextVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="dc20thextVersPhone" class="label py-2 ps-2 pe-2">D.C. ～ダ・カーポ～ 20th Anniversary</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="dcretune" id="dcretuneVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="dcretuneVersPhone" class="label py-2 ps-2 pe-2">D.C. Re:tune ～ダ・カーポ～ リチューン</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="lb" id="lbVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="lbVersPhone" class="label py-2 ps-2 pe-2">リトルバスターズ!</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="lbext1.0" id="lbext1.0VersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="lbext1.0VersPhone" class="label py-2 ps-2 pe-2">リトルバスターズ!エクスタシー Extra</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="lbchronicle" id="lbchronicleVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="lbchronicleVersPhone" class="label py-2 ps-2 pe-2">ヴァイスシュヴァルツクロニクル リトルバスターズ！</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="lbe" id="lbeVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="lbeVersPhone" class="label py-2 ps-2 pe-2">リトルバスターズ!エクスタシー</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="animelb" id="animelbVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="animelbVersPhone" class="label py-2 ps-2 pe-2">アニメ リトルバスターズ!</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="animelbrext" id="animelbrextVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="animelbrextVersPhone" class="label py-2 ps-2 pe-2">アニメ リトルバスターズ! Refrain Extra</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="lbcmext" id="lbcmextVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="lbcmextVersPhone" class="label py-2 ps-2 pe-2">リトルバスターズ！ カードミッション Extra</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="dcvslblb" id="dcvslblbVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="dcvslblbVersPhone" class="label py-2 ps-2 pe-2">ダ・カーポ vs リトルバスターズ!【LB】 Extra</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="ab" id="abVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="abVersPhone" class="label py-2 ps-2 pe-2">AngelBeats!&amp;クドわふたー</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="abre" id="abreVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="abreVersPhone" class="label py-2 ps-2 pe-2">Angel Beats! Re: Edit</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="abext" id="abextVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="abextVersPhone" class="label py-2 ps-2 pe-2">AngelBeats! vol1 Extra</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="abext2.0" id="abext2.0VersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="abext2.0VersPhone" class="label py-2 ps-2 pe-2">AngelBeats! vol2 Extra</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="zm" id="zmVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="zmVersPhone" class="label py-2 ps-2 pe-2">ゼロの使い魔</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="zmf" id="zmfVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="zmfVersPhone" class="label py-2 ps-2 pe-2">ゼロの使い魔F</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="zmfext" id="zmfextVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="zmfextVersPhone" class="label py-2 ps-2 pe-2">ゼロの使い魔F Extra</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="ns" id="nsVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="nsVersPhone" class="label py-2 ps-2 pe-2">リリカルなのはStrikerS</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="nsm" id="nsmVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="nsmVersPhone" class="label py-2 ps-2 pe-2">リリカルなのは The MOVIE 1st Extra</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="nsa" id="nsaVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="nsaVersPhone" class="label py-2 ps-2 pe-2">リリカルなのは A’s</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="nsm2" id="nsm2VersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="nsm2VersPhone" class="label py-2 ps-2 pe-2">リリカルなのは The MOVIE 2nd A’s</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="nsm1m2" id="nsm1m2VersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="nsm1m2VersPhone" class="label py-2 ps-2 pe-2">リリカルなのは The MOVIE 1st＆2nd A’s</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="nsr" id="nsrVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="nsrVersPhone" class="label py-2 ps-2 pe-2">魔法少女リリカルなのは Reflection</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="nsd" id="nsdVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="nsdVersPhone" class="label py-2 ps-2 pe-2">魔法少女リリカルなのは Detonation</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="nspb" id="nspbVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="nspbVersPhone" class="label py-2 ps-2 pe-2">プレミアムブースター 魔法少女リリカルなのは 20th Anniversary</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="vvs" id="vvsVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="vvsVersPhone" class="label py-2 ps-2 pe-2">ViVid Strike!</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="ls" id="lsVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="lsVersPhone" class="label py-2 ps-2 pe-2">らき☆すた</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="skext1.0" id="skext1.0VersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="skext1.0VersPhone" class="label py-2 ps-2 pe-2">宇宙をかける少女 Vol.1 Extra</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="mhext1.0" id="mhext1.0VersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="mhext1.0VersPhone" class="label py-2 ps-2 pe-2">舞-HiME＆舞-乙HiME Vol1 Extra</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="skext2.0" id="skext2.0VersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="skext2.0VersPhone" class="label py-2 ps-2 pe-2">宇宙をかける少女 Vol.2 Extra</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="mhext2.0" id="mhext2.0VersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="mhext2.0VersPhone" class="label py-2 ps-2 pe-2">舞-HiME＆舞-乙HiME Vol2 Extra</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="pr" id="prVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="prVersPhone" class="label py-2 ps-2 pe-2">Phantom</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="sh" id="shVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="shVersPhone" class="label py-2 ps-2 pe-2">涼宮ハルヒの憂鬱</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="shext" id="shextVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="shextVersPhone" class="label py-2 ps-2 pe-2">涼宮ハルヒの憂鬱 Extra</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="shpset" id="shpsetVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="shpsetVersPhone" class="label py-2 ps-2 pe-2">パワーアップセット 涼宮ハルヒの憂鬱</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="ir" id="irVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="irVersPhone" class="label py-2 ps-2 pe-2">禁書目録＆超電磁砲</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="ir2.0" id="ir2.0VersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="ir2.0VersPhone" class="label py-2 ps-2 pe-2">禁書目録II＆超電磁砲</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="irs" id="irsVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="irsVersPhone" class="label py-2 ps-2 pe-2">とある科学の超電磁砲S</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="irspset" id="irspsetVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="irspsetVersPhone" class="label py-2 ps-2 pe-2">パワーアップセット とある科学の超電磁砲S</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="ss" id="ssVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="ssVersPhone" class="label py-2 ps-2 pe-2">灼眼のシャナ</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="ssext" id="ssextVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="ssextVersPhone" class="label py-2 ps-2 pe-2">灼眼のシャナ Extra</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="sspb" id="sspbVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="sspbVersPhone" class="label py-2 ps-2 pe-2">プレミアムブースター 灼眼のシャナ</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="clext1.0" id="clext1.0VersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="clext1.0VersPhone" class="label py-2 ps-2 pe-2">CLANNAD Vol1 Extra</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="clext2.0" id="clext2.0VersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="clext2.0VersPhone" class="label py-2 ps-2 pe-2">CLANNAD Vol2 Extra</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="clext3.0" id="clext3.0VersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="clext3.0VersPhone" class="label py-2 ps-2 pe-2">CLANNAD Vol3 Extra</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="clpset" id="clpsetVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="clpsetVersPhone" class="label py-2 ps-2 pe-2">パワーアップセット CLANNAD</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="rw" id="rwVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="rwVersPhone" class="label py-2 ps-2 pe-2">Rewrite</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="rwhf" id="rwhfVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="rwhfVersPhone" class="label py-2 ps-2 pe-2">Rewrite Harvest festa!</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="rwanime" id="rwanimeVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="rwanimeVersPhone" class="label py-2 ps-2 pe-2">TVアニメ「Rewrite」</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="njext" id="njextVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="njextVersPhone" class="label py-2 ps-2 pe-2">日常</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="ddext1.0" id="ddext1.0VersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="ddext1.0VersPhone" class="label py-2 ps-2 pe-2">DOG DAYS Extra</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="ddext2.0" id="ddext2.0VersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="ddext2.0VersPhone" class="label py-2 ps-2 pe-2">DOG DAYS’Extra</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="ddext3.0" id="ddext3.0VersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="ddext3.0VersPhone" class="label py-2 ps-2 pe-2">DOG DAYS”Extra</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="magica" id="magicaVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="magicaVersPhone" class="label py-2 ps-2 pe-2">魔法少女まどかマギカ</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="magicamv" id="magicamvVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="magicamvVersPhone" class="label py-2 ps-2 pe-2">劇場版 魔法少女まどか☆マギカ[新編]叛逆の物語</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="magicamagireco" id="magicamagirecoVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="magicamagirecoVersPhone" class="label py-2 ps-2 pe-2">マギアレコード 魔法少女まどか☆マギカ外伝</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="magicamagireco2.0" id="magicamagireco2.0VersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="magicamagireco2.0VersPhone" class="label py-2 ps-2 pe-2">TVアニメ「マギアレコード 魔法少女まどか☆マギカ外伝」</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="symphogear" id="symphogearVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="symphogearVersPhone" class="label py-2 ps-2 pe-2">戦姫絶唱シンフォギア</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="symphogearg" id="symphogeargVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="symphogeargVersPhone" class="label py-2 ps-2 pe-2">戦姫絶唱シンフォギアG</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="symphogeargx" id="symphogeargxVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="symphogeargxVersPhone" class="label py-2 ps-2 pe-2">戦姫絶唱シンフォギアGX</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="symphogearxd" id="symphogearxdVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="symphogearxdVersPhone" class="label py-2 ps-2 pe-2">戦姫絶唱シンフォギアXD UNLIMITED</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="symphogearxded" id="symphogearxdedVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="symphogearxdedVersPhone" class="label py-2 ps-2 pe-2">戦姫絶唱シンフォギアXD UNLIMITED EXTEND</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="symphogearaxz" id="symphogearaxzVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="symphogearaxzVersPhone" class="label py-2 ps-2 pe-2">戦姫絶唱シンフォギアAXZ</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="symphogearxv" id="symphogearxvVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="symphogearxvVersPhone" class="label py-2 ps-2 pe-2">戦姫絶唱シンフォギアXV</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="robono" id="robonoVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="robonoVersPhone" class="label py-2 ps-2 pe-2">ロボティクス・ノーツ</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="vivid" id="vividVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="vividVersPhone" class="label py-2 ps-2 pe-2">ビビッドレッド・オペレーション</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="lovelive" id="loveliveVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="loveliveVersPhone" class="label py-2 ps-2 pe-2">ラブライブ！</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="lovelive2.0" id="lovelive2.0VersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="lovelive2.0VersPhone" class="label py-2 ps-2 pe-2">ラブライブ！Vol.2</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="lovelivesif" id="lovelivesifVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="lovelivesifVersPhone" class="label py-2 ps-2 pe-2">ラブライブ！ feat.スクールアイドルフェスティバル</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="lovelivesif2.0" id="lovelivesif2.0VersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="lovelivesif2.0VersPhone" class="label py-2 ps-2 pe-2">ラブライブ！ feat.スクールアイドルフェスティバル Vol.2</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="lovelivesif3.0" id="lovelivesif3.0VersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="lovelivesif3.0VersPhone" class="label py-2 ps-2 pe-2">ラブライブ！ feat.スクールアイドルフェスティバル Vol.3～6th Anniversary～</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="lovelivesifvset" id="lovelivesifvsetVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="lovelivesifvsetVersPhone" class="label py-2 ps-2 pe-2">ラブライブ！ feat.スクールアイドル フェスティバル バラエティセット</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="loveliveext" id="loveliveextVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="loveliveextVersPhone" class="label py-2 ps-2 pe-2">ラブライブ！ Extra</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="lovelivesimext" id="lovelivesimextVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="lovelivesimextVersPhone" class="label py-2 ps-2 pe-2">ラブライブ！ The School Idol Movie Extra</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="lovelivepbll" id="lovelivepbllVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="lovelivepbllVersPhone" class="label py-2 ps-2 pe-2">プレミアムブースター ラブライブ!スクフェスシリーズ感謝祭 2022【LL】</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="lovelivesifpbll" id="lovelivesifpbllVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="lovelivesifpbllVersPhone" class="label py-2 ps-2 pe-2">プレミアムブースター ラブライブ！スクフェスシリーズ10th Anniversary【LL】</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="lovelivess" id="lovelivessVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="lovelivessVersPhone" class="label py-2 ps-2 pe-2">ラブライブ！サンシャイン!!</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="lovelivessext" id="lovelivessextVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="lovelivessextVersPhone" class="label py-2 ps-2 pe-2">ラブライブ！サンシャイン!! Extra</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="lovelivess2.0" id="lovelivess2.0VersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="lovelivess2.0VersPhone" class="label py-2 ps-2 pe-2">ラブライブ！サンシャイン!!Vol.2</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="lovelivesssif" id="lovelivesssifVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="lovelivesssifVersPhone" class="label py-2 ps-2 pe-2">ラブライブ！サンシャイン!! feat.スクールアイドルフェスティバル～6th Anniversary～</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="lovelivepblss" id="lovelivepblssVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="lovelivepblssVersPhone" class="label py-2 ps-2 pe-2">プレミアムブースター ラブライブ!スクフェスシリーズ感謝祭 2022【LSS】</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="lovelivesssifpblss" id="lovelivesssifpblssVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="lovelivesssifpblssVersPhone" class="label py-2 ps-2 pe-2">プレミアムブースター ラブライブ！スクフェスシリーズ10th Anniversary【LSS】</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="yhn" id="yhnVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="yhnVersPhone" class="label py-2 ps-2 pe-2">幻日のヨハネ -SUNSHINE in the MIRROR-</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="lovelivenj" id="lovelivenjVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="lovelivenjVersPhone" class="label py-2 ps-2 pe-2">ラブライブ！虹ヶ咲学園スクールアイドル同好会 feat.スクールアイドルフェスティバル ALL STARS</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="lovelivenj2.0" id="lovelivenj2.0VersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="lovelivenj2.0VersPhone" class="label py-2 ps-2 pe-2">ラブライブ！虹ヶ咲学園スクールアイドル同好会</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="lovelivepblnj" id="lovelivepblnjVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="lovelivepblnjVersPhone" class="label py-2 ps-2 pe-2">プレミアムブースター ラブライブ!スクフェスシリーズ感謝祭 2022【LNJ】</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="lovelivenjsifpblnj" id="lovelivenjsifpblnjVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="lovelivenjsifpblnjVersPhone" class="label py-2 ps-2 pe-2">プレミアムブースター ラブライブ！スクフェスシリーズ10th Anniversary【LNJ】</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="lovelivesp" id="lovelivespVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="lovelivespVersPhone" class="label py-2 ps-2 pe-2">ラブライブ！スーパースター!!</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="lovelivepblsp" id="lovelivepblspVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="lovelivepblspVersPhone" class="label py-2 ps-2 pe-2">プレミアムブースター ラブライブ!スクフェスシリーズ感謝祭 2022【LSP】</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="lhs" id="lhsVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="lhsVersPhone" class="label py-2 ps-2 pe-2">ラブライブ！蓮ノ空女学院スクールアイドルクラブ feat. Link！Like！ラブライブ！</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="lsf" id="lsfVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="lsfVersPhone" class="label py-2 ps-2 pe-2">ラブライブ！スクールアイドルフェスティバル2</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="genei" id="geneiVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="geneiVersPhone" class="label py-2 ps-2 pe-2">幻影ヲ駆ケル太陽</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="nisekoi" id="nisekoiVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="nisekoiVersPhone" class="label py-2 ps-2 pe-2">ニセコイ</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="nisekoiext" id="nisekoiextVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="nisekoiextVersPhone" class="label py-2 ps-2 pe-2">ニセコイ: Extra</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="gf" id="gfVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="gfVersPhone" class="label py-2 ps-2 pe-2">ガールフレンド（仮）</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="gf2.0" id="gf2.0VersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="gf2.0VersPhone" class="label py-2 ps-2 pe-2">ガールフレンド（仮） Vol.2</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="tld2nd" id="tld2ndVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="tld2ndVersPhone" class="label py-2 ps-2 pe-2">To LOVEる -とらぶる- ダークネス 2nd</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="tld2nd2.0" id="tld2nd2.0VersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="tld2nd2.0VersPhone" class="label py-2 ps-2 pe-2">To LOVEる -とらぶる- ダークネス 2nd Vol.2</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="charlotte1.0" id="charlotte1.0VersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="charlotte1.0VersPhone" class="label py-2 ps-2 pe-2">Charlotte</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="imc" id="imcVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="imcVersPhone" class="label py-2 ps-2 pe-2">アイドルマスター シンデレラガールズ</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="imc2nd" id="imc2ndVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="imc2ndVersPhone" class="label py-2 ps-2 pe-2">アイドルマスター シンデレラガールズ 2nd SEASON</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="imc3.0" id="imc3.0VersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="imc3.0VersPhone" class="label py-2 ps-2 pe-2">アイドルマスター シンデレラガールズ Next Twinkle!</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="imcpb" id="imcpbVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="imcpbVersPhone" class="label py-2 ps-2 pe-2">プレミアムブースター アイドルマスター シンデレラガールズ</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="gochiusa" id="gochiusaVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="gochiusaVersPhone" class="label py-2 ps-2 pe-2">ご注文はうさぎですか？？</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="gochiusaext" id="gochiusaextVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="gochiusaextVersPhone" class="label py-2 ps-2 pe-2">ご注文はうさぎですか？？ Extra</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="gochiusadms" id="gochiusadmsVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="gochiusadmsVersPhone" class="label py-2 ps-2 pe-2">ご注文はうさぎですか?? ～Dear My Sister～</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="gochiusabloom" id="gochiusabloomVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="gochiusabloomVersPhone" class="label py-2 ps-2 pe-2">ご注文はうさぎですか？ BLOOM</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="gochiusare" id="gochiusareVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="gochiusareVersPhone" class="label py-2 ps-2 pe-2">ご注文はうさぎですか？ Re:Edit</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="gochiusapb" id="gochiusapbVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="gochiusapbVersPhone" class="label py-2 ps-2 pe-2">プレミアムブースター TVアニメ「ご注文はうさぎですか？」10th Anniversary</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="bd" id="bdVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="bdVersPhone" class="label py-2 ps-2 pe-2">BanG Dream!</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="bd4.0" id="bd4.0VersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="bd4.0VersPhone" class="label py-2 ps-2 pe-2">BanG Dream!Vol.2</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="bd2.0" id="bd2.0VersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="bd2.0VersPhone" class="label py-2 ps-2 pe-2">バンドリ！ ガールズバンドパーティ！</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="bd3.0" id="bd3.0VersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="bd3.0VersPhone" class="label py-2 ps-2 pe-2">バンドリ！ ガールズバンドパーティ! Vol.2</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="bd2.0td" id="bd2.0tdVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="bd2.0tdVersPhone" class="label py-2 ps-2 pe-2">バンドリ！ ガールズバンドパーティ！トライアルデッキ+</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="bdsp" id="bdspVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="bdspVersPhone" class="label py-2 ps-2 pe-2">スペシャルパック「バンドリ! ガールズバンドパーティ!」</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="bdpb" id="bdpbVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="bdpbVersPhone" class="label py-2 ps-2 pe-2">プレミアムブースター バンドリ! ガールズバンドパーティ!</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="bdextmorras" id="bdextmorrasVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="bdextmorrasVersPhone" class="label py-2 ps-2 pe-2">BanG Dream!「Morfonica×RAISE A SUILEN」 Extra</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="bdextppros" id="bdextpprosVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="bdextpprosVersPhone" class="label py-2 ps-2 pe-2">BanG Dream!「Poppin’Party×Roselia」Extra</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="bd5th" id="bd5thVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="bd5thVersPhone" class="label py-2 ps-2 pe-2">バンドリ！ ガールズバンドパーティ！ 5th Anniversary</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="bdpb2.0" id="bdpb2.0VersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="bdpb2.0VersPhone" class="label py-2 ps-2 pe-2">プレミアムブースター バンドリ！ ガールズバンドパーティ！ Countdown Collection</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="bd5.0" id="bd5.0VersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="bd5.0VersPhone" class="label py-2 ps-2 pe-2">MyGO!!!!!×Ave Mujica</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="bdpb3.0" id="bdpb3.0VersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="bdpb3.0VersPhone" class="label py-2 ps-2 pe-2">プレミアムブースター BanG Dream! 10th Anniversary!</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="bdytd" id="bdytdVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="bdytdVersPhone" class="label py-2 ps-2 pe-2">トライアルデッキ BanG Dream! [夢限大みゅーたいぷ]</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="konosuba" id="konosubaVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="konosubaVersPhone" class="label py-2 ps-2 pe-2">この素晴らしい世界に祝福を！</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="konosuba2.0" id="konosuba2.0VersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="konosuba2.0VersPhone" class="label py-2 ps-2 pe-2">この素晴らしい世界に祝福を！ 2</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="konosubare" id="konosubareVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="konosubareVersPhone" class="label py-2 ps-2 pe-2">この素晴らしい世界に祝福を！ Re:Edit</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="konosuba3.0" id="konosuba3.0VersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="konosuba3.0VersPhone" class="label py-2 ps-2 pe-2">映画 この素晴らしい世界に祝福を！紅伝説</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="kmn" id="kmnVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="kmnVersPhone" class="label py-2 ps-2 pe-2">けものフレンズ</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="hinaext1.0" id="hinaext1.0VersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="hinaext1.0VersPhone" class="label py-2 ps-2 pe-2">「ひなろじ ～from Luck ＆ Logic～」Vol.1 Extra</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="hinaext2.0" id="hinaext2.0VersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="hinaext2.0VersPhone" class="label py-2 ps-2 pe-2">「ひなろじ ～from Luck ＆ Logic～」Vol.2 Extra</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="saekano" id="saekanoVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="saekanoVersPhone" class="label py-2 ps-2 pe-2">冴えない彼女の育てかた</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="saekano2.0" id="saekano2.0VersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="saekano2.0VersPhone" class="label py-2 ps-2 pe-2">冴えない彼女の育てかた♭</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="saekano3.0" id="saekano3.0VersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="saekano3.0VersPhone" class="label py-2 ps-2 pe-2">冴えない彼女の育てかた Fine</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="smp" id="smpVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="smpVersPhone" class="label py-2 ps-2 pe-2">Summer Pockets</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="smp2.0" id="smp2.0VersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="smp2.0VersPhone" class="label py-2 ps-2 pe-2">Summer Pockets REFLECTION BLUE</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="smpre" id="smpreVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="smpreVersPhone" class="label py-2 ps-2 pe-2">Summer Pockets REFLECTION BLUE Re:Edit</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="smp3.0" id="smp3.0VersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="smp3.0VersPhone" class="label py-2 ps-2 pe-2">TVアニメ『Summer Pockets』</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="yys" id="yysVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="yysVersPhone" class="label py-2 ps-2 pe-2">ゆらぎ荘の幽奈さん</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="kadokawas" id="kadokawasVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="kadokawasVersPhone" class="label py-2 ps-2 pe-2">角川スニーカー文庫</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="kadokawas2.0" id="kadokawas2.0VersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="kadokawas2.0VersPhone" class="label py-2 ps-2 pe-2">角川スニーカー文庫 Vol.2</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="ccs" id="ccsVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="ccsVersPhone" class="label py-2 ps-2 pe-2">カードキャプターさくら クリアカード編</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="ccs25th" id="ccs25thVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="ccs25thVersPhone" class="label py-2 ps-2 pe-2">カードキャプターさくら 25th Anniversary</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="sby" id="sbyVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="sbyVersPhone" class="label py-2 ps-2 pe-2">青春ブタ野郎はバニーガール先輩の夢を見ない</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="sby2.0" id="sby2.0VersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="sby2.0VersPhone" class="label py-2 ps-2 pe-2">青春ブタ野郎はゆめみる少女の夢を見ない</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="sby3.0" id="sby3.0VersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="sby3.0VersPhone" class="label py-2 ps-2 pe-2">『青春ブタ野郎』シリーズ</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="sby4.0" id="sby4.0VersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="sby4.0VersPhone" class="label py-2 ps-2 pe-2">青春ブタ野郎はサンタクロースの夢を見ない</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="fujimif" id="fujimifVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="fujimifVersPhone" class="label py-2 ps-2 pe-2">富士見ファンタジア文庫</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="fujimif2.0" id="fujimif2.0VersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="fujimif2.0VersPhone" class="label py-2 ps-2 pe-2">富士見ファンタジア文庫 Vol.2</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="key20th" id="key20thVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="key20thVersPhone" class="label py-2 ps-2 pe-2">Key 20th Anniversary</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="key2.0" id="key2.0VersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="key2.0VersPhone" class="label py-2 ps-2 pe-2">Key all-star</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="keypb" id="keypbVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="keypbVersPhone" class="label py-2 ps-2 pe-2">プレミアムブースター Key 25th Anniversary</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="dal" id="dalVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="dalVersPhone" class="label py-2 ps-2 pe-2">デート・ア・ライブ</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="dalext1.0" id="dalext1.0VersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="dalext1.0VersPhone" class="label py-2 ps-2 pe-2">デート・ア・バレット Extra</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="dal2.0" id="dal2.0VersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="dal2.0VersPhone" class="label py-2 ps-2 pe-2">デート・ア・ライブ Vol.2</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="dal3.0" id="dal3.0VersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="dal3.0VersPhone" class="label py-2 ps-2 pe-2">デート・ア・ライブ Vol.3</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="5hy" id="5hyVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="5hyVersPhone" class="label py-2 ps-2 pe-2">五等分の花嫁</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="5hy2.0" id="5hy2.0VersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="5hy2.0VersPhone" class="label py-2 ps-2 pe-2">五等分の花嫁∬</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="5hy3.0" id="5hy3.0VersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="5hy3.0VersPhone" class="label py-2 ps-2 pe-2">映画「五等分の花嫁」</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="5hypb" id="5hypbVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="5hypbVersPhone" class="label py-2 ps-2 pe-2">プレミアムブースター 五等分の花嫁∽</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="prd" id="prdVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="prdVersPhone" class="label py-2 ps-2 pe-2">アニメ プリンセスコネクト！Re:Dive</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="prd2.0" id="prd2.0VersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="prd2.0VersPhone" class="label py-2 ps-2 pe-2">アニメ プリンセスコネクト！Re:Dive Season 2</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="knk" id="knkVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="knkVersPhone" class="label py-2 ps-2 pe-2">彼女、お借りします</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="knk2.0" id="knk2.0VersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="knk2.0VersPhone" class="label py-2 ps-2 pe-2">彼女、お借りします Vol.2</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="dbg" id="dbgVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="dbgVersPhone" class="label py-2 ps-2 pe-2">神様になった日</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="hol" id="holVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="holVersPhone" class="label py-2 ps-2 pe-2">ブースターパック ホロライブプロダクション</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="holtd" id="holtdVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="holtdVersPhone" class="label py-2 ps-2 pe-2">トライアルデッキ+ ホロライブプロダクション</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="holpb" id="holpbVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="holpbVersPhone" class="label py-2 ps-2 pe-2">プレミアムブースター ホロライブプロダクション</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="hol2.0" id="hol2.0VersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="hol2.0VersPhone" class="label py-2 ps-2 pe-2">ホロライブプロダクション Vol.2</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="holpb2.0" id="holpb2.0VersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="holpb2.0VersPhone" class="label py-2 ps-2 pe-2">プレミアムブースター ホロライブプロダクション Summer Collection</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="holtd2.0" id="holtd2.0VersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="holtd2.0VersPhone" class="label py-2 ps-2 pe-2">プレミアムセット ホロライブプロダクション feat.ヴァイスシュヴァルツアンバサダー</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="zls" id="zlsVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="zlsVersPhone" class="label py-2 ps-2 pe-2">ゾンビランドサガ リベンジ</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="kmd" id="kmdVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="kmdVersPhone" class="label py-2 ps-2 pe-2">小林さんちのメイドラゴン</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="hbr" id="hbrVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="hbrVersPhone" class="label py-2 ps-2 pe-2">ヘブンバーンズレッド</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="hbr2.0" id="hbr2.0VersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="hbr2.0VersPhone" class="label py-2 ps-2 pe-2">ヘブンバーンズレッド Vol.2</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="lrc" id="lrcVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="lrcVersPhone" class="label py-2 ps-2 pe-2">リコリス・リコイル</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="lrcpb" id="lrcpbVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="lrcpbVersPhone" class="label py-2 ps-2 pe-2">プレミアムブースター リコリス・リコイル</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="uma" id="umaVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="umaVersPhone" class="label py-2 ps-2 pe-2">ウマ娘 プリティーダービー</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="uma2.0" id="uma2.0VersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="uma2.0VersPhone" class="label py-2 ps-2 pe-2">劇場版『ウマ娘 プリティーダービー 新時代の扉』</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="uma3.0" id="uma3.0VersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="uma3.0VersPhone" class="label py-2 ps-2 pe-2">アニメ『ウマ娘 シンデレラグレイ』</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="btr" id="btrVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="btrVersPhone" class="label py-2 ps-2 pe-2">ぼっち・ざ・ろっく！</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="ags" id="agsVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="agsVersPhone" class="label py-2 ps-2 pe-2">アリス・ギア・アイギス Expansion</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="ayt" id="aytVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="aytVersPhone" class="label py-2 ps-2 pe-2">あやかしトライアングル</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="bav" id="bavVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="bavVersPhone" class="label py-2 ps-2 pe-2">ブルーアーカイブ</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="bav2.0" id="bav2.0VersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="bav2.0VersPhone" class="label py-2 ps-2 pe-2">ブルーアーカイブ The Animation</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="yrc" id="yrcVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="yrcVersPhone" class="label py-2 ps-2 pe-2">『ゆるキャン△ SEASON３』</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="ctb" id="ctbVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="ctbVersPhone" class="label py-2 ps-2 pe-2">『キャプテン翼』</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="gim" id="gimVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="gimVersPhone" class="label py-2 ps-2 pe-2">学園アイドルマスター</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="amg" id="amgVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="amgVersPhone" class="label py-2 ps-2 pe-2">甘神さんちの縁結び</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="aoh" id="aohVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="aohVersPhone" class="label py-2 ps-2 pe-2">あおぎり高校</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="mki" id="mkiVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="mkiVersPhone" class="label py-2 ps-2 pe-2">負けヒロインが多すぎる！</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="kms" id="kmsVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="kmsVersPhone" class="label py-2 ps-2 pe-2">きんいろモザイク 15th Anniversary</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="vrgext" id="vrgextVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="vrgextVersPhone" class="label py-2 ps-2 pe-2">VIRTUAL GIRL @ WORLD’S END</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="anm" id="anmVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="anmVersPhone" class="label py-2 ps-2 pe-2">anemoi</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="brd" id="brdVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="brdVersPhone" class="label py-2 ps-2 pe-2">ブラウンダスト2</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="p3" id="p3VersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="p3VersPhone" class="label py-2 ps-2 pe-2">ペルソナ3</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="p3chronicle" id="p3chronicleVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="p3chronicleVersPhone" class="label py-2 ps-2 pe-2">ヴァイスシュヴァルツクロニクル ペルソナ3</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="p3rpb" id="p3rpbVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="p3rpbVersPhone" class="label py-2 ps-2 pe-2">プレミアムブースター ペルソナ３ リロード</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="p4" id="p4VersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="p4VersPhone" class="label py-2 ps-2 pe-2">ペルソナ4</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="animep4" id="animep4VersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="animep4VersPhone" class="label py-2 ps-2 pe-2">TVアニメ「ペルソナ4」</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="p5" id="p5VersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="p5VersPhone" class="label py-2 ps-2 pe-2">ペルソナ5</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="p4ext" id="p4extVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="p4extVersPhone" class="label py-2 ps-2 pe-2">ペルソナ4 Extra</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="animep4ext1.0" id="animep4ext1.0VersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="animep4ext1.0VersPhone" class="label py-2 ps-2 pe-2">TVアニメ「ペルソナ4」 Extra</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="p4uext1.0" id="p4uext1.0VersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="p4uext1.0VersPhone" class="label py-2 ps-2 pe-2">P4U Extra</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="pqext" id="pqextVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="pqextVersPhone" class="label py-2 ps-2 pe-2">ペルソナQ シャドウ オブ ザ ラビリンス Extra</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="dg" id="dgVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="dgVersPhone" class="label py-2 ps-2 pe-2">魔界戦記ディスガイア</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="dgext1.0" id="dgext1.0VersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="dgext1.0VersPhone" class="label py-2 ps-2 pe-2">魔界戦記ディスガイア4 Extra</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="dgd2ext" id="dgd2extVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="dgd2extVersPhone" class="label py-2 ps-2 pe-2">ディスガイアD2 Extra</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="fs" id="fsVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="fsVersPhone" class="label py-2 ps-2 pe-2">Fate/stay night</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="fh" id="fhVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="fhVersPhone" class="label py-2 ps-2 pe-2">Fate/hollow ataraxia Extra</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="fz" id="fzVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="fzVersPhone" class="label py-2 ps-2 pe-2">Fate/Zero</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="fsubw" id="fsubwVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="fsubwVersPhone" class="label py-2 ps-2 pe-2">Fate/stay night [Unlimited Blade Works]</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="fsubw2.0" id="fsubw2.0VersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="fsubw2.0VersPhone" class="label py-2 ps-2 pe-2">Fate/stay night [Unlimited Blade Works] Vol.II</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="fzext" id="fzextVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="fzextVersPhone" class="label py-2 ps-2 pe-2">Fate/Zero Extra</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="fshf" id="fshfVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="fshfVersPhone" class="label py-2 ps-2 pe-2">劇場版「Fate/stay night [Heaven’s Feel]」</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="fshf2.0" id="fshf2.0VersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="fshf2.0VersPhone" class="label py-2 ps-2 pe-2">劇場版「Fate/stay night [Heaven’s Feel]」Vol.2</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="fapo" id="fapoVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="fapoVersPhone" class="label py-2 ps-2 pe-2">Fate/Apocrypha</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="fgo" id="fgoVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="fgoVersPhone" class="label py-2 ps-2 pe-2">Fate/Grand Order -絶対魔獣戦線バビロニア-</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="fgo2.0" id="fgo2.0VersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="fgo2.0VersPhone" class="label py-2 ps-2 pe-2">劇場版 Fate/Grand Order -神聖円卓領域キャメロット-</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="fpi" id="fpiVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="fpiVersPhone" class="label py-2 ps-2 pe-2">Fate/kaleid liner プリズマ☆イリヤ Extra</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="fpi2.0" id="fpi2.0VersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="fpi2.0VersPhone" class="label py-2 ps-2 pe-2">Fate/kaleid liner プリズマ☆イリヤ ツヴァイ! Extra</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="fpi2.0helz" id="fpi2.0helzVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="fpi2.0helzVersPhone" class="label py-2 ps-2 pe-2">Fate/kaleid liner プリズマ☆イリヤ ツヴァイ ヘルツ！</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="fpi3.0" id="fpi3.0VersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="fpi3.0VersPhone" class="label py-2 ps-2 pe-2">Fate/kaleid liner プリズマ☆イリヤ ドライ!! Extra</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="fpi4.0" id="fpi4.0VersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="fpi4.0VersPhone" class="label py-2 ps-2 pe-2">Fate/kaleid liner Prisma☆Illya プリズマ☆ファンタズム Extra</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="se" id="seVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="seVersPhone" class="label py-2 ps-2 pe-2">シャイニング・フォース イクサ</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="sre" id="sreVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="sreVersPhone" class="label py-2 ps-2 pe-2">シャイニング・レゾナンス Extra</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="kf" id="kfVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="kfVersPhone" class="label py-2 ps-2 pe-2">THE KING OF FIGHTERS</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="kfpb" id="kfpbVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="kfpbVersPhone" class="label py-2 ps-2 pe-2">プレミアムブースター THE KING OF FIGHTERS</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="sb" id="sbVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="sbVersPhone" class="label py-2 ps-2 pe-2">戦国BASARA</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="sbext1.0" id="sbext1.0VersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="sbext1.0VersPhone" class="label py-2 ps-2 pe-2">TVアニメ 戦国BASARA弐 Extra</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="im" id="imVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="imVersPhone" class="label py-2 ps-2 pe-2">THE IDOLM@STER</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="imd" id="imdVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="imdVersPhone" class="label py-2 ps-2 pe-2">THE IDOLM@STER Deary Stars Extra</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="im2.0" id="im2.0VersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="im2.0VersPhone" class="label py-2 ps-2 pe-2">THE IDOLM@STER2</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="animeim" id="animeimVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="animeimVersPhone" class="label py-2 ps-2 pe-2">アニメ アイドルマスター</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="imm" id="immVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="immVersPhone" class="label py-2 ps-2 pe-2">劇場版「THE IDOLM@STER MOVIE 輝きの向こう側へ！」</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="im765proext" id="im765proextVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="im765proextVersPhone" class="label py-2 ps-2 pe-2">アイドルマスター ミニキャラパック 『765pro』 Extra</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="impset" id="impsetVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="impsetVersPhone" class="label py-2 ps-2 pe-2">パワーアップセット アイドルマスター</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="impb" id="impbVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="impbVersPhone" class="label py-2 ps-2 pe-2">プレミアムブースター アイドルマスター 765PRO ALLSTARS</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="ims" id="imsVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="imsVersPhone" class="label py-2 ps-2 pe-2">アイドルマスター ミリオンライブ!</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="ims2.0" id="ims2.0VersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="ims2.0VersPhone" class="label py-2 ps-2 pe-2">アイドルマスター ミリオンライブ! Welcome to the New St@ge</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="imspb" id="imspbVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="imspbVersPhone" class="label py-2 ps-2 pe-2">プレミアムブースター アイドルマスター ミリオンライブ!</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="isc" id="iscVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="iscVersPhone" class="label py-2 ps-2 pe-2">ブースターパック「アイドルマスター シャイニーカラーズ」</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="isctd" id="isctdVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="isctdVersPhone" class="label py-2 ps-2 pe-2">トライアルデッキ+「アイドルマスター シャイニーカラーズ」</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="isc2.0" id="isc2.0VersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="isc2.0VersPhone" class="label py-2 ps-2 pe-2">アイドルマスター シャイニーカラーズ Shine More!</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="iscpb" id="iscpbVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="iscpbVersPhone" class="label py-2 ps-2 pe-2">プレミアムブースター アイドルマスター シャイニーカラーズ</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="ft" id="ftVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="ftVersPhone" class="label py-2 ps-2 pe-2">FAIRY TAIL</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="ftext1.0" id="ftext1.0VersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="ftext1.0VersPhone" class="label py-2 ps-2 pe-2">FAIRY TAIL Extra</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="ft2.0" id="ft2.0VersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="ft2.0VersPhone" class="label py-2 ps-2 pe-2">FAIRY TAIL 100年クエスト</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="mb" id="mbVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="mbVersPhone" class="label py-2 ps-2 pe-2">MELTY BLOOD</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="kk" id="kkVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="kkVersPhone" class="label py-2 ps-2 pe-2">空の境界</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="eva" id="evaVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="evaVersPhone" class="label py-2 ps-2 pe-2">ヱヴァンゲリヲン新劇場版</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="tmh" id="tmhVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="tmhVersPhone" class="label py-2 ps-2 pe-2">探偵オペラ ミルキィホームズ</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="tmh2.0" id="tmh2.0VersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="tmh2.0VersPhone" class="label py-2 ps-2 pe-2">探偵オペラ ミルキィホームズ2</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="tmh2nd" id="tmh2ndVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="tmh2ndVersPhone" class="label py-2 ps-2 pe-2">探偵オペラ ミルキィホームズ セカンドステージエディション</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="tmhext" id="tmhextVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="tmhextVersPhone" class="label py-2 ps-2 pe-2">探偵オペラ ミルキィホームズ 怪盗帝国の逆襲 Extra</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="tmhext2.0" id="tmhext2.0VersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="tmhext2.0VersPhone" class="label py-2 ps-2 pe-2">探偵オペラ ミルキィホームズ G4の反撃 Extra</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="tmhmovie" id="tmhmovieVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="tmhmovieVersPhone" class="label py-2 ps-2 pe-2">劇場版 探偵オペラ ミルキィホームズ 〜逆襲のミルキィホームズ〜 Extra</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="tmhffpp" id="tmhffppVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="tmhffppVersPhone" class="label py-2 ps-2 pe-2">ミルキィホームズファンファンパーリーパック♪ Extra</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="tmhext3.0" id="tmhext3.0VersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="tmhext3.0VersPhone" class="label py-2 ps-2 pe-2">ブシロード スリーブコレクションエクストラ 探偵オペラ ミルキィホームズ</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="brext1.0" id="brext1.0VersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="brext1.0VersPhone" class="label py-2 ps-2 pe-2">ブラック★ロックシューター Extra</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="katanaext" id="katanaextVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="katanaextVersPhone" class="label py-2 ps-2 pe-2">刀語 Extra</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="bake" id="bakeVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="bakeVersPhone" class="label py-2 ps-2 pe-2">化物語</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="nisem" id="nisemVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="nisemVersPhone" class="label py-2 ps-2 pe-2">偽物語</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="monogatari2nd" id="monogatari2ndVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="monogatari2ndVersPhone" class="label py-2 ps-2 pe-2">&lt;物語&gt;シリーズ セカンドシーズン</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="mfi" id="mfiVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="mfiVersPhone" class="label py-2 ps-2 pe-2">劇場版マクロスF~虚空歌姫~</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="mdepb" id="mdepbVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="mdepbVersPhone" class="label py-2 ps-2 pe-2">マクロスΔ</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="gc" id="gcVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="gcVersPhone" class="label py-2 ps-2 pe-2">ギルティクラウン</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="aw" id="awVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="awVersPhone" class="label py-2 ps-2 pe-2">アクセル・ワールド</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="awib" id="awibVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="awibVersPhone" class="label py-2 ps-2 pe-2">アクセル・ワールド -インフィニット・バースト-</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="sao" id="saoVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="saoVersPhone" class="label py-2 ps-2 pe-2">ソードアート・オンライン</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="sao2.0" id="sao2.0VersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="sao2.0VersPhone" class="label py-2 ps-2 pe-2">ソードアート・オンライン vol.2</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="saore" id="saoreVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="saoreVersPhone" class="label py-2 ps-2 pe-2">ソードアート・オンライン Re：Edit</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="saoos" id="saoosVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="saoosVersPhone" class="label py-2 ps-2 pe-2">劇場版 ソードアート・オンライン -オーディナル・スケール-</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="saoaz" id="saoazVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="saoazVersPhone" class="label py-2 ps-2 pe-2">ソードアート・オンライン アリシゼーション</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="saoaz2.0" id="saoaz2.0VersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="saoaz2.0VersPhone" class="label py-2 ps-2 pe-2">ソードアート・オンライン アリシゼーション Vol.2</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="sao10th" id="sao10thVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="sao10thVersPhone" class="label py-2 ps-2 pe-2">ソードアート・オンライン 10th Anniversary</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="sao10th2.0" id="sao10th2.0VersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="sao10th2.0VersPhone" class="label py-2 ps-2 pe-2">アニメ ソードアート・オンライン 10th Anniversary</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="sao2ext" id="sao2extVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="sao2extVersPhone" class="label py-2 ps-2 pe-2">ソードアート・オンラインII Extra</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="sao2ext2.0" id="sao2ext2.0VersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="sao2ext2.0VersPhone" class="label py-2 ps-2 pe-2">ソードアート・オンラインII Vol.2 Extra</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="ggo" id="ggoVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="ggoVersPhone" class="label py-2 ps-2 pe-2">ソードアート・オンライン オルタナティブ ガンゲイル・オンライン</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="ggoext" id="ggoextVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="ggoextVersPhone" class="label py-2 ps-2 pe-2">ソードアート・オンライン オルタナティブ ガンゲイル・オンラインII Extra</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="ca" id="caVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="caVersPhone" class="label py-2 ps-2 pe-2">CANAAN Extra</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="miku" id="mikuVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="mikuVersPhone" class="label py-2 ps-2 pe-2">初音ミク -Project DIVA- f</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="miku2.0" id="miku2.0VersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="miku2.0VersPhone" class="label py-2 ps-2 pe-2">初音ミク -Project DIVA- f 2nd</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="mikuext1.0" id="mikuext1.0VersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="mikuext1.0VersPhone" class="label py-2 ps-2 pe-2">初音ミク -Project DIVA- X HD Extra</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="ppext" id="ppextVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="ppextVersPhone" class="label py-2 ps-2 pe-2">PSYCHO-PASS Extra</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="gargan" id="garganVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="garganVersPhone" class="label py-2 ps-2 pe-2">翠星のガルガンティア</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="ds2ext" id="ds2extVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="ds2extVersPhone" class="label py-2 ps-2 pe-2">TVアニメ「デビルサバイバー2」 Extra</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="kill" id="killVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="killVersPhone" class="label py-2 ps-2 pe-2">キルラキル</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="killpset" id="killpsetVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="killpsetVersPhone" class="label py-2 ps-2 pe-2">パワーアップセット キルラキル</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="logho" id="loghoVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="loghoVersPhone" class="label py-2 ps-2 pe-2">ログ・ホライズン Extra</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="loghopset" id="loghopsetVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="loghopsetVersPhone" class="label py-2 ps-2 pe-2">パワーアップセット ログ・ホライズン</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="kancolle" id="kancolleVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="kancolleVersPhone" class="label py-2 ps-2 pe-2">艦隊これくしょん -艦これ-</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="kancolle2.0" id="kancolle2.0VersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="kancolle2.0VersPhone" class="label py-2 ps-2 pe-2">艦隊これくしょん -艦これ- 第二艦隊</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="kancolle3.0" id="kancolle3.0VersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="kancolle3.0VersPhone" class="label py-2 ps-2 pe-2">艦隊これくしょん -艦これ- 到着！欧州からの増派艦隊</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="kancolle4.0" id="kancolle4.0VersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="kancolle4.0VersPhone" class="label py-2 ps-2 pe-2">艦隊これくしょん -艦これ-5th Phase</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="kancolleext" id="kancolleextVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="kancolleextVersPhone" class="label py-2 ps-2 pe-2">艦隊これくしょん -艦これ- 深海棲艦見ゆ Extra</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="shinchan" id="shinchanVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="shinchanVersPhone" class="label py-2 ps-2 pe-2">クレヨンしんちゃん</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="shinchan2.0" id="shinchan2.0VersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="shinchan2.0VersPhone" class="label py-2 ps-2 pe-2">映画クレヨンしんちゃん</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="gstext" id="gstextVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="gstextVersPhone" class="label py-2 ps-2 pe-2">超爆裂異次元メンコバトル ギガントシューターつかさ Extra</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="tf" id="tfVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="tfVersPhone" class="label py-2 ps-2 pe-2">テラフォーマーズ</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="aot" id="aotVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="aotVersPhone" class="label py-2 ps-2 pe-2">進撃の巨人</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="aot2.0" id="aot2.0VersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="aot2.0VersPhone" class="label py-2 ps-2 pe-2">進撃の巨人 Vol.2</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="sgs" id="sgsVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="sgsVersPhone" class="label py-2 ps-2 pe-2">スクールガールストライカーズ</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="puyopuyo" id="puyopuyoVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="puyopuyoVersPhone" class="label py-2 ps-2 pe-2">ぷよぷよ</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="oms" id="omsVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="omsVersPhone" class="label py-2 ps-2 pe-2">おそ松さん</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="rinneext" id="rinneextVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="rinneextVersPhone" class="label py-2 ps-2 pe-2">境界のRINNE Extra</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="kiznaiver" id="kiznaiverVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="kiznaiverVersPhone" class="label py-2 ps-2 pe-2">キズナイーバー</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="rz" id="rzVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="rzVersPhone" class="label py-2 ps-2 pe-2">Re：ゼロから始める異世界生活</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="rz2.0" id="rz2.0VersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="rz2.0VersPhone" class="label py-2 ps-2 pe-2">Re：ゼロから始める異世界生活Vol.2</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="rz3.0" id="rz3.0VersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="rz3.0VersPhone" class="label py-2 ps-2 pe-2">Re:ゼロから始める異世界生活 Memory Snow</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="rz4.0" id="rz4.0VersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="rz4.0VersPhone" class="label py-2 ps-2 pe-2">Re:ゼロから始める異世界生活Vol.3</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="rz5.0" id="rz5.0VersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="rz5.0VersPhone" class="label py-2 ps-2 pe-2">Re:ゼロから始める異世界生活Vol.4</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="rzext1.0" id="rzext1.0VersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="rzext1.0VersPhone" class="label py-2 ps-2 pe-2">Re:ゼロから始める異世界生活 氷結の絆 Extra</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="chain" id="chainVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="chainVersPhone" class="label py-2 ps-2 pe-2">チェインクロニクル 〜ヘクセイタスの閃〜</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="starwars" id="starwarsVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="starwarsVersPhone" class="label py-2 ps-2 pe-2">STAR WARS</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="starwars2.0" id="starwars2.0VersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="starwars2.0VersPhone" class="label py-2 ps-2 pe-2">カムバックブースター STAR WARS</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="starwarspb" id="starwarspbVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="starwarspbVersPhone" class="label py-2 ps-2 pe-2">プレミアムブースター STAR WARS</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="starwarspb2.0" id="starwarspb2.0VersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="starwarspb2.0VersPhone" class="label py-2 ps-2 pe-2">プレミアムブースター STAR WARS Vol.2</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="gurren" id="gurrenVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="gurrenVersPhone" class="label py-2 ps-2 pe-2">天元突破グレンラガン</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="rsl" id="rslVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="rslVersPhone" class="label py-2 ps-2 pe-2">少女☆歌劇 レヴュースタァライト</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="rsl2.0" id="rsl2.0VersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="rsl2.0VersPhone" class="label py-2 ps-2 pe-2">少女☆歌劇 レヴュースタァライト -Re LIVE-</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="rslstageext" id="rslstageextVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="rslstageextVersPhone" class="label py-2 ps-2 pe-2">ポートレートブースター 少女☆歌劇 レヴュースタァライト -The LIVE エーデル- Delight</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="rsl3.0" id="rsl3.0VersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="rsl3.0VersPhone" class="label py-2 ps-2 pe-2">劇場版 少女☆歌劇 レヴュースタァライト</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="godzilla" id="godzillaVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="godzillaVersPhone" class="label py-2 ps-2 pe-2">アニメーション映画『GODZILLA』TD+</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="godzillaext1.0" id="godzillaext1.0VersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="godzillaext1.0VersPhone" class="label py-2 ps-2 pe-2">アニメーション映画『GODZILLA』Extra</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="darlifra" id="darlifraVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="darlifraVersPhone" class="label py-2 ps-2 pe-2">ダーリン・イン・ザ・フランキス</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="ngl" id="nglVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="nglVersPhone" class="label py-2 ps-2 pe-2">ノーゲーム・ノーライフ</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="stg" id="stgVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="stgVersPhone" class="label py-2 ps-2 pe-2">STEINS;GATE</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="ovl" id="ovlVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="ovlVersPhone" class="label py-2 ps-2 pe-2">オーバーロード</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="ovl2.0" id="ovl2.0VersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="ovl2.0VersPhone" class="label py-2 ps-2 pe-2">オーバーロード Vol.2</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="ovlext" id="ovlextVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="ovlextVersPhone" class="label py-2 ps-2 pe-2">劇場版「オーバーロード」聖王国編 Extra</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="ovlpb" id="ovlpbVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="ovlpbVersPhone" class="label py-2 ps-2 pe-2">プレミアムブースター 原作 オーバーロード</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="gbs" id="gbsVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="gbsVersPhone" class="label py-2 ps-2 pe-2">ゴブリンスレイヤー</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="jj" id="jjVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="jjVersPhone" class="label py-2 ps-2 pe-2">ジョジョの奇妙な冒険 黄金の風</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="jjpbsdc" id="jjpbsdcVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="jjpbsdcVersPhone" class="label py-2 ps-2 pe-2">プレミアムブースター ジョジョの奇妙な冒険 スターダストクルセイダース</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="jjpbso" id="jjpbsoVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="jjpbsoVersPhone" class="label py-2 ps-2 pe-2">プレミアムブースター ジョジョの奇妙な冒険 ストーンオーシャン</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="tsk" id="tskVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="tskVersPhone" class="label py-2 ps-2 pe-2">転生したらスライムだった件</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="tsk2.0" id="tsk2.0VersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="tsk2.0VersPhone" class="label py-2 ps-2 pe-2">転生したらスライムだった件 Vol.2</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="tsk3.0" id="tsk3.0VersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="tsk3.0VersPhone" class="label py-2 ps-2 pe-2">転生したらスライムだった件 Vol.3</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="gri" id="griVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="griVersPhone" class="label py-2 ps-2 pe-2">グリザイアの果実</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="gri2.0" id="gri2.0VersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="gri2.0VersPhone" class="label py-2 ps-2 pe-2">グリザイアの果実 Vol.2</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="gri3.0" id="gri3.0VersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="gri3.0VersPhone" class="label py-2 ps-2 pe-2">グリザイア：ファントムトリガー</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="lily" id="lilyVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="lilyVersPhone" class="label py-2 ps-2 pe-2">アサルトリリィ BOUQUET</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="lily2.0" id="lily2.0VersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="lily2.0VersPhone" class="label py-2 ps-2 pe-2">アサルトリリィ Vol.2</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="lilystageext" id="lilystageextVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="lilystageextVersPhone" class="label py-2 ps-2 pe-2">ポートレートブースター アサルトリリィ Last Bullet</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="lily3.0" id="lily3.0VersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="lily3.0VersPhone" class="label py-2 ps-2 pe-2">アサルトリリィ Last Bullet</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="skr" id="skrVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="skrVersPhone" class="label py-2 ps-2 pe-2">新サクラ大戦</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="lod" id="lodVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="lodVersPhone" class="label py-2 ps-2 pe-2">ロストディケイド</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="bfr" id="bfrVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="bfrVersPhone" class="label py-2 ps-2 pe-2">痛いのは嫌なので防御力に極振りしたいと思います。</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="kgl" id="kglVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="kglVersPhone" class="label py-2 ps-2 pe-2">かぐや様は告らせたい～天才たちの恋愛頭脳戦～</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="kgl2.0" id="kgl2.0VersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="kgl2.0VersPhone" class="label py-2 ps-2 pe-2">かぐや様は告らせたい？～天才たちの恋愛頭脳戦～</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="mti" id="mtiVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="mtiVersPhone" class="label py-2 ps-2 pe-2">無職転生 ～異世界行ったら本気だす～</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="wtr" id="wtrVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="wtrVersPhone" class="label py-2 ps-2 pe-2">ワールドトリガー</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="dct" id="dctVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="dctVersPhone" class="label py-2 ps-2 pe-2">D_CIDE TRAUMEREI</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="ddm" id="ddmVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="ddmVersPhone" class="label py-2 ps-2 pe-2">ダンジョンに出会いを求めるのは間違っているだろうか</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="mar" id="marVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="marVersPhone" class="label py-2 ps-2 pe-2">Marvel/Card Collection</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="marpb" id="marpbVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="marpbVersPhone" class="label py-2 ps-2 pe-2">プレミアムブースター MARVEL</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="mar2.0" id="mar2.0VersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="mar2.0VersPhone" class="label py-2 ps-2 pe-2">MARVEL Vol.2</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="mar3.0" id="mar3.0VersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="mar3.0VersPhone" class="label py-2 ps-2 pe-2">MARVEL Vol.3 [MARVEL STUDIOS]</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="pjs" id="pjsVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="pjsVersPhone" class="label py-2 ps-2 pe-2">プロジェクトセカイ カラフルステージ！ feat. 初音ミク</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="pjs2.0" id="pjs2.0VersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="pjs2.0VersPhone" class="label py-2 ps-2 pe-2">プロジェクトセカイ カラフルステージ！ feat. 初音ミク Vol.2</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="pjs3.0" id="pjs3.0VersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="pjs3.0VersPhone" class="label py-2 ps-2 pe-2">プロジェクトセカイ カラフルステージ！ feat. 初音ミク Vol.3</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="pjsext" id="pjsextVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="pjsextVersPhone" class="label py-2 ps-2 pe-2">コレクションパック プロジェクトセカイ カラフルステージ！ feat. 初音ミク</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="trv" id="trvVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="trvVersPhone" class="label py-2 ps-2 pe-2">東京リベンジャーズ</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="pxr" id="pxrVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="pxrVersPhone" class="label py-2 ps-2 pe-2">PIXAR CHARACTERS</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="pxr2.0" id="pxr2.0VersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="pxr2.0VersPhone" class="label py-2 ps-2 pe-2">Toy Story 30YEARS＆BEYOND</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="azl" id="azlVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="azlVersPhone" class="label py-2 ps-2 pe-2">アズールレーン</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="azl2.0" id="azl2.0VersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="azl2.0VersPhone" class="label py-2 ps-2 pe-2">アズールレーン Vol.2</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="ari" id="ariVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="ariVersPhone" class="label py-2 ps-2 pe-2">ありふれた職業で世界最強</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="disney" id="disneyVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="disneyVersPhone" class="label py-2 ps-2 pe-2">Disney100</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="csm" id="csmVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="csmVersPhone" class="label py-2 ps-2 pe-2">チェンソーマン</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="pad" id="padVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="padVersPhone" class="label py-2 ps-2 pe-2">パズル＆ドラゴンズ</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="spy" id="spyVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="spyVersPhone" class="label py-2 ps-2 pe-2">SPY×FAMILY</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="osk" id="oskVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="oskVersPhone" class="label py-2 ps-2 pe-2">【推しの子】</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="osk2.0" id="osk2.0VersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="osk2.0VersPhone" class="label py-2 ps-2 pe-2">【推しの子】Vol.2</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="osk3.0" id="osk3.0VersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="osk3.0VersPhone" class="label py-2 ps-2 pe-2">【推しの子】Vol.3</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="sfn" id="sfnVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="sfnVersPhone" class="label py-2 ps-2 pe-2">葬送のフリーレン</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="sfnre" id="sfnreVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="sfnreVersPhone" class="label py-2 ps-2 pe-2">葬送のフリーレン 新装版</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="sfn2.0" id="sfn2.0VersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="sfn2.0VersPhone" class="label py-2 ps-2 pe-2">葬送のフリーレン Vol.2</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="d4dj" id="d4djVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="d4djVersPhone" class="label py-2 ps-2 pe-2">D4DJ Groovy Mix</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="rskext" id="rskextVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="rskextVersPhone" class="label py-2 ps-2 pe-2">リアセカイ</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="mr" id="mrVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="mrVersPhone" class="label py-2 ps-2 pe-2">Disney ミラー・ウォリアーズ</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="rkn" id="rknVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="rknVersPhone" class="label py-2 ps-2 pe-2">るろうに剣心 －明治剣客浪漫譚－</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="nik" id="nikVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="nikVersPhone" class="label py-2 ps-2 pe-2">勝利の女神：NIKKE</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="ddd" id="dddVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="dddVersPhone" class="label py-2 ps-2 pe-2">TVアニメ『ダンダダン』</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="ddd2.0" id="ddd2.0VersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="ddd2.0VersPhone" class="label py-2 ps-2 pe-2">TVアニメ『ダンダダン』Vol.2</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="gcrpb" id="gcrpbVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="gcrpbVersPhone" class="label py-2 ps-2 pe-2">プレミアムブースター ガールズバンドクライ</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="kj8" id="kj8VersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="kj8VersPhone" class="label py-2 ps-2 pe-2">怪獣８号</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="tal" id="talVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="talVersPhone" class="label py-2 ps-2 pe-2">『テイルズ オブ』シリーズ</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="thp" id="thpVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="thpVersPhone" class="label py-2 ps-2 pe-2">東方Project～ Black and White Lotus Land.</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="ga" id="gaVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="gaVersPhone" class="label py-2 ps-2 pe-2">GA文庫</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="gbf" id="gbfVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="gbfVersPhone" class="label py-2 ps-2 pe-2">グランブルーファンタジー</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="woo" id="wooVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="wooVersPhone" class="label py-2 ps-2 pe-2">うーさーのその日暮らし</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="siyoko" id="siyokoVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="siyokoVersPhone" class="label py-2 ps-2 pe-2">カードゲームしよ子 アルティメットスターター</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="dengeki" id="dengekiVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="dengekiVersPhone" class="label py-2 ps-2 pe-2">電撃文庫</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="promo" id="promoVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="promoVersPhone" class="label py-2 ps-2 pe-2">その他プロモーションカード</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="marker" id="markerVersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="markerVersPhone" class="label py-2 ps-2 pe-2">先攻後攻カード(～2023)</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="marker2024" id="marker2024VersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="marker2024VersPhone" class="label py-2 ps-2 pe-2">先攻後攻カード(2024)</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="marker2025" id="marker2025VersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="marker2025VersPhone" class="label py-2 ps-2 pe-2">先攻後攻カード(2025)</label></div></li><li
+class="border-bottom"><div
+class="p-0">
+<input
+type="checkbox" class="versPhone" name="vers[]" value="marker2026" id="marker2026VersPhone" onClick="ConfirmCheckStatusVersPhone()">
+<label
+for="marker2026VersPhone" class="label py-2 ps-2 pe-2">先攻後攻カード(2026)</label></div></li></ul></div><div
+class="modal-footer row justify-content-between px-1 py-1">
+<button
+type="button" class="btn btn-default rounded-0 col-3 p-0 fs-12" data-bs-dismiss="modal" onClick="ReturnCheckStatusVersPhone()">
+閉じる
+</button>
