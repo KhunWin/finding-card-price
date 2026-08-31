@@ -9,6 +9,7 @@ import logging
 from urllib.parse import urljoin
 from datetime import datetime
 import csv
+import html  # Added for HTML entity decoding
 
 # Configure logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
@@ -18,6 +19,7 @@ logger = logging.getLogger(__name__)
 class CardInfo:
     """Data class to represent a card"""
     name: str
+    name_power: str  # Name with reading if available
     price: int
     price_text: str
     image_url: str
@@ -104,25 +106,48 @@ class YuyuteiScraper:
             
             soup = BeautifulSoup(response.text, 'html.parser')
             
+            # Extract reading from id="power" if it exists
+            reading = ""
+            power_element = soup.find(id="power")
+            if power_element:
+                # Look for the <b> tag that contains the reading
+                b_tag = power_element.find('b')
+                if b_tag:
+                    # Extract text and clean it
+                    reading_text = b_tag.get_text(strip=True)
+                    # Remove parentheses if they exist
+                    reading = reading_text.strip('（）')
+                    logger.info(f"Found reading: {reading}")
+            
             # Find JSON-LD script tags
             script_tags = soup.find_all('script', type='application/ld+json')
-            print(f"Found {len(script_tags)} JSON-LD script tags in {url}")  # Debugging line
-            print(f"Script tags content: {[script.string for script in script_tags]}")  # Debugging line
             
             for script in script_tags:
                 try:
+                    if script.string is None:
+                        continue
                     data = json.loads(script.string)
-                    print("Parsed JSON-LD data:", data)  # Debugging line
                     
                     # Look for Product schema
                     if isinstance(data, dict) and data.get('@type') == 'Product':
+                        # Get the name and decode HTML entities
+                        name = data.get('name', '')
+                      
+                        # Decode HTML entities like &amp; to &
+                        name = html.unescape(name)
+
+                        name_power = name
+                        if reading:
+                            name_power = f"{name}({reading})"
                         card_data = {
-                            'name': data.get('name', ''),
+                            'name': name,
+                            'name_power': name_power,
                             'image_url': data.get('image', ''),
                             'description': data.get('description', ''),
                             'card_url': url,
+                            'reading': reading,
                         }
-                        print("Extracted card data:", card_data)  # Debugging line
+                        
                         # Parse offers
                         offers = data.get('offers', {})
                         if isinstance(offers, dict):
@@ -193,12 +218,14 @@ class YuyuteiScraper:
                 try:
                     card = CardInfo(
                         name=card_data.get('name', 'Unknown'),
+                        name_power=card_data.get('name_power', ''),
                         price=card_data.get('price', 0),
                         price_text=card_data.get('price_text', '0 円'),
                         image_url=card_data.get('image_url', ''),
                         description=card_data.get('description', ''),
                         card_url=card_data.get('card_url', ''),
-                        card_id=card_data.get('card_id', '')
+                        card_id=card_data.get('card_id', ''),
+                        # reading=card_data.get('reading', '')  # Add reading field
                     )
                     cards.append(card)
                     logger.info(f"  ✓ {card.name} - {card.price_text}")
@@ -227,8 +254,8 @@ class YuyuteiScraper:
         
         try:
             with open(filename, 'w', newline='', encoding='utf-8') as f:
-                fieldnames = ['name', 'price', 'price_text', 'image_url', 
-                             'description', 'card_url', 'card_id']
+                fieldnames = ['name', 'name_power', 'price', 'price_text', 'image_url', 
+                             'description', 'card_url', 'card_id']  # Removed reading
                 writer = csv.DictWriter(f, fieldnames=fieldnames)
                 writer.writeheader()
                 for card in cards:
@@ -285,12 +312,6 @@ def main():
         csv_filename = f"yuyutei_{group_code}_{ws}_{timestamp}.csv"
         scraper.save_to_csv(cards, csv_filename)
         
-        # Also save to JSON as backup (optional)
-        # json_filename = f"yuyutei_{group_code}_{ws}_{timestamp}.json"
-        # with open(json_filename, 'w', encoding='utf-8') as f:
-        #     json.dump([card.to_dict() for card in cards], f, ensure_ascii=False, indent=2)
-        # print(f"✅ JSON backup saved as: {json_filename}")
-        
         # Print sample cards
         print("\n📋 Sample cards (first 3):")
         for i, card in enumerate(cards[:3], 1):
@@ -299,6 +320,8 @@ def main():
             print(f"  Price: {card.price_text}")
             print(f"  ID: {card.card_id}")
             print(f"  Description: {card.description}")
+            if card.name_power:
+                print(f"  Name with reading: {card.name_power}")
         
         print(f"\n✅ Scraping complete! Found {len(cards)} cards.")
     else:
