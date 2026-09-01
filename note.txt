@@ -71,3 +71,12 @@ let's add a new button "Tranform Excel File" before Upload. Make a new class for
 ======================================================================
 ❌ UPLOAD FAILED - Both methods failed
 ======================================================================
+
+
+i want to add a new window before showing the main-gui-tkinter. Ask to choose TCG or Yuyu-Tei. if TCG is chosen, proceed to the current main-gui-tkinter. if yuyu-tei is chosen, show the same gui but no Image Resolution. yuyu-tei also takes two inputs, category id and group id. ws is equal to category id and group id is equal to group_code. let's the user choose the output folder for images and excel file.the user should be able to input multiple group id for yuyu-tie too.
+this is from scarp_yuyu_v4.py
+group_code = 'dcext1.0'  # Change this to your desired group code
+ws = 'ws'  # Change this to your desired WS value
+     
+
+

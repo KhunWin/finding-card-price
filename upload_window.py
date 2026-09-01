@@ -15,8 +15,9 @@ from excel_transformer import ExcelTransformer
 class UploadWindow:
     """Separate window for handling Boutir product uploads"""
     
-    def __init__(self, parent):
+    def __init__(self, parent, source='tcg'):
         self.parent = parent
+        self.source = source  # 'tcg' or 'yuyutei'
         self.window = tk.Toplevel(parent)
         self.window.title("Upload to Boutir")
         self.window.geometry("1000x650")
@@ -33,10 +34,12 @@ class UploadWindow:
         self.email_var = tk.StringVar()
         self.password_var = tk.StringVar()
         self.file_path_var = tk.StringVar(value="No file selected")
-        self.usd_to_hkd_var = tk.StringVar(value="7.8")  # Default HKD rate
+        self.usd_to_hkd_var = tk.StringVar(value="7.8" if source == 'tcg' else "0.0062")  # Default HKD rate
+        # self.exchange_rate_var = tk.StringVar(value="7.8" if source == 'tcg' else "0.0062")  # USD->HKD or JPY->HKD
+
         self.transformed_file_path = None
         self.upload_stop_flag = False
-        self.transformer = ExcelTransformer()
+        self.transformer = ExcelTransformer(source=source)
         
         # Create GUI
         self.create_widgets()
@@ -173,8 +176,8 @@ class UploadWindow:
         # Exchange Rate Card
         rate_card = self.create_card(left_scrollable_frame, "💱 Currency Exchange Rate")
 
-        rate_label = tk.Label(rate_card.content, text="1 USD to HKD Rate", 
-                            bg='#141824', fg='#9ca3af',
+        # rate_label = tk.Label(rate_card.content, text="1 USD to HKD Rate", 
+        rate_label = tk.Label(rate_card.content, text="JPY to HKD Rate" if self.source == 'yuyutei' else "1 USD to HKD Rate", bg='#141824', fg='#9ca3af',
                             font=('Segoe UI', 9, 'bold'), anchor='w')
         rate_label.pack(anchor=tk.W, pady=(0, 5))
 
@@ -191,6 +194,12 @@ class UploadWindow:
                             bg='#141824', fg='#6b7280',
                             font=('Segoe UI', 8), anchor='w')
         rate_info.pack(anchor=tk.W, pady=(5, 0))
+
+        ####################################
+        # Exchange Rate Card
+        
+
+        ####################################
         
         # File Selection Card
         file_card = self.create_card(left_scrollable_frame, "📁 Excel File Selection")

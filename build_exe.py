@@ -46,7 +46,7 @@ def build_exe():
     
     # PyInstaller arguments
     pyinstaller_args = [
-        'main-gui-tkinter.py',           # Main script
+        'main_gui_tkinter.py',           # Main script
         '--name=TCGCardScraper',          # EXE name
         '--onefile',                       # Single EXE file
         '--windowed',                      # No console window (GUI app)
@@ -57,6 +57,7 @@ def build_exe():
         
         # Add data files
         '--add-data=icon.ico:.',
+        '--add-data=yuyu_tei:yuyu_tei',
         
         # Add data files if needed
         # '--add-data=main_tcg_extract.py;.',
@@ -77,12 +78,15 @@ def build_exe():
         '--hidden-import=uuid',
         '--hidden-import=platform',
         '--hidden-import=datetime',
+        '--hidden-import=yuyu_tei.yuyu_tei_wrapper',
+        '--hidden-import=yuyu_tei.scarp_yuyu_v4',
+        '--hidden-import=scarp_yuyu_v4',
         
         # Add .env file as data
         '--add-data=.env:.',
         
         # Optimize
-        '--strip',                         # Strip symbols
+        # '--strip',                       # Strip symbols - removed due to missing strip tool on Windows
         '--noupx',                         # Don't use UPX (can cause issues)
         
         # Clean temporary files
@@ -119,7 +123,7 @@ def build_with_console():
     clean_build()
     
     pyinstaller_args = [
-        'main-gui-tkinter.py',
+        'main_gui_tkinter.py',
         '--name=TCGCardScraper_Debug',
         '--onefile',
         # '--windowed',  # REMOVED - shows console for debugging
@@ -135,6 +139,10 @@ def build_with_console():
         '--hidden-import=product_keys_supabase',
         '--hidden-import=supabase',
         '--hidden-import=dotenv',
+        '--hidden-import=yuyu_tei.yuyu_tei_wrapper',
+        '--hidden-import=yuyu_tei.scarp_yuyu_v4',
+        '--hidden-import=scarp_yuyu_v4',
+        '--add-data=yuyu_tei:yuyu_tei',
         '--clean',
     ]
     

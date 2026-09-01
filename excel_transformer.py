@@ -35,11 +35,20 @@ class ExcelTransformer:
     ]
     
     # Column mapping from input to output (with flexible naming)
-    COLUMN_MAPPING = {
+    # TCG mapping
+    COLUMN_MAPPING_TCG = {
         'Image URLs': ['imageUrl', 'imageURL'],
         'Title': ['productName', 'name'],
         'Price': ['marketPrice'],
         'Categories': ['groupName']
+    }
+    
+    # Yuyu-Tei mapping
+    COLUMN_MAPPING_YUYUTEI = {
+        'Image URLs': ['image_url'],
+        'Title': ['name'],
+        'Price': ['price'],
+        'Categories': ['category']
     }
     
     # Default values for required fields
@@ -55,8 +64,18 @@ class ExcelTransformer:
         'Promo code': '0'
     }
     
-    def __init__(self):
-        pass
+    def __init__(self, source='tcg'):
+        """
+        Initialize ExcelTransformer
+        
+        Args:
+            source: 'tcg' or 'yuyutei' to determine column mapping
+        """
+        self.source = source.lower()
+        if self.source == 'yuyutei':
+            self.COLUMN_MAPPING = self.COLUMN_MAPPING_YUYUTEI
+        else:
+            self.COLUMN_MAPPING = self.COLUMN_MAPPING_TCG
     
     def _find_column(self, df_columns, possible_names):
         """Find the first matching column name from a list of possibilities"""
