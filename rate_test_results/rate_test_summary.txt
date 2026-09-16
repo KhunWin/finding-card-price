@@ -1,0 +1,325 @@
+
+======================================================================
+  YUYU-TEI RATE LIMIT TEST  |  Run: 20260916_113012
+  Started: 2026-09-16 11:30:12
+======================================================================
+
+  Group=dcext1.0  WS=ws  Phases=[0]
+
+──────────────────────────────────────────────────────────────────────
+  PHASE 0 – Connection Check
+──────────────────────────────────────────────────────────────────────
+  URL: https://yuyu-tei.jp/sell/ws/s/search  params={'search_word': '', 'vers[]': 'dcext1.0', 'rare': '', 'type': '', 'kizu': '0'}
+  Status=200  latency=975.5ms  bytes=493077
+  ✓ Site reachable.
+  
+(Quiet single search fetch for card links …)
+    Collected 0 card links.
+
+──────────────────────────────────────────────────────────────────────
+  FINAL SUMMARY
+──────────────────────────────────────────────────────────────────────
+  Search burst limit : ~N/A requests before 1st fail
+  Detail burst limit : ~N/A requests before 1st fail
+  Min cool-down      : N/A seconds
+  
+Sustainable rate (card detail pages):
+  
+Endurance results:
+  
+RECOMMENDATIONS:
+    ⚠ Could not determine safe delay – review logs manually.
+
+======================================================================
+  Finished: 2026-09-16 11:30:14
+  JSON log : rate_test_results\rate_test_log.json
+  Summary  : rate_test_results\rate_test_summary.txt
+======================================================================
+
+
+======================================================================
+  YUYU-TEI RATE LIMIT TEST  |  Run: 20260916_113102
+  Started: 2026-09-16 11:31:02
+======================================================================
+
+  Group=dcext1.0  WS=ws  Phases=[0]
+
+──────────────────────────────────────────────────────────────────────
+  PHASE 0 – Connection Check
+──────────────────────────────────────────────────────────────────────
+  URL: https://yuyu-tei.jp/sell/ws/s/search  params={'search_word': '', 'vers[]': 'dcext1.0', 'rare': '', 'type': '', 'kizu': '0'}
+  Status=200  latency=979.3ms  bytes=493077
+  ✓ Site reachable.
+  
+(Quiet single search fetch for card links …)
+    Collected 0 card links.
+
+──────────────────────────────────────────────────────────────────────
+  FINAL SUMMARY
+──────────────────────────────────────────────────────────────────────
+  Search burst limit : ~N/A requests before 1st fail
+  Detail burst limit : ~N/A requests before 1st fail
+  Min cool-down      : N/A seconds
+  
+Sustainable rate (card detail pages):
+  
+Endurance results:
+  
+RECOMMENDATIONS:
+    ⚠ Could not determine safe delay – review logs manually.
+
+======================================================================
+  Finished: 2026-09-16 11:31:03
+  JSON log : rate_test_results\rate_test_log.json
+  Summary  : rate_test_results\rate_test_summary.txt
+======================================================================
+
+
+======================================================================
+  YUYU-TEI RATE LIMIT TEST  |  Run: 20260916_113110
+  Started: 2026-09-16 11:31:10
+======================================================================
+
+  Group=dcext1.0  WS=ws  Phases=[0, 4]
+
+──────────────────────────────────────────────────────────────────────
+  PHASE 0 – Connection Check
+──────────────────────────────────────────────────────────────────────
+  URL: https://yuyu-tei.jp/sell/ws/s/search  params={'search_word': '', 'vers[]': 'dcext1.0', 'rare': '', 'type': '', 'kizu': '0'}
+  Status=200  latency=821.4ms  bytes=493077
+  ✓ Site reachable.
+  
+(Quiet single search fetch for card links …)
+    Collected 0 card links.
+
+──────────────────────────────────────────────────────────────────────
+  PHASE 4 – Sustainable Rate Benchmark
+──────────────────────────────────────────────────────────────────────
+  No card links – skipping.
+
+──────────────────────────────────────────────────────────────────────
+  FINAL SUMMARY
+──────────────────────────────────────────────────────────────────────
+  Search burst limit : ~N/A requests before 1st fail
+  Detail burst limit : ~N/A requests before 1st fail
+  Min cool-down      : N/A seconds
+  
+Sustainable rate (card detail pages):
+  
+Endurance results:
+  
+RECOMMENDATIONS:
+    ⚠ Could not determine safe delay – review logs manually.
+
+======================================================================
+  Finished: 2026-09-16 11:31:11
+  JSON log : rate_test_results\rate_test_log.json
+  Summary  : rate_test_results\rate_test_summary.txt
+======================================================================
+
+
+======================================================================
+  YUYU-TEI RATE LIMIT TEST  |  Run: 20260916_113143
+  Started: 2026-09-16 11:31:43
+======================================================================
+
+  Group=dcext1.0  WS=ws  Phases=[0, 4]
+
+──────────────────────────────────────────────────────────────────────
+  PHASE 0 – Connection Check
+──────────────────────────────────────────────────────────────────────
+  URL: https://yuyu-tei.jp/sell/ws/s/search  params={'search_word': '', 'vers[]': 'dcext1.0', 'rare': '', 'type': '', 'kizu': '0'}
+  Status=200  latency=1005.7ms  bytes=493077
+  ✓ Site reachable.
+  
+(Card links from Phase 0 response: 0 found)
+
+──────────────────────────────────────────────────────────────────────
+  PHASE 4 – Sustainable Rate Benchmark
+──────────────────────────────────────────────────────────────────────
+  No card links – skipping.
+
+──────────────────────────────────────────────────────────────────────
+  FINAL SUMMARY
+──────────────────────────────────────────────────────────────────────
+  Search burst limit : ~N/A requests before 1st fail
+  Detail burst limit : ~N/A requests before 1st fail
+  Min cool-down      : N/A seconds
+  
+Sustainable rate (card detail pages):
+  
+Endurance results:
+  
+RECOMMENDATIONS:
+    ⚠ Could not determine safe delay – review logs manually.
+
+======================================================================
+  Finished: 2026-09-16 11:31:44
+  JSON log : rate_test_results\rate_test_log.json
+  Summary  : rate_test_results\rate_test_summary.txt
+======================================================================
+
+
+======================================================================
+  YUYU-TEI RATE LIMIT TEST  |  Run: 20260916_113252
+  Started: 2026-09-16 11:32:52
+======================================================================
+
+  Group=dcext1.0  WS=ws  Phases=[0, 4]
+
+──────────────────────────────────────────────────────────────────────
+  PHASE 0 – Connection Check
+──────────────────────────────────────────────────────────────────────
+  URL: https://yuyu-tei.jp/sell/ws/s/search  params={'search_word': '', 'vers[]': 'dcext1.0', 'rare': '', 'type': '', 'kizu': '0'}
+  Status=200  latency=844.2ms  bytes=493077
+  ✓ Site reachable.
+  
+(Card links from Phase 0 response: 36 found)
+
+──────────────────────────────────────────────────────────────────────
+  PHASE 4 – Sustainable Rate Benchmark
+──────────────────────────────────────────────────────────────────────
+  
+  ── delay=0.5s ──────────────────────────────────────
+    [  1] ✓ 200  546.7ms
+    [  2] ✓ 200  342.0ms
+    [  3] ✓ 200  364.9ms
+    [  4] ✓ 200  563.1ms
+    [  5] ✓ 200  337.8ms
+    [  6] ✓ 200  335.9ms
+    [  7] ✓ 200  645.4ms
+    [  8] ✓ 200  337.9ms
+    [  9] ✓ 200  499.2ms
+    [ 10] ✓ 200  952.4ms
+    [ 11] ✓ 200  342.1ms
+    [ 12] ✓ 200  440.0ms
+    [ 13] ✓ 200  483.5ms
+    [ 14] ✓ 200  337.4ms
+    [ 15] ✓ 200  314.2ms
+    [ 16] ✓ 200  650.0ms
+    [ 17] ✓ 200  696.1ms
+    [ 18] ✓ 200  419.9ms
+    [ 19] ✓ 200  320.1ms
+    [ 20] ✓ 200  319.1ms
+    [ 21] ✓ 200  300.6ms
+    [ 22] ✓ 200  357.8ms
+    [ 23] ✓ 200  301.6ms
+    [ 24] ✓ 200  592.7ms
+    [ 25] ✓ 200  315.9ms
+    [ 26] ✓ 200  604.5ms
+    [ 27] ✓ 200  331.2ms
+    [ 28] ✓ 200  384.6ms
+    [ 29] ✓ 200  326.4ms
+    [ 30] ✓ 200  304.9ms
+    [ 31] ✓ 200  322.1ms
+    [ 32] ✓ 200  443.1ms
+    [ 33] ✓ 200  327.0ms
+    [ 34] ✓ 200  302.2ms
+    [ 35] ✓ 200  295.1ms
+    [ 36] ✓ 200  385.9ms
+    Sent=36  OK=36  elapsed=32.7s  rate=1.101req/s=66.1req/min
+  
+  ── delay=1.0s ──────────────────────────────────────
+    [  1] ✓ 200  301.0ms
+    [  2] ✓ 200  1175.0ms
+    [  3] ✓ 200  243.3ms
+    [  4] ✓ 200  406.3ms
+    [  5] ✓ 200  726.7ms
+    [  6] ✓ 200  323.5ms
+    [  7] ✓ 200  297.3ms
+    [  8] ✓ 200  840.0ms
+    [  9] ✓ 200  399.8ms
+    [ 10] ✓ 200  342.2ms
+    [ 11] ✓ 200  327.2ms
+    [ 12] ✓ 200  328.2ms
+    [ 13] ✓ 200  368.3ms
+    [ 14] ✓ 200  342.6ms
+    [ 15] ✓ 200  359.6ms
+    [ 16] ✓ 200  388.7ms
+    [ 17] ✓ 200  345.5ms
+    [ 18] ✓ 200  673.7ms
+    [ 19] ✓ 200  674.7ms
+    [ 20] ✓ 200  676.3ms
+    [ 21] ✓ 200  520.6ms
+    [ 22] ✓ 200  370.8ms
+    [ 23] ✓ 200  516.1ms
+    [ 24] ✓ 200  443.0ms
+    [ 25] ✓ 200  686.5ms
+    [ 26] ✓ 200  525.8ms
+    [ 27] ✓ 200  950.8ms
+    [ 28] ✓ 200  377.5ms
+    [ 29] ✓ 200  358.8ms
+    [ 30] ✓ 200  419.8ms
+    [ 31] ✓ 200  651.4ms
+    [ 32] ✓ 200  678.1ms
+    [ 33] ✓ 200  668.0ms
+    [ 34] ✓ 200  406.6ms
+    [ 35] ✓ 200  378.9ms
+    [ 36] ✓ 200  720.4ms
+    Sent=36  OK=36  elapsed=53.3s  rate=0.676req/s=40.6req/min
+  
+  ── delay=2.0s ──────────────────────────────────────
+    [  1] ✓ 200  412.6ms
+    [  2] ✓ 200  448.0ms
+    [  3] ✓ 200  396.5ms
+    [  4] ✓ 200  755.7ms
+    [  5] ✓ 200  434.7ms
+    [  6] ✓ 200  474.9ms
+    [  7] ✓ 200  466.4ms
+    [  8] ✓ 200  454.8ms
+    [  9] ✓ 200  543.7ms
+    [ 10] ✓ 200  593.8ms
+    [ 11] ✓ 200  504.5ms
+    [ 12] ✓ 200  866.2ms
+    [ 13] ✓ 200  532.5ms
+    [ 14] ✓ 200  648.8ms
+    [ 15] ✓ 200  605.9ms
+    [ 16] ✓ 200  892.7ms
+    [ 17] ✓ 200  617.1ms
+    [ 18] ✓ 200  508.6ms
+    [ 19] ✓ 200  650.0ms
+    [ 20] ✓ 200  582.8ms
+    [ 21] ✓ 200  493.3ms
+    [ 22] ✓ 200  417.1ms
+    [ 23] ✓ 200  395.2ms
+    [ 24] ✓ 200  449.2ms
+    [ 25] ✓ 200  409.2ms
+    [ 26] ✓ 200  411.9ms
+    [ 27] ✓ 200  400.8ms
+    [ 28] ✓ 200  433.5ms
+    [ 29] ✓ 200  647.4ms
+    [ 30] ✓ 200  552.3ms
+    [ 31] ✓ 200  809.2ms
+    [ 32] ✓ 200  662.8ms
+    [ 33] ✓ 200  613.3ms
+    [ 34] ✓ 200  808.3ms
+    [ 35] ✓ 200  660.1ms
+    [ 36] ✓ 200  772.9ms
+    Sent=36  OK=36  elapsed=1m 30s  rate=0.398req/s=23.9req/min
+
+──────────────────────────────────────────────────────────────────────
+  FINAL SUMMARY
+──────────────────────────────────────────────────────────────────────
+  Search burst limit : ~N/A requests before 1st fail
+  Detail burst limit : ~N/A requests before 1st fail
+  Min cool-down      : N/A seconds
+  
+Sustainable rate (card detail pages):
+    delay=0.5s → 66.1 req/min  rl=No
+    delay=1.0s → 40.6 req/min  rl=No
+    delay=2.0s → 23.9 req/min  rl=No
+  
+Endurance results:
+  
+RECOMMENDATIONS:
+    ✓ Safest delay     : 2.0s between requests
+    ✓ Throughput       : ~23.9 pages/min
+    ✓ Cards in  5 min  : ~120
+    ✓ Cards in 10 min  : ~239
+
+======================================================================
+  Finished: 2026-09-16 11:35:50
+  JSON log : rate_test_results\rate_test_log.json
+  Summary  : rate_test_results\rate_test_summary.txt
+======================================================================
+

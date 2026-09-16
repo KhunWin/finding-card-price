@@ -241,9 +241,9 @@ class YuyuTeiGUI:
             bg_color='#6b7280', hover_color='#4b5563', icon='◀', width=200)
         back_btn.pack(side='left', fill='both', expand=True, padx=5)
         
-        # clear_btn = ModernButton(button_frame, text="Clear Log", command=self.clear_log,
-        #     bg_color='#636e72', hover_color='#4a5458', icon='🗑', width=200)
-        # clear_btn.pack(side='right', fill='both', expand=True, padx=(5, 0))
+        clear_btn = ModernButton(button_frame, text="Clear Log", command=self.clear_log,
+            bg_color='#636e72', hover_color='#4a5458', icon='🗑', width=200)
+        clear_btn.pack(side='right', fill='both', expand=True, padx=(5, 0))
     
     def append_log(self, message, color='white'):
         self.log_text.config(state='normal')
@@ -256,11 +256,11 @@ class YuyuTeiGUI:
         self.progress_var.set(value)
         self.root.update_idletasks()
     
-    # def clear_log(self):
-    #     self.log_text.config(state='normal')
-    #     self.log_text.delete(1.0, 'end')
-    #     self.log_text.config(state='disabled')
-    #     self.progress_var.set(0)
+    def clear_log(self):
+        self.log_text.config(state='normal')
+        self.log_text.delete(1.0, 'end')
+        self.log_text.config(state='disabled')
+        self.progress_var.set(0)
     
     def validate_inputs(self):
         category_id = self.category_id_entry.get().strip()
@@ -326,23 +326,42 @@ class YuyuTeiGUI:
             )
             
             stats = wrapper.scrape_all()
-            
+
+            self.append_log("\n" + "=" * 60 + "\n", "cyan")
             if self.is_running:
-                self.append_log("\n" + "=" * 60 + "\n", "cyan")
                 self.append_log("✓ SCRAPING COMPLETED SUCCESSFULLY\n", "green")
-                self.append_log("=" * 60 + "\n", "cyan")
-                self.append_log(f"Groups Processed: {stats['groups']}\n", "white")
-                self.append_log(f"Total Cards: {stats['cards']}\n", "white")
-                if params['download_images']:
-                    self.append_log(f"Images Downloaded: {stats['images_downloaded']}\n", "white")
-                    self.append_log(f"Images Failed: {stats['images_failed']}\n", "white")
-                self.append_log(f"Time Elapsed: {stats['time']:.2f} seconds\n", "white")
-                self.append_log("=" * 60 + "\n", "cyan")
-                
+            else:
+                self.append_log("⚠️ SCRAPING STOPPED (partial data saved)\n", "yellow")
+            self.append_log("=" * 60 + "\n", "cyan")
+            self.append_log(f"Groups Processed: {stats['groups']}\n", "white")
+            self.append_log(f"Total Cards: {stats['cards']}\n", "white")
+            if params['download_images']:
+                self.append_log(f"Images Downloaded: {stats['images_downloaded']}\n", "white")
+                self.append_log(f"Images Failed: {stats['images_failed']}\n", "white")
+            self.append_log(f"Time Elapsed: {stats['time']:.2f} seconds\n", "white")
+            # List every per-group Excel file if available, else fall back to
+            # the single legacy key so old results still display correctly.
+            excel_files = stats.get('excel_files') or []
+            if excel_files:
+                self.append_log("Excel Files:\n", "white")
+                for ef in excel_files:
+                    self.append_log(f"  • {ef}\n", "white")
+            else:
+                self.append_log(f"Excel File: {stats.get('excel_file', 'N/A')}\n", "white")
+            self.append_log("=" * 60 + "\n", "cyan")
+
+            files_summary = "\n".join(excel_files) if excel_files else stats.get('excel_file', 'N/A')
+            if self.is_running:
                 messagebox.showinfo("Success", f"Scraping completed!\n\n"
                                               f"Groups: {stats['groups']}\n"
                                               f"Cards: {stats['cards']}\n"
-                                              f"Time: {stats['time']:.2f}s")
+                                              f"Time: {stats['time']:.2f}s\n"
+                                              f"Files:\n{files_summary}")
+            else:
+                messagebox.showinfo("Partial Save", f"Scraping was stopped.\n\n"
+                                                    f"Partial data ({stats['cards']} cards) saved.\n"
+                                                    f"Re-run with the same settings to resume.\n\n"
+                                                    f"Files:\n{files_summary}")
         
         except Exception as e:
             self.append_log(f"\n❌ ERROR: {str(e)}\n", "red")

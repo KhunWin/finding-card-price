@@ -44,64 +44,94 @@ class YuyuTeiWrapper:
             self.progress_callback(percentage)
     
     def scrape_all(self):
+        import re
+        from datetime import datetime
+
         start_time = time.time()
-        all_cards = []
         total_images_downloaded = 0
         total_images_failed = 0
         total_groups = len(self.group_ids)
-        
+        excel_files = []   # one file per group
+
         for idx, group_code in enumerate(self.group_ids, 1):
             if not self.is_running_callback():
                 self.log("⚠️ Scraping cancelled by user\n", "yellow")
                 break
-            
+
             self.log(f"\n📦 Processing Group {idx}/{total_groups}: {group_code}\n", "cyan")
             self.log(f"{'='*60}\n", "cyan")
-            
+
+            # Per-group Excel file — sanitise the group code so characters like
+            # '.' don't look odd in filenames (e.g. knk2.0 → knk2_0).
+            safe_group = re.sub(r'[^\w\-]', '_', group_code)
+            excel_filename = os.path.join(
+                self.output_folder,
+                f"yuyutei_{self.category_id}_{safe_group}.xlsx"
+            )
+
             try:
-                scraper = YuyuteiScraper(delay=0.5, download_images=self.download_images, image_dir=self.image_dir)
-                cards = scraper.scrape_card_group(group_code, self.category_id)
-                
+                scraper = YuyuteiScraper(
+                    delay=1.0,
+                    download_images=self.download_images,
+                    image_dir=self.image_dir,
+                    output_dir=self.output_folder
+                )
+
+                # Pass excel_output_path so scraper flushes partial data
+                # to disk after every card.  Also forward is_running so the
+                # scraper stops cleanly when the user clicks Stop.
+                cards = scraper.scrape_card_group(
+                    group_code,
+                    self.category_id,
+                    excel_output_path=excel_filename,
+                    is_running_callback=self.is_running_callback
+                )
+
                 if cards:
-                    all_cards.extend(cards)
                     if self.download_images:
                         downloaded = sum(1 for card in cards if card.image_download_success)
                         failed = sum(1 for card in cards if not card.image_download_success and card.image_url)
                         total_images_downloaded += downloaded
                         total_images_failed += failed
                         self.log(f"  📷 Images: {downloaded} downloaded, {failed} failed\n", "white")
-                    self.log(f"  ✓ {len(cards)} cards scraped from {group_code}\n", "green")
+                    self.log(f"  ✓ {len(cards)} cards for {group_code} (Excel up-to-date)\n", "green")
+                    excel_files.append(excel_filename)
                 else:
                     self.log(f"  ⚠️ No cards found for {group_code}\n", "yellow")
+
             except Exception as e:
                 self.log(f"  ❌ Error scraping {group_code}: {str(e)}\n", "red")
-            
+
             self.update_progress(idx, total_groups)
-        
-        if all_cards and self.is_running_callback():
-            self.log(f"\n💾 Saving results...\n", "cyan")
-            temp_scraper = YuyuteiScraper(delay=0.5, download_images=self.download_images, image_dir=self.image_dir)
-            from datetime import datetime
-            timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
-            prefix = f"yuyutei_{self.category_id}_{timestamp}"
-            
-            # csv_filename = os.path.join(self.output_folder, f"{prefix}.csv")
-            excel_filename = os.path.join(self.output_folder, f"{prefix}.xlsx")
-            # summary_filename = os.path.join(self.output_folder, f"{prefix}_summary.txt")
-            
-            # temp_scraper.save_to_csv(all_cards, csv_filename)
-            # self.log(f"  ✓ CSV saved: {csv_filename}\n", "green")
-            temp_scraper.save_to_excel(all_cards, excel_filename)
-            self.log(f"  ✓ Excel saved: {excel_filename}\n", "green")
-            # temp_scraper._save_summary(all_cards, summary_filename)
-            # self.log(f"  ✓ Summary saved: {summary_filename}\n", "green")
-        
+
+        # Report every generated file
+        self.log(f"\n💾 Excel files saved:\n", "cyan")
+        for ef in excel_files:
+            self.log(f"   • {ef}\n", "cyan")
+
         elapsed_time = time.time() - start_time
+
+        # Count total cards across all generated Excel files
+        total_cards = 0
+        try:
+            import pandas as pd
+            for ef in excel_files:
+                df = pd.read_excel(ef, sheet_name='Cards')
+                total_cards += len(df)
+        except Exception:
+            pass
+
+        # Provide the last written file under the legacy 'excel_file' key so
+        # any existing GUI code that reads that key continues to work.
+        last_excel = excel_files[-1] if excel_files else ""
+
         return {
             'groups': total_groups,
-            'cards': len(all_cards),
+            'cards': total_cards,
             'images_downloaded': total_images_downloaded,
             'images_failed': total_images_failed,
-            'time': elapsed_time
+            'time': elapsed_time,
+            'excel_file': last_excel,
+            'excel_files': excel_files,
         }
 

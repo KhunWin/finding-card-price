@@ -20,6 +20,51 @@ from PIL import Image
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
 
+# ---------------------------------------------------------------------------
+# Checkpoint helpers
+# ---------------------------------------------------------------------------
+
+def _get_checkpoint_path(output_dir: str, category_id: str, group_code: str) -> str:
+    """Return the path to the checkpoint JSON file for a given category+group."""
+    safe_group = re.sub(r'[^\w\-]', '_', group_code)
+    safe_cat   = re.sub(r'[^\w\-]', '_', category_id)
+    checkpoint_dir = os.path.join(output_dir, 'checkpoints')
+    Path(checkpoint_dir).mkdir(parents=True, exist_ok=True)
+    return os.path.join(checkpoint_dir, f"{safe_cat}_{safe_group}_checkpoint.json")
+
+
+def _load_checkpoint(checkpoint_path: str) -> dict:
+    """Load an existing checkpoint, or return an empty structure."""
+    if os.path.exists(checkpoint_path):
+        try:
+            with open(checkpoint_path, 'r', encoding='utf-8') as f:
+                data = json.load(f)
+            logger.info(f"Checkpoint loaded: {checkpoint_path} "
+                        f"({len(data.get('cards', []))} cards already saved)")
+            return data
+        except Exception as e:
+            logger.warning(f"Could not read checkpoint {checkpoint_path}: {e}. Starting fresh.")
+    return {"all_links": [], "processed_urls": [], "cards": [], "completed": False}
+
+
+def _save_checkpoint(checkpoint_path: str, data: dict):
+    """Persist the checkpoint dict to disk."""
+    try:
+        with open(checkpoint_path, 'w', encoding='utf-8') as f:
+            json.dump(data, f, ensure_ascii=False, indent=2)
+    except Exception as e:
+        logger.error(f"Failed to save checkpoint {checkpoint_path}: {e}")
+
+
+def _delete_checkpoint(checkpoint_path: str):
+    """Remove a checkpoint file once a group is fully scraped."""
+    try:
+        if os.path.exists(checkpoint_path):
+            os.remove(checkpoint_path)
+            logger.info(f"Checkpoint deleted (scrape complete): {checkpoint_path}")
+    except Exception as e:
+        logger.warning(f"Could not delete checkpoint {checkpoint_path}: {e}")
+
 @dataclass
 class CardInfo:
     """Data class to represent a card"""
@@ -43,7 +88,8 @@ class YuyuteiScraper:
     
     BASE_URL = "https://yuyu-tei.jp"
     
-    def __init__(self, delay: float = 1.0, download_images: bool = True, image_dir: str = "card_images"):
+    def __init__(self, delay: float = 1.0, download_images: bool = True, image_dir: str = "card_images",
+                 output_dir: str = "."):
         self.session = requests.Session()
         self.session.headers.update({
             'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
@@ -53,6 +99,7 @@ class YuyuteiScraper:
         self.delay = delay
         self.download_images = download_images
         self.image_dir = image_dir
+        self.output_dir = output_dir  # Base dir used to store checkpoint files
         
         # Create image directory if it doesn't exist
         if self.download_images:
@@ -92,6 +139,7 @@ class YuyuteiScraper:
             
             # Download the image
             logger.info(f"Downloading image: {image_url}")
+            time.sleep(self.delay)
             response = self.session.get(image_url, timeout=30)
             response.raise_for_status()
             
@@ -136,6 +184,7 @@ class YuyuteiScraper:
         }
         
         logger.info(f"Fetching search results for group: {group_code} with ws: {ws}")
+        time.sleep(self.delay)
         response = self.session.get(search_url, params=params)
         response.raise_for_status()
         
@@ -172,6 +221,7 @@ class YuyuteiScraper:
         """
         try:
             logger.info(f"Fetching card detail: {url}")
+            time.sleep(self.delay)
             response = self.session.get(url)
             response.raise_for_status()
             
@@ -340,55 +390,97 @@ class YuyuteiScraper:
             logger.error(f"Error parsing {url}: {e}")
             return None
     
-    def scrape_card_group(self, group_code: str, ws: str = 'ws') -> List[CardInfo]:
+    def scrape_card_group(self, group_code: str, ws: str = 'ws',
+                          excel_output_path: str = None,
+                          progress_callback=None,
+                          is_running_callback=None) -> List[CardInfo]:
         """
-        Scrape all cards from a specific group
-        
+        Scrape all cards from a specific group with resume/checkpoint support.
+
+        If interrupted, progress is saved to a checkpoint file AND the Excel
+        output is updated after every card.  On re-run with the same
+        category/group the scraper resumes from where it stopped.
+
         Args:
             group_code: Group code like 'dc'
             ws: WS identifier (default: 'ws')
-            
+            excel_output_path: Path for the Excel file (updated after every card).
+            progress_callback: Optional callable(current_index, total).
+            is_running_callback: Optional callable() -> bool; False = stop.
+
         Returns:
-            List of CardInfo objects
+            List of all CardInfo objects (previously scraped + new).
         """
+        if is_running_callback is None:
+            is_running_callback = lambda: True
+
         logger.info(f"{'='*60}")
         logger.info(f"Starting scrape for group: {group_code} with ws: {ws}")
         logger.info(f"{'='*60}")
+
+        # --- Checkpoint: load previous progress -------------------------
+        checkpoint_path = _get_checkpoint_path(self.output_dir, ws, group_code)
+        checkpoint = _load_checkpoint(checkpoint_path)
+
+        already_done_urls: set = set(checkpoint.get("processed_urls", []))
+        already_cards: List[CardInfo] = []
+        for d in checkpoint.get("cards", []):
+            try:
+                already_cards.append(CardInfo(**d))
+            except Exception as e:
+                logger.warning(f"Could not restore card from checkpoint: {e}")
+
+        # --- Step 1: Get (or reuse) card links --------------------------
+        if checkpoint.get("all_links"):
+            card_links = checkpoint["all_links"]
+            logger.info(f"Reusing {len(card_links)} card links from checkpoint.")
+        else:
+            card_links = self._get_card_links_from_search(group_code, ws)
+            if not card_links:
+                logger.warning(f"No card links found for group {group_code}")
+                return []
+            checkpoint["all_links"] = card_links
+            _save_checkpoint(checkpoint_path, checkpoint)
+
+        total = len(card_links)
+        pending_links = [lnk for lnk in card_links if lnk not in already_done_urls]
+
+        if already_cards:
+            logger.info(f"Resuming: {len(already_cards)}/{total} done. "
+                        f"{len(pending_links)} remaining.")
+        else:
+            logger.info(f"Found {total} card links, starting to scrape details...")
         
-        # Step 1: Get card links from search results
-        card_links = self._get_card_links_from_search(group_code, ws)
-        
-        if not card_links:
-            logger.warning(f"No card links found for group {group_code}")
-            return []
-        
-        logger.info(f"Found {len(card_links)} card links, starting to scrape details...")
-        
-        # Step 2: Visit each card detail page
-        cards = []
-        for i, link in enumerate(card_links, 1):
-            logger.info(f"Processing card {i}/{len(card_links)}: {link}")
-            
+        # --- Step 2: Visit each pending card detail page ---------------
+        new_cards: List[CardInfo] = []
+
+        for i, link in enumerate(pending_links, 1):
+            if not is_running_callback():
+                logger.info("Scraping cancelled by user – progress saved.")
+                break
+
+            overall_index = len(already_cards) + len(new_cards) + 1
+            logger.info(f"Processing card {overall_index}/{total}: {link}")
+
             card_data = self._parse_card_from_detail_page(link)
-            
+
             if card_data:
                 try:
                     # Download image if enabled
                     image_filename = ""
                     image_download_success = False
-                    
+
                     if self.download_images and card_data.get('image_url'):
                         image_filename, image_download_success = self._download_image(
                             card_data['image_url'],
                             card_data.get('card_id', 'unknown'),
                             card_data.get('name', 'unknown')
                         )
-                    
+
                     card = CardInfo(
                         name=card_data.get('name', 'Unknown'),
                         name_power=card_data.get('name_power', ''),
                         category=card_data.get('category', ''),
-
                         price=card_data.get('price', 0),
                         price_text=card_data.get('price_text', '0 円'),
                         image_url=card_data.get('image_url', ''),
@@ -398,23 +490,47 @@ class YuyuteiScraper:
                         image_filename=image_filename,
                         image_download_success=image_download_success
                     )
-                    cards.append(card)
-                    
-                    # Log with download status
+                    new_cards.append(card)
+
                     download_status = "✓" if image_download_success else "✗" if self.download_images else "⊘"
                     logger.info(f"  ✓ {card.name} - {card.price_text} [Image: {download_status}]")
-                    
+
                 except Exception as e:
                     logger.error(f"  ✗ Error creating CardInfo: {e}")
             else:
                 logger.warning(f"  ✗ No data found for {link}")
-            
-            # Respectful delay
-            if i < len(card_links):
-                time.sleep(self.delay)
-        
-        logger.info(f"Completed group {group_code}: {len(cards)} cards scraped successfully")
-        return cards
+
+            # Mark URL processed and persist checkpoint after every card
+            already_done_urls.add(link)
+            checkpoint["processed_urls"] = list(already_done_urls)
+            checkpoint["cards"] = [asdict(c) for c in (already_cards + new_cards)]
+            _save_checkpoint(checkpoint_path, checkpoint)
+
+            # Save partial Excel so data is never lost mid-run
+            if excel_output_path:
+                try:
+                    self.save_to_excel(already_cards + new_cards, excel_output_path)
+                except Exception as e:
+                    logger.warning(f"Could not flush partial Excel: {e}")
+
+            if progress_callback:
+                progress_callback(overall_index, total)
+
+
+        # --- Finalize ---------------------------------------------------
+        all_cards = already_cards + new_cards
+        fully_done = len(already_done_urls) >= total
+
+        if fully_done:
+            logger.info(f"Completed group {group_code}: {len(all_cards)} cards scraped successfully")
+            checkpoint["completed"] = True
+            _save_checkpoint(checkpoint_path, checkpoint)
+            _delete_checkpoint(checkpoint_path)
+        else:
+            logger.info(f"Partial scrape for group {group_code}: "
+                        f"{len(all_cards)}/{total} cards saved (checkpoint kept).")
+
+        return all_cards
     
     def save_to_csv(self, cards: List[CardInfo], filename: str = None):
         """Save card data to CSV"""

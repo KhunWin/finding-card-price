@@ -1,0 +1,180 @@
+[
+  {
+    "run_id": "20260916_113012",
+    "started": "2026-09-16 11:30:12",
+    "finished": "2026-09-16 11:30:14",
+    "phases": {
+      "phase_0_connection": {
+        "ok": true,
+        "result": {
+          "url": "https://yuyu-tei.jp/sell/ws/s/search",
+          "params": {
+            "search_word": "",
+            "vers[]": "dcext1.0",
+            "rare": "",
+            "type": "",
+            "kizu": "0"
+          },
+          "timestamp": "2026-09-16 11:30:12",
+          "status_code": 200,
+          "response_bytes": 493077,
+          "latency_ms": 975.5,
+          "error": null,
+          "is_rate_limited": false,
+          "is_success": true,
+          "final_url": "https://yuyu-tei.jp/sell/ws/s/search?search_word=&vers%5B%5D=dcext1.0&rare=&type=&kizu=0"
+        }
+      }
+    }
+  },
+  {
+    "run_id": "20260916_113102",
+    "started": "2026-09-16 11:31:02",
+    "finished": "2026-09-16 11:31:03",
+    "phases": {
+      "phase_0_connection": {
+        "ok": true,
+        "result": {
+          "url": "https://yuyu-tei.jp/sell/ws/s/search",
+          "params": {
+            "search_word": "",
+            "vers[]": "dcext1.0",
+            "rare": "",
+            "type": "",
+            "kizu": "0"
+          },
+          "timestamp": "2026-09-16 11:31:02",
+          "status_code": 200,
+          "response_bytes": 493077,
+          "latency_ms": 979.3,
+          "error": null,
+          "is_rate_limited": false,
+          "is_success": true,
+          "final_url": "https://yuyu-tei.jp/sell/ws/s/search?search_word=&vers%5B%5D=dcext1.0&rare=&type=&kizu=0"
+        }
+      }
+    }
+  },
+  {
+    "run_id": "20260916_113110",
+    "started": "2026-09-16 11:31:10",
+    "finished": "2026-09-16 11:31:11",
+    "phases": {
+      "phase_0_connection": {
+        "ok": true,
+        "result": {
+          "url": "https://yuyu-tei.jp/sell/ws/s/search",
+          "params": {
+            "search_word": "",
+            "vers[]": "dcext1.0",
+            "rare": "",
+            "type": "",
+            "kizu": "0"
+          },
+          "timestamp": "2026-09-16 11:31:10",
+          "status_code": 200,
+          "response_bytes": 493077,
+          "latency_ms": 821.4,
+          "error": null,
+          "is_rate_limited": false,
+          "is_success": true,
+          "final_url": "https://yuyu-tei.jp/sell/ws/s/search?search_word=&vers%5B%5D=dcext1.0&rare=&type=&kizu=0"
+        }
+      },
+      "phase_4_sustainable": {
+        "skipped": true
+      }
+    }
+  },
+  {
+    "run_id": "20260916_113143",
+    "started": "2026-09-16 11:31:43",
+    "finished": "2026-09-16 11:31:44",
+    "phases": {
+      "phase_0_connection": {
+        "ok": true,
+        "result": {
+          "url": "https://yuyu-tei.jp/sell/ws/s/search",
+          "params": {
+            "search_word": "",
+            "vers[]": "dcext1.0",
+            "rare": "",
+            "type": "",
+            "kizu": "0"
+          },
+          "timestamp": "2026-09-16 11:31:43",
+          "status_code": 200,
+          "response_bytes": 493077,
+          "latency_ms": 1005.7,
+          "error": null,
+          "is_rate_limited": false,
+          "is_success": true,
+          "final_url": "https://yuyu-tei.jp/sell/ws/s/search?search_word=&vers%5B%5D=dcext1.0&rare=&type=&kizu=0"
+        }
+      },
+      "phase_4_sustainable": {
+        "skipped": true
+      }
+    }
+  },
+  {
+    "run_id": "20260916_113252",
+    "started": "2026-09-16 11:32:52",
+    "finished": "2026-09-16 11:35:50",
+    "phases": {
+      "phase_0_connection": {
+        "ok": true,
+        "result": {
+          "url": "https://yuyu-tei.jp/sell/ws/s/search",
+          "params": {
+            "search_word": "",
+            "vers[]": "dcext1.0",
+            "rare": "",
+            "type": "",
+            "kizu": "0"
+          },
+          "timestamp": "2026-09-16 11:32:52",
+          "status_code": 200,
+          "response_bytes": 493077,
+          "latency_ms": 844.2,
+          "error": null,
+          "is_rate_limited": false,
+          "is_success": true,
+          "final_url": "https://yuyu-tei.jp/sell/ws/s/search?search_word=&vers%5B%5D=dcext1.0&rare=&type=&kizu=0"
+        }
+      },
+      "phase_4_sustainable": {
+        "0.5": {
+          "delay_seconds": 0.5,
+          "total_requests": 36,
+          "successes": 36,
+          "failures": 0,
+          "elapsed_seconds": 32.7,
+          "requests_per_second": 1.101,
+          "requests_per_minute": 66.1,
+          "rate_limited": false
+        },
+        "1.0": {
+          "delay_seconds": 1.0,
+          "total_requests": 36,
+          "successes": 36,
+          "failures": 0,
+          "elapsed_seconds": 53.27,
+          "requests_per_second": 0.676,
+          "requests_per_minute": 40.6,
+          "rate_limited": false
+        },
+        "2.0": {
+          "delay_seconds": 2.0,
+          "total_requests": 36,
+          "successes": 36,
+          "failures": 0,
+          "elapsed_seconds": 90.39,
+          "requests_per_second": 0.398,
+          "requests_per_minute": 23.9,
+          "rate_limited": false
+        }
+      }
+    }
+  }
+]
