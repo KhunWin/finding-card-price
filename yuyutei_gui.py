@@ -196,7 +196,18 @@ class YuyuTeiGUI:
         
         self.progress_var = tk.DoubleVar()
         self.progress_bar = ttk.Progressbar(parent, variable=self.progress_var, maximum=100, mode='determinate')
-        self.progress_bar.pack(fill='x', pady=(0, 10))
+        self.progress_bar.pack(fill='x', pady=(0, 4))
+
+        self.card_status_var = tk.StringVar(value="")
+        card_status_label = tk.Label(
+            parent,
+            textvariable=self.card_status_var,
+            font=('Segoe UI', 9),
+            fg='#b0b0b0',
+            bg='#1e1e1e',
+            anchor='w',
+        )
+        card_status_label.pack(fill='x', pady=(0, 6))
         
         log_frame = tk.Frame(parent, bg='#0d1117', relief='flat', bd=1)
         log_frame.pack(fill='both', expand=True)
@@ -255,6 +266,15 @@ class YuyuTeiGUI:
     def update_progress(self, value):
         self.progress_var.set(value)
         self.root.update_idletasks()
+
+    def update_card_status(self, current, total):
+        """Update the small status label below the progress bar."""
+        if total and total > 0:
+            pct = int(current / total * 100)
+            self.card_status_var.set(f"  Card {current}/{total}  ({pct}%)")
+        else:
+            self.card_status_var.set("")
+        self.root.update_idletasks()
     
     def clear_log(self):
         self.log_text.config(state='normal')
@@ -301,6 +321,7 @@ class YuyuTeiGUI:
         self.stop_btn.enable()
         
         self.clear_log()
+        self.card_status_var.set("")
         self.append_log("=" * 60 + "\n", "cyan")
         self.append_log("🎯 YUYU-TEI SCRAPER STARTED\n", "green")
         self.append_log("=" * 60 + "\n", "cyan")
@@ -322,6 +343,7 @@ class YuyuTeiGUI:
                 download_images=params['download_images'],
                 log_callback=self.append_log,
                 progress_callback=self.update_progress,
+                card_progress_callback=self.update_card_status,
                 is_running_callback=lambda: self.is_running
             )
             
@@ -372,6 +394,7 @@ class YuyuTeiGUI:
             self.start_btn.enable()
             self.stop_btn.disable()
             self.update_progress(0)
+            self.card_status_var.set("")
     
     def stop_scraping(self):
         if not self.is_running:

@@ -19,13 +19,15 @@ class YuyuTeiWrapper:
     """Wrapper to integrate YuyuteiScraper with the GUI"""
     
     def __init__(self, category_id, group_ids, output_folder, download_images=True,
-                 log_callback=None, progress_callback=None, is_running_callback=None):
+                 log_callback=None, progress_callback=None, card_progress_callback=None,
+                 is_running_callback=None):
         self.category_id = category_id
         self.group_ids = group_ids if isinstance(group_ids, list) else [group_ids]
         self.output_folder = output_folder
         self.download_images = download_images
         self.log_callback = log_callback or self._default_log
         self.progress_callback = progress_callback or self._default_progress
+        self.card_progress_callback = card_progress_callback  # callable(current, total) or None
         self.is_running_callback = is_running_callback or (lambda: True)
         self.image_dir = os.path.join(output_folder, 'card_images')
     
@@ -84,6 +86,7 @@ class YuyuTeiWrapper:
                     group_code,
                     self.category_id,
                     excel_output_path=excel_filename,
+                    progress_callback=self.card_progress_callback,
                     is_running_callback=self.is_running_callback
                 )
 
