@@ -58,6 +58,8 @@ def build_exe():
         # Add data files
         '--add-data=icon.ico:.',
         '--add-data=yuyu_tei:yuyu_tei',
+        '--add-data=uploaders:uploaders',
+        '--add-data=utils:utils',
         
         # Add data files if needed
         # '--add-data=main_tcg_extract.py;.',
@@ -81,6 +83,18 @@ def build_exe():
         '--hidden-import=yuyu_tei.yuyu_tei_wrapper',
         '--hidden-import=yuyu_tei.scarp_yuyu_v4',
         '--hidden-import=scarp_yuyu_v4',
+        '--hidden-import=uploaders',
+        '--hidden-import=uploaders.playwright_uploader',
+        '--hidden-import=uploaders.selenium_uploader',
+        '--hidden-import=utils',
+        '--hidden-import=utils.config',
+        '--hidden-import=utils.excel_reader',
+        '--hidden-import=playwright',
+        '--hidden-import=playwright.sync_api',
+        '--hidden-import=selenium',
+        '--hidden-import=selenium.webdriver',
+        '--hidden-import=pandas',
+        '--hidden-import=openpyxl',
         
         # Add .env file as data
         '--add-data=.env:.',
@@ -131,6 +145,9 @@ def build_with_console():
         '--icon=icon.ico',
         '--add-data=icon.ico:.',
         '--add-data=.env:.',
+        '--add-data=yuyu_tei:yuyu_tei',
+        '--add-data=uploaders:uploaders',
+        '--add-data=utils:utils',
         '--hidden-import=tkinter',
         '--hidden-import=tkinter.ttk',
         '--hidden-import=tkinter.filedialog',
@@ -142,7 +159,18 @@ def build_with_console():
         '--hidden-import=yuyu_tei.yuyu_tei_wrapper',
         '--hidden-import=yuyu_tei.scarp_yuyu_v4',
         '--hidden-import=scarp_yuyu_v4',
-        '--add-data=yuyu_tei:yuyu_tei',
+        '--hidden-import=uploaders',
+        '--hidden-import=uploaders.playwright_uploader',
+        '--hidden-import=uploaders.selenium_uploader',
+        '--hidden-import=utils',
+        '--hidden-import=utils.config',
+        '--hidden-import=utils.excel_reader',
+        '--hidden-import=playwright',
+        '--hidden-import=playwright.sync_api',
+        '--hidden-import=selenium',
+        '--hidden-import=selenium.webdriver',
+        '--hidden-import=pandas',
+        '--hidden-import=openpyxl',
         '--clean',
     ]
     
@@ -151,7 +179,7 @@ def build_with_console():
     try:
         PyInstaller.__main__.run(pyinstaller_args)
         print("\n✅ Debug build completed!")
-        print(f"📁 Output: {os.path.abspath('dist/TCGCardScraper_Debug.exe')}")
+        # print(f"📁 Output: {os.path.abspath('dist/TCGCardScraper_Debug.exe')}")
         return True
     except Exception as e:
         print(f"\n❌ Build failed: {e}")

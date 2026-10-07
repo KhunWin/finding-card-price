@@ -54,7 +54,7 @@ class ModernButton(tk.Canvas):
         self.create_rectangle(radius, 0, width-radius, height, fill=color, outline=color)
         self.create_rectangle(0, radius, width, height-radius, fill=color, outline=color)
         
-        text_color = '#ffffff' if self.is_enabled else '#7d7d7d'
+        text_color = "#FFFFFF" if self.is_enabled else '#7d7d7d'
         display_text = f"{self.icon}  {self.text}" if self.icon else self.text
         self.create_text(width/2, height/2, text=display_text, fill=text_color, 
                         font=('Segoe UI', 11, 'bold'))
@@ -203,7 +203,7 @@ class YuyuTeiGUI:
             parent,
             textvariable=self.card_status_var,
             font=('Segoe UI', 9),
-            fg='#b0b0b0',
+            fg='#b0b0b0', #fg='#b0b0b0', 
             bg='#1e1e1e',
             anchor='w',
         )
@@ -238,11 +238,6 @@ class YuyuTeiGUI:
         self.stop_btn.pack(side='left', fill='both', expand=True, padx=5)
         self.stop_btn.disable()
         
-        # Upload button
-        # upload_btn = ModernButton(button_frame, text="Upload", command=self.open_upload_window,
-        #     bg_color='#8b5cf6', hover_color='#7c3aed', icon='📤', width=200)
-        # upload_btn.pack(side='left', fill='both', expand=True, padx=5)
-
         self.upload_btn = ModernButton(button_frame, text="Upload", command=self.open_upload_window,
             bg_color='#8b5cf6', hover_color='#7c3aed', icon='📤', width=200)
         self.upload_btn.pack(side='left', fill='both', expand=True, padx=5)

@@ -392,7 +392,6 @@ class UploadWindow:
             
             self.append_terminal(f"✅ Input file validated\n", '#10b981')
             self.append_terminal(f"📁 Input file: {excel_file}\n", '#e6eaef')
-            self.append_terminal(f"💱 Exchange rate: 1 USD = {usd_to_hkd_rate} HKD\n", '#e6eaef')
             
             # Get output directory (same as exe/script location)
             if getattr(sys, 'frozen', False):
@@ -417,7 +416,7 @@ class UploadWindow:
             messagebox.showinfo("Success", 
                             f"Excel file transformed successfully!\n\n"
                             f"Output file:\n{os.path.basename(self.transformed_file_path)}\n\n"
-                            f"Exchange rate applied: 1 USD = {usd_to_hkd_rate} HKD\n\n"
+                            # f"Exchange rate applied: 1 USD = {usd_to_hkd_rate} HKD\n\n"
                             f"The transformed file will be used for upload.")
             
         except Exception as e:
@@ -514,10 +513,19 @@ class UploadWindow:
             self.append_terminal("🎭 Attempting upload with Playwright...\n", '#8b5cf6')
             self.append_terminal("=" * 70 + "\n\n", '#8b5cf6')
             
-            # Add web-upload-bulk to path
-            sys.path.insert(0, os.path.join(os.getcwd(), 'web-upload-bulk'))
-            
             try:
+                # Handle imports for both development and PyInstaller packaged versions
+                # uploaders and utils are in the main directory
+                main_dir = os.path.dirname(__file__)
+                
+                # For PyInstaller, use the bundled path
+                if getattr(sys, 'frozen', False):
+                    main_dir = sys._MEIPASS
+                
+                # Ensure main directory is in path
+                if main_dir not in sys.path:
+                    sys.path.insert(0, main_dir)
+                
                 from uploaders.playwright_uploader import PlaywrightUploader
                 from utils.config import Config
                 
@@ -560,6 +568,18 @@ class UploadWindow:
                 self.append_terminal("=" * 70 + "\n\n", '#f97316')
                 
                 try:
+                    # Handle imports for both development and PyInstaller packaged versions
+                    # uploaders and utils are in the main directory
+                    main_dir = os.path.dirname(__file__)
+                    
+                    # For PyInstaller, use the bundled path
+                    if getattr(sys, 'frozen', False):
+                        main_dir = sys._MEIPASS
+                    
+                    # Ensure main directory is in path
+                    if main_dir not in sys.path:
+                        sys.path.insert(0, main_dir)
+                    
                     from uploaders.selenium_uploader import SeleniumUploader
                     from utils.config import Config
                     
