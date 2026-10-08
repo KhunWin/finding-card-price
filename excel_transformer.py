@@ -120,6 +120,29 @@ class ExcelTransformer:
                 if input_col:
                     df_output[output_col] = df_input[input_col]
 
+            # Remove rows with empty required fields (Image URLs, Title, Price, Categories)
+            initial_count = len(df_output)
+            required_fields = ['Image URLs', 'Title', 'Price', 'Categories']
+            
+            for field in required_fields:
+                if field in df_output.columns:
+                    # Remove rows where the field is NaN, None, or empty string
+                    df_output = df_output[df_output[field].notna()]
+                    df_output = df_output[df_output[field] != '']
+                    df_output = df_output[df_output[field] != 'nan']
+                    
+                    # For numeric fields like Price, also check if it's 0
+                    if field == 'Price':
+                        df_output[field] = pd.to_numeric(df_output[field], errors='coerce')
+                        df_output = df_output[df_output[field] > 0]
+            
+            removed_count = initial_count - len(df_output)
+            if removed_count > 0:
+                print(f"Removed {removed_count} rows with empty required fields (Image URLs, Title, Price, or Categories)")
+            
+            # Reset index after removing rows
+            df_output = df_output.reset_index(drop=True)
+
              # Apply USD to HKD conversion to Price column
             if 'Price' in df_output.columns and not df_output['Price'].isna().all():
                 df_output['Price'] = pd.to_numeric(df_output['Price'], errors='coerce') * usd_to_hkd_rate

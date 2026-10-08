@@ -618,8 +618,7 @@ class UploadWindow:
                     self.append_terminal("❌ UPLOAD FAILED - Both methods failed\n", '#ef4444')
                     self.append_terminal("=" * 70 + "\n", '#ef4444')
                     error_msg = (f"Upload failed with both methods:\n\n"
-                               f"Playwright: {str(playwright_error)}\n\n"
-                               f"Selenium: {str(selenium_error)}")
+                                 f"Click 'Run Upload' Again" )
                     self.window.after(0, messagebox.showerror, "Error", error_msg)
                     
         except Exception as e:
