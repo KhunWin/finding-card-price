@@ -177,7 +177,7 @@ class UploadWindow:
         rate_card = self.create_card(left_scrollable_frame, "💱 Currency Exchange Rate")
 
         # rate_label = tk.Label(rate_card.content, text="1 USD to HKD Rate", 
-        rate_label = tk.Label(rate_card.content, text="JPY to HKD Rate" if self.source == 'yuyutei' else "1 USD to HKD Rate", bg='#141824', fg='#9ca3af',
+        rate_label = tk.Label(rate_card.content, text="Exchange Rate" if self.source == 'yuyutei' else "Exchange Rate", bg='#141824', fg='#9ca3af',
                             font=('Segoe UI', 9, 'bold'), anchor='w')
         rate_label.pack(anchor=tk.W, pady=(0, 5))
 

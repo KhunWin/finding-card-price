@@ -164,10 +164,49 @@ class TCGCSVScraperGUI:
                 return None
         
         return None
+
+        
+
+    @staticmethod
+    def _ext_lookup(ext, *keys):
+        """Try each candidate key against the extendedData dict, case/space-insensitively.
+        Returns the first non-empty value found, else None."""
+        if not ext:
+            return None
+        # Build a normalized lookup: "card type" -> value, "cardtype" -> value, etc.
+        normalized = {}
+        for k, v in ext.items():
+            if k is None:
+                continue
+            norm = str(k).lower().replace(' ', '').replace('_', '')
+            if norm not in normalized or (normalized[norm] in (None, '') and v not in (None, '')):
+                normalized[norm] = v
+
+        for key in keys:
+            norm = str(key).lower().replace(' ', '').replace('_', '')
+            val = normalized.get(norm)
+            if val not in (None, ''):
+                return val
+        return None
     
     def export_to_csv(self, data):
         # csv_file = os.path.join(self.output_folder, f'tcg_data_categoryId{"_".join(self.category_ids)}.csv')
-        excel_file = os.path.join(self.output_folder, f'tcg_data_categoryId{"_".join(self.category_ids)}.xlsx')
+        # excel_file = os.path.join(self.output_folder, f'tcg_data_categoryId{"_".join(self.category_ids)}.xlsx')
+
+        # Build filename with category ID and group IDs
+        category_part = "_".join(self.category_ids)
+        
+        if self.group_ids:
+            group_part = "_".join(self.group_ids)
+            excel_file = os.path.join(
+                self.output_folder,
+                f'tcg_data_categoryId_{category_part}_groupIds_{group_part}.xlsx'
+            )
+        else:
+            excel_file = os.path.join(
+                self.output_folder,
+                f'tcg_data_categoryId_{category_part}.xlsx'
+            )
         
         rows = []
         for group_data in data:
@@ -175,6 +214,12 @@ class TCGCSVScraperGUI:
             for product in group_data['products']:
                 image_download_success = product.get('image_download_success', False)
 
+                ext_rarity = product.get('extRarity') or 'None'
+                ext_card_type = product.get('extCardType') or 'None'
+                ext_ink_type = product.get('extInkType') or 'None'
+                ext_number = product.get('extNumber') or 'None'
+                ext_description = product.get('extDescription') or 'None'
+                ##this is for yuyutei
                 if product['prices']:
                     for price in product['prices']:
                         row = {
@@ -186,6 +231,12 @@ class TCGCSVScraperGUI:
                             'groupModifiedOn': group.get('modifiedOn'),
                             'productId': product.get('productId'),
                             'productName': product.get('name'),
+                            'extNumber': ext_number,
+                            'extRarity': ext_rarity,
+                            'extCardType': ext_card_type,
+                            'extInkType': ext_ink_type,
+                            'extNumber': ext_number,
+                            'extDescription': ext_description,
                             'cleanName': product.get('cleanName'),
                             'imageUrl': product.get('imageUrl'),
                             'categoryId': product.get('categoryId'),
@@ -205,6 +256,7 @@ class TCGCSVScraperGUI:
                         }
                         rows.append(row)
                 else:
+                    ###this is for tcgcsv
                     row = {
                         'groupId': group.get('groupId'),
                         'groupName': group.get('name'),
@@ -214,6 +266,11 @@ class TCGCSVScraperGUI:
                         'groupModifiedOn': group.get('modifiedOn'),
                         'productId': product.get('productId'),
                         'productName': product.get('name'),
+                        'extRarity': ext_rarity,
+                        'extCardType': ext_card_type,
+                        'extInkType': ext_ink_type,
+                        'extNumber': ext_number,
+                        'extDescription': ext_description,
                         'cleanName': product.get('cleanName'),
                         'imageUrl': product.get('imageUrl'),
                         'categoryId': product.get('categoryId'),
@@ -232,13 +289,6 @@ class TCGCSVScraperGUI:
 
                     }
                     rows.append(row)
-        
-        # if rows:
-            # with open(excel_file, 'w', newline='', encoding='utf-8') as f:
-            #     writer = csv.DictWriter(f, fieldnames=rows[0].keys())
-            #     writer.writeheader()
-            #     writer.writerows(rows)
-            # self.log(f"✓ Excel file saved: {excel_file}", "green")
         
         if rows:
             import pandas as pd
@@ -315,21 +365,42 @@ class TCGCSVScraperGUI:
                 prices = r.json()['results']
                 request_count += 1
                 
-                product_dict = {p['productId']: {
-                    'productId': p['productId'],
-                    'name': p['name'],
-                    'cleanName': p.get('cleanName', ''),
-                    # 'imageUrl': p.get('imageUrl', ''),
-                    'imageUrl':self.get_modified_image_url(p.get('imageUrl','')),
-                    'categoryId': p.get('categoryId'),
-                    'groupId': p.get('groupId'),
-                    'url': p.get('url', ''),
-                    'modifiedOn': p.get('modifiedOn', ''),
-                    'imageCount': p.get('imageCount', 0),
-                    'presaleInfo': p.get('presaleInfo', {}),
-                    'extendedData': p.get('extendedData', []),
-                    'prices': []
-                } for p in products}
+                product_dict = {}
+                for p in products:
+                    # Build a lookup dict from extendedData: {"Rarity": "Holo Rare", "Card Type": "Psychic", ...}
+                    ext = {item.get('name'): item.get('value') for item in p.get('extendedData', [])}
+                    product_dict[p['productId']] = {
+                        'productId': p['productId'],
+                        'name': p['name'],
+                        'cleanName': p.get('cleanName', ''),
+                        'imageUrl': self.get_modified_image_url(p.get('imageUrl', '')),
+                        'categoryId': p.get('categoryId'),
+                        'groupId': p.get('groupId'),
+                        'url': p.get('url', ''),
+                        'modifiedOn': p.get('modifiedOn', ''),
+                        'imageCount': p.get('imageCount', 0),
+                        'presaleInfo': p.get('presaleInfo', {}),
+                        'extendedData': p.get('extendedData', []),
+                        # Pull values out of extendedData. Missing keys stay None.
+                        'extNumber':       ext.get('Number'),
+                        'extRarity':       ext.get('Rarity'),
+                        # 'extCardType':     ext.get('Card Type'),   # <-- space in key name!
+                        # 'extInkType':      ext.get('Ink Type'),    # <-- for One Piece TCG; None for Pokemon
+                        # 'extDescription':   ext.get('Card Text'),
+                        'extCardType': self._ext_lookup(ext, 'Card Type', 'Type', 'CardType'),
+                        'extInkType':  self._ext_lookup(ext, 'Ink Type', 'InkType', 'Ink'),
+                        'extDescription':  self._ext_lookup(ext, 'Description', 'Card Text', 'CardText'),
+                        'extHP':           ext.get('HP'),
+                        'extStage':        ext.get('Stage'),
+                        'extCardText':     ext.get('CardText'),
+                        'extAttack1':      ext.get('Attack 1'),    # <-- space in key name!
+                        'extAttack2':      ext.get('Attack 2'),    # <-- space in key name!
+                        'extWeakness':     ext.get('Weakness'),
+                        'extResistance':   ext.get('Resistance'),
+                        'extRetreatCost':  ext.get('RetreatCost'),
+                        'extUPC':          ext.get('UPC'),
+                        'prices': []
+                    }
                 
                 for price in prices:
                     product_id = price['productId']
@@ -377,7 +448,7 @@ class TCGCSVScraperGUI:
                 all_data.append(group_data)
                 total_products += len(products)
                 total_groups += 1
-                
+                print(f"group data: {group_data}")
                 self.log(f"  ✓ Processed {len(products)} products", "lightgreen")
         
         # Save CSV
@@ -408,6 +479,7 @@ class TCGCSVScraperGUI:
         
         return stats
      ##to modify imageUrl in the excel file
+    
     def get_modified_image_url(self, image_url):
         """Apply image size modification to URL"""
         if not image_url:
@@ -426,4 +498,5 @@ class TCGCSVScraperGUI:
         
         return image_url
 
-
+        
+    
