@@ -34,6 +34,7 @@ class UploadWindow:
         self.email_var = tk.StringVar()
         self.password_var = tk.StringVar()
         self.file_path_var = tk.StringVar(value="No file selected")
+        self.upload_file_path_var = tk.StringVar(value="No file selected for upload")
         self.usd_to_hkd_var = tk.StringVar(value="7.8" if source == 'tcg' else "0.0062")  # Default HKD rate
         # self.exchange_rate_var = tk.StringVar(value="7.8" if source == 'tcg' else "0.0062")  # USD->HKD or JPY->HKD
 
@@ -201,8 +202,8 @@ class UploadWindow:
 
         ####################################
         
-        # File Selection Card
-        file_card = self.create_card(left_scrollable_frame, "📁 Excel File Selection")
+        # File Selection and Transform Card
+        file_card = self.create_card(left_scrollable_frame, "📁 Step 1: Select & Transform Excel File")
         
         file_label = tk.Label(file_card.content, text="Select Excel File (.xlsx, .xls)", 
                              bg='#141824', fg='#9ca3af',
@@ -219,53 +220,91 @@ class UploadWindow:
         self.file_path_entry.pack(fill=tk.X, padx=12, pady=10)
         self.file_path_entry.config(state='readonly')
         
-        browse_file_btn = tk.Button(file_card.content, text="📂 Browse File", 
+        # Buttons container for Browse and Transform
+        transform_buttons_frame = tk.Frame(file_card.content, bg='#141824')
+        transform_buttons_frame.pack(fill=tk.X)
+        
+        browse_file_btn = tk.Button(transform_buttons_frame, text="📂 Browse File", 
                                     command=self.browse_excel,
                                     bg='#8b5cf6', fg='white', 
-                                    font=('Segoe UI', 10, 'bold'),
+                                    font=('Segoe UI', 9, 'bold'),
                                     relief='flat', cursor='hand2', 
-                                    padx=20, pady=10,
+                                    padx=15, pady=8,
                                     activebackground='#7c3aed', 
                                     activeforeground='white')
-        browse_file_btn.pack(fill=tk.X)
-        
-        # Buttons Frame
-        buttons_frame = tk.Frame(left_scrollable_frame, bg='#0a0e1a')
-        buttons_frame.pack(fill=tk.X, pady=(20, 0))
+        browse_file_btn.pack(side=tk.LEFT, fill=tk.X, expand=True, padx=(0, 5))
         
         # Transform Excel File Button
-        self.transform_btn = tk.Button(buttons_frame, text="🔄 Transform Excel File", 
+        self.transform_btn = tk.Button(transform_buttons_frame, text="🔄 Transform", 
                                        command=self.transform_excel,
                                        bg='#f59e0b', fg='white', 
-                                       font=('Segoe UI', 12, 'bold'),
+                                       font=('Segoe UI', 9, 'bold'),
                                        relief='flat', cursor='hand2', 
-                                       padx=30, pady=12,
+                                       padx=15, pady=8,
                                        activebackground='#d97706', 
                                        activeforeground='white')
-        self.transform_btn.pack(fill=tk.X, pady=(0, 10))
+        self.transform_btn.pack(side=tk.LEFT, fill=tk.X, expand=True, padx=(5, 0))
+        
+        ####################################
+        # Upload File Selection Card
+        upload_file_card = self.create_card(left_scrollable_frame, "📤 Step 2: Select Transformed File & Upload")
+        
+        upload_file_label = tk.Label(upload_file_card.content, text="Select Transformed Excel File for Upload", 
+                             bg='#141824', fg='#9ca3af',
+                             font=('Segoe UI', 9, 'bold'), anchor='w')
+        upload_file_label.pack(anchor=tk.W, pady=(0, 5))
+        
+        upload_file_path_container = tk.Frame(upload_file_card.content, bg='#1e2332')
+        upload_file_path_container.pack(fill=tk.X, pady=(0, 10))
+        
+        self.upload_file_path_entry = tk.Entry(upload_file_path_container, textvariable=self.upload_file_path_var,
+                                        bg='#1e2332', fg='#9ca3af',
+                                        font=('Segoe UI', 9), relief='flat', 
+                                        state='normal', bd=0)
+        self.upload_file_path_entry.pack(fill=tk.X, padx=12, pady=10)
+        self.upload_file_path_entry.config(state='readonly')
+        
+        # Buttons container for Browse Upload File and Upload
+        upload_buttons_frame = tk.Frame(upload_file_card.content, bg='#141824')
+        upload_buttons_frame.pack(fill=tk.X)
+        
+        browse_upload_file_btn = tk.Button(upload_buttons_frame, text="📂 Browse Upload File", 
+                                    command=self.browse_upload_file,
+                                    bg='#8b5cf6', fg='white', 
+                                    font=('Segoe UI', 9, 'bold'),
+                                    relief='flat', cursor='hand2', 
+                                    padx=15, pady=8,
+                                    activebackground='#7c3aed', 
+                                    activeforeground='white')
+        browse_upload_file_btn.pack(side=tk.LEFT, fill=tk.X, expand=True, padx=(0, 5))
+        
+        # Run Upload Button
+        self.run_btn = tk.Button(upload_buttons_frame, text="▶ Upload", 
+                                 command=self.start_upload,
+                                 bg='#10b981', fg='white', 
+                                 font=('Segoe UI', 9, 'bold'),
+                                 relief='flat', cursor='hand2', 
+                                 padx=15, pady=8,
+                                 activebackground='#059669', 
+                                 activeforeground='white')
+        self.run_btn.pack(side=tk.LEFT, fill=tk.X, expand=True, padx=(5, 0))
+        
+        ####################################
+        # Stop Button Frame
+        stop_frame = tk.Frame(left_scrollable_frame, bg='#0a0e1a')
+        stop_frame.pack(fill=tk.X, pady=(15, 0))
         
         # Stop Button
-        self.stop_btn = tk.Button(buttons_frame, text="⏹ Stop", 
+        self.stop_btn = tk.Button(stop_frame, text="⏹ Stop Upload", 
                                   command=self.stop_upload,
                                   bg='#ef4444', fg='white', 
-                                  font=('Segoe UI', 12, 'bold'),
+                                  font=('Segoe UI', 9, 'bold'),
                                   relief='flat', cursor='hand2', 
-                                  padx=30, pady=12,
+                                  padx=15, pady=8,
                                   activebackground='#dc2626', 
                                   activeforeground='white',
                                   state='disabled')
-        self.stop_btn.pack(fill=tk.X, pady=(0, 10))
-        
-        # Run Upload Button
-        self.run_btn = tk.Button(buttons_frame, text="▶ RUN UPLOAD", 
-                                 command=self.start_upload,
-                                 bg='#10b981', fg='white', 
-                                 font=('Segoe UI', 14, 'bold'),
-                                 relief='flat', cursor='hand2', 
-                                 padx=40, pady=15,
-                                 activebackground='#059669', 
-                                 activeforeground='white')
-        self.run_btn.pack(fill=tk.X)
+        self.stop_btn.pack(fill=tk.X)
         
         # RIGHT COLUMN - Terminal
         right_frame = tk.Frame(columns_frame, bg='#0a0e1a')
@@ -285,8 +324,8 @@ class UploadWindow:
         self.append_terminal("=" * 70 + "\n", '#22d3ee')
         self.append_terminal("📋 Ready to upload products to Boutir\n", '#22d3ee')
         self.append_terminal("=" * 70 + "\n\n", '#22d3ee')
-        self.append_terminal("ℹ️  Please enter your credentials and select an Excel file\n", '#9ca3af')
-        self.append_terminal("ℹ️  Click 'RUN UPLOAD' to start the process\n\n", '#9ca3af')
+        self.append_terminal("ℹ️  Step 1: Select an Excel file and click 'Transform'\n", '#9ca3af')
+        self.append_terminal("ℹ️  Step 2: Select transformed file and click 'Upload'\n\n", '#9ca3af')
         
         # Mouse wheel binding for left canvas
         def _on_mousewheel(event):
@@ -302,7 +341,18 @@ class UploadWindow:
         if file_path:
             self.file_path_var.set(file_path)
             self.transformed_file_path = None  # Reset transformed file
-            self.append_terminal(f"✅ File selected: {file_path}\n", '#10b981')
+            self.append_terminal(f"✅ File selected for transformation: {file_path}\n", '#10b981')
+    
+    def browse_upload_file(self):
+        """Browse for transformed Excel file to upload"""
+        file_path = filedialog.askopenfilename(
+            title="Select Transformed Excel File for Upload",
+            filetypes=[("Excel files", "*.xlsx *.xls"), ("All files", "*.*")]
+        )
+        if file_path:
+            self.upload_file_path_var.set(file_path)
+            self.transformed_file_path = file_path  # Set as the file to upload
+            self.append_terminal(f"✅ File selected for upload: {file_path}\n", '#10b981')
     
     # def transform_excel(self):
     #     """Transform Excel file to Boutir format"""
@@ -410,14 +460,18 @@ class UploadWindow:
             self.append_terminal(f"\n✅ Transformation completed!\n", '#10b981')
             self.append_terminal(f"📄 Transformed file: {self.transformed_file_path}\n", '#22d3ee')
             self.append_terminal("\n" + "=" * 70 + "\n", '#10b981')
-            self.append_terminal("✅ Ready for upload! Click 'RUN UPLOAD' to proceed.\n", '#10b981')
+            self.append_terminal("✅ Now select the transformed file for upload in Step 2.\n", '#10b981')
             self.append_terminal("=" * 70 + "\n\n", '#10b981')
+            
+            # Automatically set the transformed file to the upload file path
+            self.upload_file_path_var.set(self.transformed_file_path)
             
             messagebox.showinfo("Success", 
                             f"Excel file transformed successfully!\n\n"
                             f"Output file:\n{os.path.basename(self.transformed_file_path)}\n\n"
                             # f"Exchange rate applied: 1 USD = {usd_to_hkd_rate} HKD\n\n"
-                            f"The transformed file will be used for upload.")
+                            f"The transformed file has been automatically selected for upload.\n"
+                            f"Click 'Upload' button to proceed.")
             
         except Exception as e:
             self.append_terminal(f"\n❌ Transformation failed: {str(e)}\n", '#ef4444')
@@ -444,7 +498,7 @@ class UploadWindow:
         """Validate inputs and start upload process"""
         email = self.email_var.get().strip()
         password = self.password_var.get().strip()
-        excel_file = self.file_path_var.get()
+        upload_file = self.upload_file_path_var.get()
         
         # Validation
         if not email:
@@ -453,21 +507,13 @@ class UploadWindow:
         if not password:
             messagebox.showerror("Error", "Please enter your Boutir password")
             return
-        if excel_file == "No file selected" or not os.path.exists(excel_file):
-            messagebox.showerror("Error", "Please select a valid Excel file")
+        if upload_file == "No file selected for upload" or not os.path.exists(upload_file):
+            messagebox.showerror("Error", "Please select a valid transformed Excel file for upload")
             return
         
         # Check file extension
-        if not excel_file.lower().endswith(('.xlsx', '.xls')):
+        if not upload_file.lower().endswith(('.xlsx', '.xls')):
             messagebox.showerror("Error", "Please select an Excel file (.xlsx or .xls)")
-            return
-        
-        # Use transformed file if available, otherwise use original
-        upload_file = self.transformed_file_path if self.transformed_file_path else excel_file
-        
-        # Verify upload file exists
-        if not os.path.exists(upload_file):
-            messagebox.showerror("Error", "Upload file not found. Please transform the file first.")
             return
         
         # Clear terminal and start upload
@@ -476,13 +522,7 @@ class UploadWindow:
         self.append_terminal("🚀 Starting Upload Process\n", '#22d3ee')
         self.append_terminal("=" * 70 + "\n\n", '#22d3ee')
         self.append_terminal(f"📧 Email: {email}\n", '#e6eaef')
-        
-        if self.transformed_file_path:
-            self.append_terminal(f"📁 Original File: {excel_file}\n", '#e6eaef')
-            self.append_terminal(f"✨ Using Transformed File: {upload_file}\n", '#22d3ee')
-        else:
-            self.append_terminal(f"📁 Excel File: {upload_file}\n", '#e6eaef')
-            self.append_terminal(f"⚠️  Warning: Using original file (not transformed)\n", '#fbbf24')
+        self.append_terminal(f"📁 Upload File: {upload_file}\n", '#e6eaef')
         
         self.append_terminal("\n")
         
