@@ -42,7 +42,7 @@ class ExcelTransformer:
         'Price': ['marketPrice'],
         'Categories': ['groupName'],
         'Description': ['extDescription'],
-        'SKU': ['extNumber'],
+        # 'SKU': ['extNumber'],
         
         'Product Option 1 - Name': ['extRarity'],
         'Product Option 2 - Name': ['extCardType'],
@@ -55,7 +55,7 @@ class ExcelTransformer:
         'Title': ['name'],
         'Price': ['price'],
         'Categories': ['category'],
-        'SKU': ['card_id']
+        'SKU': ['description'] #card_id was used before
     }
     
     # Default values for required fields
@@ -240,6 +240,63 @@ class ExcelTransformer:
                 input_col = self._find_column(input_columns, possible_input_cols)
                 if input_col:
                     df_output[output_col] = df_input[input_col]
+
+            # Modify Title based on source
+            if self.source == 'tcg':
+                # For TCG: Add subTypeName and extNumber to title
+                # Format: title [subTypeName] [extNumber]
+                if 'Title' in df_output.columns:
+                    # Get subTypeName and extNumber from input
+                    subTypeName = df_input['subTypeName'] if 'subTypeName' in input_columns else ''
+                    extNumber = df_input['extNumber'] if 'extNumber' in input_columns else ''
+                    
+                    # Build the new title
+                    df_output['Title'] = df_output['Title'].astype(str)
+                    
+                    for idx in df_output.index:
+                        title = df_output.at[idx, 'Title']
+                        sub_type = str(subTypeName.iloc[idx]) if 'subTypeName' in input_columns and pd.notna(subTypeName.iloc[idx]) else ''
+                        ext_num = str(extNumber.iloc[idx]) if 'extNumber' in input_columns and pd.notna(extNumber.iloc[idx]) else ''
+                        
+                        # Remove 'nan' strings
+                        if sub_type == 'nan':
+                            sub_type = ''
+                        if ext_num == 'nan':
+                            ext_num = ''
+                        
+                        # Build new title: title [subTypeName] [extNumber]
+                        new_title = title
+                        if sub_type:
+                            new_title += f" [{sub_type}]"
+                        if ext_num:
+                            new_title += f" [{ext_num}]"
+                        
+                        df_output.at[idx, 'Title'] = new_title
+            
+            elif self.source == 'yuyutei':
+                # For Yuyutei: Add description to title
+                # Format: title [description]
+                if 'Title' in df_output.columns:
+                    # Get description from input
+                    description = df_input['description'] if 'description' in input_columns else ''
+                    
+                    # Build the new title
+                    df_output['Title'] = df_output['Title'].astype(str)
+                    
+                    for idx in df_output.index:
+                        title = df_output.at[idx, 'Title']
+                        desc = str(description.iloc[idx]) if 'description' in input_columns and pd.notna(description.iloc[idx]) else ''
+                        
+                        # Remove 'nan' strings
+                        if desc == 'nan':
+                            desc = ''
+                        
+                        # Build new title: title [description]
+                        new_title = title
+                        if desc:
+                            new_title += f" [{desc}]"
+                        
+                        df_output.at[idx, 'Title'] = new_title
 
             if self.source == 'tcg':
                 for opt_col in ['Product Option 1 - Name',
