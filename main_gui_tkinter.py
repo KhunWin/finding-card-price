@@ -139,14 +139,18 @@ class TCGScraperGUI:
     def __init__(self, root):
         self.root = root
         self.root.title("TCG Card Scraper Pro")
-        self.root.geometry("1100x850")
+        self.root.geometry("1100x900")
         self.root.configure(bg='#0a0e1a')
         
         # Minimum window size
         self.root.minsize(900, 600)
+
+        self.set_window_icon()
         
         # Center window on screen
-        self.center_window()
+        # self.center_window()
+        self.center_window(1100, 900)
+
         
         self.scraper_thread = None
         self.is_running = False
@@ -160,12 +164,40 @@ class TCGScraperGUI:
         # Create GUI
         self.create_widgets()
         
-    def center_window(self):
+    # def center_window(self):
+    #     self.root.update_idletasks()
+    #     width = self.root.winfo_width()
+    #     height = self.root.winfo_height()
+    #     x = (self.root.winfo_screenwidth() // 2) - (width // 2)
+    #     y = (self.root.winfo_screenheight() // 2) - (height // 2)
+    #     self.root.geometry(f'{width}x{height}+{x}+{y}')
+        
+    def center_window(self, width=1100, height=850):
+        """Center window on screen, clamped so it never goes off-screen."""
         self.root.update_idletasks()
-        width = self.root.winfo_width()
-        height = self.root.winfo_height()
-        x = (self.root.winfo_screenwidth() // 2) - (width // 2)
-        y = (self.root.winfo_screenheight() // 2) - (height // 2)
+
+        screen_w = self.root.winfo_screenwidth()
+        screen_h = self.root.winfo_screenheight()
+
+        # Don't let the window be bigger than the available screen
+        # (subtract a margin for the taskbar / title bar)
+        max_w = screen_w - 40
+        max_h = screen_h - 80   # leave room for taskbar + title bar
+
+        width  = min(width,  max_w)
+        height = min(height, max_h)
+
+        # Also respect the minsize, in case screen is smaller
+        width  = max(width,  900)
+        height = max(height, 600)
+
+        x = (screen_w // 2) - (width  // 2)
+        y = (screen_h // 2) - (height // 2)
+
+        # Clamp so it never starts above 0 or below the screen
+        x = max(0, min(x, screen_w - width))
+        y = max(0, min(y, screen_h - height))
+
         self.root.geometry(f'{width}x{height}+{x}+{y}')
         
     def setup_styles(self):
@@ -185,22 +217,47 @@ class TCGScraperGUI:
         style.configure('TLabel', background=bg_dark, foreground=text_color, font=('Segoe UI', 10))
         style.configure('Title.TLabel', font=('Segoe UI', 28, 'bold'), foreground=accent_color)
         style.configure('Subtitle.TLabel', font=('Segoe UI', 12), foreground='#9ca3af')
-        
+
+    def set_window_icon(self):
+        """Set the window icon for both title bar and taskbar"""
+        try:
+            # First try the direct path
+            icon_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'icon.ico')
+            if os.path.exists(icon_path):
+                self.root.iconbitmap(icon_path)
+                return
+            
+            # When running as PyInstaller executable
+            if getattr(sys, 'frozen', False):
+                icon_path = os.path.join(sys._MEIPASS, 'icon.ico')
+                if os.path.exists(icon_path):
+                    self.root.iconbitmap(icon_path)
+                    return
+            
+            # Try one directory up
+            icon_path = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'icon.ico')
+            if os.path.exists(icon_path):
+                self.root.iconbitmap(icon_path)
+                return
+                
+        except Exception as e:
+            print(f"Could not set icon for scraper window: {e}")
+
     def create_widgets(self):
         # Main container with padding
         main_frame = tk.Frame(self.root, bg='#0a0e1a')
-        main_frame.pack(fill=tk.BOTH, expand=True, padx=40, pady=30)
+        main_frame.pack(fill=tk.BOTH, expand=True, padx=25, pady=12)
         
         # Header Section with gradient effect
         header_frame = tk.Frame(main_frame, bg='#0a0e1a')
-        header_frame.pack(fill=tk.X, pady=(0, 30))
+        header_frame.pack(fill=tk.X, pady=(0, 10))
         
         title_container = tk.Frame(header_frame, bg='#0a0e1a')
         title_container.pack()
         
         title = tk.Label(title_container, text="🎴 TCG Card Scraper Pro", 
                         bg='#0a0e1a', fg='#6366f1',
-                        font=('Segoe UI', 32, 'bold'))
+                        font=('Segoe UI', 20, 'bold'))
         title.pack()
         
         subtitle = tk.Label(title_container, text="Professional card data extraction and image downloading tool", 
@@ -518,8 +575,8 @@ class TCGScraperGUI:
     def create_control_buttons(self, parent):
         """Create enhanced control buttons - FIXED: Always visible at bottom"""
         # Use a dedicated frame that doesn't expand, always at bottom
-        button_frame = tk.Frame(parent, bg='#0a0e1a', height=80)
-        button_frame.pack(fill=tk.X, pady=(20, 0))
+        button_frame = tk.Frame(parent, bg='#0a0e1a', height=60)
+        button_frame.pack(fill=tk.X, pady=(10, 0))
         button_frame.pack_propagate(False)  # Don't shrink
         
         # Inner container for centering
@@ -575,7 +632,7 @@ class TCGScraperGUI:
             self.back_btn.draw_button(self.back_btn.bg_color)
         if hasattr(self, 'progress_canvas'):
             self.draw_progress_bar()
-    
+
     def toggle_image_size(self):
         """Show/hide image size options based on download toggle - FIXED"""
         if self.download_images_var.get():
@@ -928,24 +985,75 @@ class TCGScraperGUI:
             root.mainloop()
 
 
+# def launch_tcg_gui():
+#     """Launch TCG CSV scraper GUI"""
+#     root = tk.Tk()
+    
+#     # Set application icon
+#     try:
+#         icon_path = os.path.join(os.path.dirname(__file__), 'icon.ico')
+#         if os.path.exists(icon_path):
+#             root.iconbitmap(icon_path)
+#         else:
+#             if getattr(sys, 'frozen', False):
+#                 icon_path = os.path.join(sys._MEIPASS, 'icon.ico')
+#                 if os.path.exists(icon_path):
+#                     root.iconbitmap(icon_path)
+#     except Exception as e:
+#         print(f"Could not set icon: {e}")
+    
+#     app = TCGScraperGUI(root)
+#     root.mainloop()
+
 def launch_tcg_gui():
     """Launch TCG CSV scraper GUI"""
     root = tk.Tk()
     
-    # Set application icon
-    try:
-        icon_path = os.path.join(os.path.dirname(__file__), 'icon.ico')
-        if os.path.exists(icon_path):
-            root.iconbitmap(icon_path)
-        else:
+    # Hide the window initially so the icon gets applied before the window is shown
+    root.withdraw()
+    
+    def set_icon():
+        """Set application icon - tries multiple paths"""
+        try:
+            # Try local directory first
+            icon_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'icon.ico')
+            if os.path.exists(icon_path):
+                root.iconbitmap(icon_path)
+                return
+            
+            # PyInstaller bundled
             if getattr(sys, 'frozen', False):
                 icon_path = os.path.join(sys._MEIPASS, 'icon.ico')
                 if os.path.exists(icon_path):
                     root.iconbitmap(icon_path)
-    except Exception as e:
-        print(f"Could not set icon: {e}")
+                    return
+                    
+            # Fallback: one directory up
+            icon_path = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'icon.ico')
+            if os.path.exists(icon_path):
+                root.iconbitmap(icon_path)
+        except Exception as e:
+            print(f"Could not set icon: {e}")
+    
+    # Set icon BEFORE creating the app
+    set_icon()
     
     app = TCGScraperGUI(root)
+    
+    # Set icon AGAIN after all widgets are created
+    # (TCGScraperGUI.__init__ calls update_idletasks which can reset the icon)
+    set_icon()
+    
+    # Force update, set icon one more time, then show window
+    root.update_idletasks()
+    set_icon()
+    
+    # Now show the window (icon is already set)
+    root.deiconify()
+    
+    # One final set after the window is fully visible
+    root.after(50, set_icon)
+    
     root.mainloop()
 
 
@@ -989,6 +1097,8 @@ def main():
     
     # Show selection window
     SelectionWindow(root, on_tcg_selected=launch_tcg_gui, on_yuyutei_selected=launch_yuyutei_gui)
+    # SelectionWindow(root, TCGCSVScraperGUI.launch_tcg_gui, TCGCSVScraperGUI.launch_yuyutei_gui)
+
     root.mainloop()
 
 

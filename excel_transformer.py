@@ -41,9 +41,8 @@ class ExcelTransformer:
         'Title': ['productName', 'name'],
         'Price': ['marketPrice'],
         'Categories': ['groupName'],
+        # 'Categories': ['groupAbbreviation'],
         'Description': ['extDescription'],
-        # 'SKU': ['extNumber'],
-        
         'Product Option 1 - Name': ['extRarity'],
         'Product Option 2 - Name': ['extCardType'],
         'Product Option 3 - Name': ['extInkType']

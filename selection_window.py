@@ -15,6 +15,7 @@ class SelectionWindow:
         self.root.title("Card Scraper - Select Source")
         self.root.geometry("500x600")
         self.root.configure(bg='#1e1e1e')
+        # self.set_window_icon()
         
         # Center window
         self.center_window()
@@ -107,3 +108,19 @@ class SelectionWindow:
         """User selected Yuyu-Tei"""
         self.root.destroy()
         self.on_yuyutei_selected()
+
+    # def set_window_icon(self):
+    #     """Set the window icon for both title bar and taskbar"""
+    #     try:
+    #         icon_path = os.path.join(os.path.dirname(__file__), 'icon.ico')
+    #         if os.path.exists(icon_path):
+    #             self.root.iconbitmap(icon_path)
+    #         else:
+    #             if getattr(sys, 'frozen', False):
+    #                 icon_path = os.path.join(sys._MEIPASS, 'icon.ico')
+    #                 if os.path.exists(icon_path):
+    #                     self.root.iconbitmap(icon_path)
+    #     except Exception as e:
+    #         print(f"Could not set icon for selection window: {e}")
+
+            

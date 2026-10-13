@@ -21,7 +21,7 @@ from product_key.product_keys_supabase import SupabaseProductKeyManager as Produ
 class ModernButton(tk.Canvas):
     """Custom modern button with gradient and hover effects"""
     def __init__(self, parent, text, command, bg_color, hover_color, icon="", **kwargs):
-        super().__init__(parent, height=50, highlightthickness=0, **kwargs)
+        super().__init__(parent, height=35, highlightthickness=0, **kwargs)
         self.command = command
         self.bg_color = bg_color
         self.hover_color = hover_color
@@ -38,8 +38,8 @@ class ModernButton(tk.Canvas):
     def draw_button(self, color):
         self.delete('all')
         width = self.winfo_width() if self.winfo_width() > 1 else 200
-        height = 50
-        radius = 10
+        height = 35
+        radius = 5
         shadow_offset = 2
         shadow_color = '#1a1a1a'
         
@@ -225,30 +225,30 @@ class YuyuTeiGUI:
         self.log_text.tag_config('lightgreen', foreground='#90EE90')
     
     def setup_control_buttons(self):
-        button_frame = tk.Frame(self.root, bg='#1e1e1e', height=80)
-        button_frame.pack(fill='x', padx=20, pady=(10, 20))
+        button_frame = tk.Frame(self.root, bg='#1e1e1e', height=40)
+        button_frame.pack(fill='x', padx=20, pady=(5, 10))
         button_frame.pack_propagate(False)
         
         self.start_btn = ModernButton(button_frame, text="Start Scraping", command=self.start_scraping,
-            bg_color='#00b894', hover_color='#00a083', icon='▶', width=200)
+            bg_color='#00b894', hover_color='#00a083', icon='▶', width=150)
         self.start_btn.pack(side='left', fill='both', expand=True, padx=(0, 5))
         
         self.stop_btn = ModernButton(button_frame, text="Stop", command=self.stop_scraping,
-            bg_color='#d63031', hover_color='#b71c1c', icon='⬛', width=200)
+            bg_color='#d63031', hover_color='#b71c1c', icon='⬛', width=150)
         self.stop_btn.pack(side='left', fill='both', expand=True, padx=5)
         self.stop_btn.disable()
         
         self.upload_btn = ModernButton(button_frame, text="Upload", command=self.open_upload_window,
-            bg_color='#8b5cf6', hover_color='#7c3aed', icon='📤', width=200)
+            bg_color='#8b5cf6', hover_color='#7c3aed', icon='📤', width=150)
         self.upload_btn.pack(side='left', fill='both', expand=True, padx=5)
         
         # Back button
         back_btn = ModernButton(button_frame, text="Back", command=self.go_back_to_selection,
-            bg_color='#6b7280', hover_color='#4b5563', icon='◀', width=200)
+            bg_color='#6b7280', hover_color='#4b5563', icon='◀', width=150)
         back_btn.pack(side='left', fill='both', expand=True, padx=5)
         
         clear_btn = ModernButton(button_frame, text="Clear Log", command=self.clear_log,
-            bg_color='#636e72', hover_color='#4a5458', icon='🗑', width=200)
+            bg_color='#636e72', hover_color='#4a5458', icon='🗑', width=150)
         clear_btn.pack(side='right', fill='both', expand=True, padx=(5, 0))
     
     def append_log(self, message, color='white'):
