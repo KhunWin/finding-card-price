@@ -6,6 +6,7 @@ Transforms input Excel file to Boutir template format
 import pandas as pd
 import os
 from datetime import datetime
+import re
 
 
 class ExcelTransformer:
@@ -94,7 +95,30 @@ class ExcelTransformer:
             if name in df_columns:
                 return name
         return None
-    
+
+
+    def _strip_html(self, text):
+        """Remove HTML tags from a string and clean up whitespace"""
+        if pd.isna(text) or text is None:
+            return text
+        text = str(text)
+        # Replace <br> and <br/> with a newline/space
+        text = re.sub(r'<br\s*/?>', '\n', text, flags=re.IGNORECASE)
+        # Remove all other HTML tags
+        text = re.sub(r'<[^>]+>', '', text)
+        # Decode common HTML entities
+        text = (text
+                .replace('&nbsp;', ' ')
+                .replace('&amp;', '&')
+                .replace('&lt;', '<')
+                .replace('&gt;', '>')
+                .replace('&quot;', '"')
+                .replace('&#39;', "'"))
+        # Collapse extra blank lines / whitespace
+        text = re.sub(r'[ \t]+', ' ', text)
+        text = re.sub(r'\n\s*\n+', '\n\n', text)
+        return text.strip()
+
     # def transform(self, input_file_path, output_dir=None, usd_to_hkd_rate=1.0):
     #     """
     #     Transform input Excel file to Boutir format
@@ -239,6 +263,10 @@ class ExcelTransformer:
                 input_col = self._find_column(input_columns, possible_input_cols)
                 if input_col:
                     df_output[output_col] = df_input[input_col]
+
+            # ========== NEW CODE: Strip HTML from Description ==========
+            if 'Description' in df_output.columns:
+                df_output['Description'] = df_output['Description'].apply(self._strip_html)
 
             # Modify Title based on source
             if self.source == 'tcg':
