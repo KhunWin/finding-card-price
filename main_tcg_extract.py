@@ -31,7 +31,8 @@ class TCGCSVScraperGUI:
         self.base_url = "https://tcgcsv.com"
         self.output_folder = output_folder
         self.download_images = download_images
-        self.image_size = image_size
+        # self.image_size = image_size
+        self.image_size = image_size if image_size else '_in_1000x1000'
         self.image_folder = os.path.join(output_folder, 'downloaded_images')
         self.log_callback = log_callback
         self.progress_callback = progress_callback

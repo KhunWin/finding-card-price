@@ -427,7 +427,7 @@ class PlaywrightUploader:
             
             
             # DEBUG: List all buttons on the page
-            logger.info("=== DEBUGGING: Listing all buttons on the page ===")
+            # logger.info("=== DEBUGGING: Listing all buttons on the page ===")
             try:
                 all_buttons = self.page.locator('button').all()
                 logger.info(f"Found {len(all_buttons)} buttons on the page")
@@ -444,7 +444,7 @@ class PlaywrightUploader:
                 logger.error(f"Error listing buttons: {e}")
             
             # DEBUG: List all links/anchors
-            logger.info("=== DEBUGGING: Listing all links/anchors ===")
+            # logger.info("=== DEBUGGING: Listing all links/anchors ===")
             try:
                 all_links = self.page.locator('a').all()
                 # logger.info(f"Found {len(all_links)} links on the page")
@@ -463,7 +463,7 @@ class PlaywrightUploader:
                 logger.error(f"Error listing links: {e}")
             
             # DEBUG: List all divs with text containing 'import' or 'export'
-            logger.info("=== DEBUGGING: Listing elements with 'import' or 'export' text ===")
+            # logger.info("=== DEBUGGING: Listing elements with 'import' or 'export' text ===")
             try:
                 import_export_elements = self.page.locator('*:has-text("Import"), *:has-text("Export"), *:has-text("匯入"), *:has-text("匯出")').all()
                 # logger.info(f"Found {len(import_export_elements)} elements with import/export text")
@@ -480,7 +480,7 @@ class PlaywrightUploader:
             except Exception as e:
                 logger.error(f"Error listing import/export elements: {e}")
             
-            logger.info("=== END DEBUGGING ===")
+            # logger.info("=== END DEBUGGING ===")
             
             # Step 1: Click 'Import / Export' button
             logger.info("Looking for 'Import / Export' button...")
