@@ -55,7 +55,8 @@ class ExcelTransformer:
         'Title': ['name'],
         'Price': ['price'],
         'Categories': ['category'],
-        'SKU': ['description'] #card_id was used before
+        'SKU': ['description'], #card_id was used before
+        'Description': ['name_power']
     }
     
     # Default values for required fields

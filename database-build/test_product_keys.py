@@ -7,7 +7,7 @@ Tests the validity and functionality of the product key system
 import os
 import sys
 from datetime import datetime, timedelta
-from product_keys import ProductKeyManager
+from product_key import ProductKeyManager
 
 
 def print_header(text):

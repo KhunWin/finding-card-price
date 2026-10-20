@@ -391,7 +391,7 @@ class PlaywrightUploader:
             products_url = f"{Config.BOUTIR_URL}/business/en/products"
             logger.info(f"Navigating to products page: {products_url}")
             self.page.goto(products_url, wait_until='networkidle')
-            time.sleep(3)
+            time.sleep(5)
             
             # Log current URL to track navigation
             current_url = self.page.url
@@ -403,8 +403,25 @@ class PlaywrightUploader:
                 self.login()
                 # Try navigating to products page again
                 logger.info(f"Navigating to products page again: {products_url}")
-                self.page.goto(products_url, wait_until='networkidle')
-                time.sleep(3)
+                # self.page.goto(products_url, wait_until='networkidle')
+                # time.sleep(3)
+
+                try:
+                    self.page.goto(products_url, wait_until='domcontentloaded', timeout=60000)
+                except PlaywrightTimeoutError:
+                    logger.warning("goto timed out on domcontentloaded; continuing anyway")
+                # Wait for a stable element that proves the products page rendered
+                try:
+                    self.page.wait_for_selector(
+                        'button:has-text("Import / Export"), button:has-text("Import")',
+                        state='visible',
+                        timeout=30000
+                    )
+                    logger.info("Products page UI ready")
+                except PlaywrightTimeoutError:
+                    logger.warning("Products page UI marker not found; continuing")
+                time.sleep(2)
+
                 current_url = self.page.url
                 # logger.info(f"Current URL after re-navigation: {current_url}")
             
@@ -560,6 +577,48 @@ class PlaywrightUploader:
             
             # Step 3: Click first 'Next' button
             logger.info("Looking for first 'Next' button...")
+            # Remove HubSpot popup that intercepts clicks
+            self._dismiss_hubspot_popups()
+            time.sleep(0.5)
+
+            ###debugging###
+            # # DEBUG: List all buttons on the page
+            # logger.info("=== DEBUGGING: Listing all buttons on the page ===")
+            # try:
+            #     all_buttons = self.page.locator('button').all()
+            #     logger.info(f"Found {len(all_buttons)} buttons on the page")
+            #     for i, btn in enumerate(all_buttons):
+            #         try:
+            #             if btn.is_visible():
+            #                 text = btn.inner_text().strip()
+            #                 classes = btn.get_attribute('class') or ''
+            #                 btn_type = btn.get_attribute('type') or ''
+            #                 is_enabled = btn.is_enabled()
+            #                 logger.info(f"Button {i+1}: text='{text}', type='{btn_type}', enabled={is_enabled}, class='{classes[:150]}'")
+            #         except Exception as e:
+            #             logger.debug(f"Could not get info for button {i+1}: {e}")
+            # except Exception as e:
+            #     logger.error(f"Error listing buttons: {e}")
+
+            # # DEBUG: List all clickable elements with "Next" text (any tag)
+            # logger.info("=== DEBUGGING: Searching for 'Next' text in any element ===")
+            # try:
+            #     next_elems = self.page.locator('*:has-text("Next")').all()
+            #     logger.info(f"Found {len(next_elems)} elements containing 'Next' text")
+            #     for i, elem in enumerate(next_elems[:20]):
+            #         try:
+            #             if elem.is_visible():
+            #                 tag = elem.evaluate('el => el.tagName')
+            #                 text = elem.inner_text().strip()[:80]
+            #                 classes = elem.get_attribute('class') or ''
+            #                 logger.info(f"Next-Elem {i+1}: tag='{tag}', text='{text}', class='{classes[:150]}'")
+            #         except Exception as e:
+            #             logger.debug(f"Could not get info for next-elem {i+1}: {e}")
+            # except Exception as e:
+            #     logger.error(f"Error searching for Next elements: {e}")
+
+            # logger.info("=== END DEBUGGING ===")
+            ##################end of debugging#####################
             next_button_selectors = [
                 'button:has-text("Next")',
                 'button:has-text("下一步")',
@@ -571,18 +630,30 @@ class PlaywrightUploader:
             for selector in next_button_selectors:
                 try:
                     btn = self.page.locator(selector).first
-                    if btn.count() > 0 and btn.is_visible():
-                        btn.click()
+                    if btn.count() > 0 and btn.is_visible() and btn.is_enabled():
+                        # Scroll into view first to avoid "element is outside viewport"
+                        btn.scroll_into_view_if_needed(timeout=5000)
+                        # Use force=True to bypass overlay/intercept checks
+                        btn.click(timeout=10000, force=True)
                         logger.info(f"Clicked first 'Next' button using selector: {selector}")
                         next_clicked = True
                         time.sleep(2)
                         break
+                    else:
+                        logger.warning(
+                            f"Selector {selector} matched but button not clickable "
+                            f"(count={btn.count()}, visible={btn.is_visible() if btn.count() else 'n/a'}, "
+                            f"enabled={btn.is_enabled() if btn.count() else 'n/a'})"
+                        )
+                except PlaywrightTimeoutError as e:
+                    logger.warning(f"Selector {selector} click timed out: {e}")
+                    continue
                 except Exception as e:
-                    logger.debug(f"Selector {selector} failed: {e}")
+                    logger.warning(f"Selector {selector} failed: {e}")
                     continue
             
             if not next_clicked:
-                raise Exception("Could not find first 'Next' button")
+                raise Exception("Could not click first 'Next' button (found but click failed)")
             
             
             # Step 4: Upload the Excel file directly
@@ -608,97 +679,44 @@ class PlaywrightUploader:
                 raise
             
             # Wait for file to be processed
-            time.sleep(3)
-            
-            
-            # # Step 5: Click second 'Next' button (after file upload)
-            # logger.info("Looking for second 'Next' button...")
-            
-            # # Wait for the Next button to become enabled
-            # time.sleep(2)
-            
-            # second_next_clicked = False
-            # for selector in next_button_selectors:
-            #     try:
-            #         btn = self.page.locator(selector).first
-            #         if btn.count() > 0 and btn.is_visible() and btn.is_enabled():
-            #             btn.click()
-            #             logger.info(f"Clicked second 'Next' button using selector: {selector}")
-            #             second_next_clicked = True
-            #             time.sleep(2)
-            #             break
-            #     except Exception as e:
-            #         logger.debug(f"Selector {selector} failed: {e}")
-            #         continue
-            
-            # if not second_next_clicked:
-            #     logger.warning("Could not find second 'Next' button, upload might complete automatically")
-            
-            
-            # # DEBUG: Check if there's a third 'Next' button
-            # logger.info("=== DEBUGGING: Checking for third 'Next' button ===")
-            # time.sleep(2)
-            # try:
-            #     all_buttons = self.page.locator('button').all()
-            #     logger.info(f"Found {len(all_buttons)} buttons on the page")
-            #     for i, btn in enumerate(all_buttons):
-            #         try:
-            #             if btn.is_visible():
-            #                 text = btn.inner_text().strip()
-            #                 is_enabled = btn.is_enabled()
-            #                 classes = btn.get_attribute('class') or ''
-            #                 logger.info(f"Button {i+1}: text='{text}', enabled={is_enabled}, class='{classes[:100]}'")
-            #         except Exception as e:
-            #             logger.debug(f"Could not get info for button {i+1}: {e}")
-            # except Exception as e:
-            #     logger.error(f"Error listing buttons: {e}")
-            
-            # # Check for third Next button
-            # logger.info("Looking for third 'Next' button...")
-            # third_next_clicked = False
-            # for selector in next_button_selectors:
-            #     try:
-            #         btn = self.page.locator(selector).first
-            #         if btn.count() > 0 and btn.is_visible() and btn.is_enabled():
-            #             logger.info(f"Found third 'Next' button with selector: {selector}")
-            #             btn.click()
-            #             logger.info("Clicked third 'Next' button")
-            #             third_next_clicked = True
-            #             time.sleep(3)
-            #             break
-            #     except Exception as e:
-            #         logger.debug(f"Selector {selector} failed: {e}")
-            #         continue
-            
-            # if not third_next_clicked:
-            #     error_msg = "❌ ERROR: No clickable third 'Next' button found. Upload cannot be completed."
-            #     logger.error(error_msg)
-            #     logger.error("The upload process has been stopped due to missing third 'Next' button.")
-            #     raise Exception(error_msg)
-
+            time.sleep(4)
 
 
             logger.info("Looking for second 'Next' button...")
 
             # Wait for the Next button to become enabled
-            time.sleep(2)
+            time.sleep(4)
+
+            # Remove HubSpot popup that intercepts clicks
+            self._dismiss_hubspot_popups()
+            time.sleep(0.5)
 
             second_next_clicked = False
             for selector in next_button_selectors:
                 try:
                     btn = self.page.locator(selector).first
                     if btn.count() > 0 and btn.is_visible() and btn.is_enabled():
-                        btn.click()
+                        btn.scroll_into_view_if_needed(timeout=5000)
+                        btn.click(timeout=10000, force=True)
                         logger.info(f"Clicked second 'Next' button using selector: {selector}")
                         second_next_clicked = True
                         time.sleep(2)
                         break
+                    else:
+                        logger.warning(
+                            f"Selector {selector} matched but button not clickable "
+                            f"(count={btn.count()}, visible={btn.is_visible() if btn.count() else 'n/a'}, "
+                            f"enabled={btn.is_enabled() if btn.count() else 'n/a'})"
+                        )
+                except PlaywrightTimeoutError as e:
+                    logger.warning(f"Selector {selector} click timed out: {e}")
+                    continue
                 except Exception as e:
-                    logger.debug(f"Selector {selector} failed: {e}")
+                    logger.warning(f"Selector {selector} failed: {e}")
                     continue
 
             if not second_next_clicked:
-                logger.warning("Could not find second 'Next' button, upload might complete automatically")
+                logger.warning("Could not click second 'Next' button, upload might complete automatically")
 
 
             # Step 5.5: Handle "New categories found" popup if it appears
@@ -861,24 +879,40 @@ class PlaywrightUploader:
             logger.info("Looking for third 'Next' button...")
             time.sleep(2)
 
+            # Remove HubSpot popup that intercepts clicks
+            self._dismiss_hubspot_popups()
+            time.sleep(0.5)
+
             third_next_clicked = False
             for selector in next_button_selectors:
                 try:
                     btn = self.page.locator(selector).first
-                    if btn.count() > 0 and btn.is_visible():
-                        # Check if button is enabled
-                        if btn.is_enabled():
-                            logger.info(f"Found enabled third 'Next' button with selector: {selector}")
-                            btn.click()
-                            logger.info("✅ Clicked third 'Next' button")
-                            third_next_clicked = True
-                            time.sleep(3)
-                            break
-                        else:
-                            logger.warning(f"Third 'Next' button is disabled with selector: {selector}")
-                except Exception as e:
-                    logger.debug(f"Selector {selector} failed: {e}")
+                    if btn.count() > 0 and btn.is_visible() and btn.is_enabled():
+                        btn.scroll_into_view_if_needed(timeout=5000)
+                        btn.click(timeout=10000, force=True)
+                        logger.info(f"✅ Clicked third 'Next' button using selector: {selector}")
+                        third_next_clicked = True
+                        time.sleep(3)
+                        break
+                    else:
+                        logger.warning(
+                            f"Selector {selector} matched but button not clickable "
+                            f"(count={btn.count()}, visible={btn.is_visible() if btn.count() else 'n/a'}, "
+                            f"enabled={btn.is_enabled() if btn.count() else 'n/a'})"
+                        )
+                except PlaywrightTimeoutError as e:
+                    logger.warning(f"Selector {selector} click timed out: {e}")
                     continue
+                except Exception as e:
+                    logger.warning(f"Selector {selector} failed: {e}")
+                    continue
+
+            if not third_next_clicked:
+                error_msg = "❌ ERROR: No clickable third 'Next' button found. Upload cannot be completed."
+                logger.error(error_msg)
+                logger.error("The third 'Next' button is either missing or disabled due to errors.")
+                logger.error("Please check the uploaded data for errors.")
+                raise Exception(error_msg)
 
             if not third_next_clicked:
                 error_msg = "❌ ERROR: No clickable third 'Next' button found. Upload cannot be completed."
@@ -890,9 +924,6 @@ class PlaywrightUploader:
             logger.info(f"✅ Excel file uploaded successfully: {file_path}")
             return True
 
-            # Step 5: Click second 'Next' button (after file upload)
-            # logger.info(f"✅ Excel file uploaded successfully: {file_path}")
-            # return True
             
         except Exception as e:
             logger.error(f"Upload failed: {e}")
@@ -1016,6 +1047,25 @@ class PlaywrightUploader:
             except Exception as e:
                 logger.warning(f"Error closing browser: {e}")
 
-
+    def _dismiss_hubspot_popups(self):
+        """Remove HubSpot popup iframes/overlays that intercept clicks."""
+        try:
+            removed = self.page.evaluate("""
+                () => {
+                    let count = 0;
+                    // Remove the bottom-anchor container and any hs-web-interactives iframes
+                    document.querySelectorAll(
+                        '#hs-web-interactives-bottom-anchor, ' +
+                        '[id^="hs-web-interactives"], ' +
+                        'iframe[src*="hs-web-interactive"], ' +
+                        'iframe[title="Popup CTA"]'
+                    ).forEach(el => { el.remove(); count++; });
+                    return count;
+                }
+            """)
+            if removed:
+                logger.info(f"Removed {removed} HubSpot popup element(s)")
+        except Exception as e:
+            logger.debug(f"Could not remove HubSpot popups: {e}")
 
 

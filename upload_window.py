@@ -478,7 +478,6 @@ class UploadWindow:
             messagebox.showerror("Error", f"Failed to transform Excel file:\n\n{str(e)}")
 
 
-
     def stop_upload(self):
         """Stop the upload process"""
         self.upload_stop_flag = True
@@ -601,65 +600,12 @@ class UploadWindow:
                     self.append_terminal("\n⏹ Upload stopped by user\n", '#fbbf24')
                     return
                 
-                self.append_terminal(f"\n⚠️ Playwright failed: {str(playwright_error)}\n\n", 
-                                   '#fbbf24')
-                self.append_terminal("=" * 70 + "\n", '#f97316')
-                self.append_terminal("🔄 Attempting upload with Selenium...\n", '#f97316')
-                self.append_terminal("=" * 70 + "\n\n", '#f97316')
-                
-                try:
-                    # Handle imports for both development and PyInstaller packaged versions
-                    # uploaders and utils are in the main directory
-                    main_dir = os.path.dirname(__file__)
-                    
-                    # For PyInstaller, use the bundled path
-                    if getattr(sys, 'frozen', False):
-                        main_dir = sys._MEIPASS
-                    
-                    # Ensure main directory is in path
-                    if main_dir not in sys.path:
-                        sys.path.insert(0, main_dir)
-                    
-                    from uploaders.selenium_uploader import SeleniumUploader
-                    from utils.config import Config
-                    
-                    # Check stop flag
-                    if self.upload_stop_flag:
-                        self.append_terminal("\n⏹ Upload stopped by user\n", '#fbbf24')
-                        return
-                    
-                    # Update config with credentials from GUI
-                    Config.BOUTIR_EMAIL = email
-                    Config.BOUTIR_PASSWORD = password
-                    
-                    uploader = SeleniumUploader(headless=True)
-                    
-                    success = uploader.run(excel_file)
-                    
-                    if success and not self.upload_stop_flag:
-                        self.append_terminal("\n" + "=" * 70 + "\n", '#10b981')
-                        self.append_terminal("✅ UPLOAD COMPLETED (Selenium)!\n", '#10b981')
-                        self.append_terminal("=" * 70 + "\n", '#10b981')
-                        self.window.after(0, messagebox.showinfo, "Success", 
-                                         "Upload completed successfully using Selenium!")
-                    elif self.upload_stop_flag:
-                        self.append_terminal("\n⏹ Upload stopped by user\n", '#fbbf24')
-                    else:
-                        raise Exception("Selenium upload failed")
-                        
-                except Exception as selenium_error:
-                    if self.upload_stop_flag:
-                        self.append_terminal("\n⏹ Upload stopped by user\n", '#fbbf24')
-                        return
-                    
-                    self.append_terminal(f"\n❌ Selenium failed: {str(selenium_error)}\n", 
-                                       '#ef4444')
-                    self.append_terminal("\n" + "=" * 70 + "\n", '#ef4444')
-                    self.append_terminal("❌ UPLOAD FAILED - Both methods failed\n", '#ef4444')
-                    self.append_terminal("=" * 70 + "\n", '#ef4444')
-                    error_msg = (f"Upload failed with both methods:\n\n"
-                                 f"Click 'Run Upload' Again" )
-                    self.window.after(0, messagebox.showerror, "Error", error_msg)
+                self.append_terminal(f"\n❌ Upload failed: {str(playwright_error)}\n", '#ef4444')
+                self.append_terminal("\n" + "=" * 70 + "\n", '#ef4444')
+                self.append_terminal("❌ UPLOAD FAILED\n", '#ef4444')
+                self.append_terminal("=" * 70 + "\n", '#ef4444')
+                error_msg = f"Upload failed:\n\n{str(playwright_error)}\n\nPlease try again or check the error log."
+                self.window.after(0, messagebox.showerror, "Error", error_msg)
                     
         except Exception as e:
             self.append_terminal(f"\n❌ CRITICAL ERROR: {str(e)}\n", '#ef4444')

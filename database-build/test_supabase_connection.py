@@ -4,7 +4,7 @@ This script verifies that the Supabase setup is working correctly
 """
 
 import os
-from product_keys_supabase import SupabaseProductKeyManager
+from product_key import SupabaseProductKeyManager
 from dotenv import load_dotenv
 
 # Load environment variables

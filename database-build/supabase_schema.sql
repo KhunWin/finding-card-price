@@ -2,7 +2,7 @@
     -- Create product_keys table
     CREATE TABLE IF NOT EXISTS product_keys (
         id BIGSERIAL PRIMARY KEY,
-        product_key VARCHAR(30) UNIQUE NOT NULL,
+        product_key VARCHAR(50) UNIQUE NOT NULL,
         key_type VARCHAR(20) NOT NULL CHECK (key_type IN ('scraping_only', 'full_access')),
         is_activated BOOLEAN DEFAULT FALSE,
         machine_id VARCHAR(255),

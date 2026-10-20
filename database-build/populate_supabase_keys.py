@@ -6,7 +6,6 @@ This script inserts all 100 product keys into the Supabase database
 import os
 from supabase import create_client, Client
 from dotenv import load_dotenv
-from product_keys import ProductKeyManager
 
 # Load environment variables
 load_dotenv()
@@ -32,8 +31,11 @@ def populate_keys():
     scraping_keys = []
     full_access_keys = []
     
+    # Get the path to PRODUCT_KEYS.txt (one directory up from database-build)
+    keys_file_path = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'PRODUCT_KEYS.txt')
+    
     try:
-        with open('PRODUCT_KEYS.txt', 'r') as f:
+        with open(keys_file_path, 'r', encoding='utf-8') as f:
             for line in f:
                 line = line.strip()
                 if line.startswith('SCRP-'):

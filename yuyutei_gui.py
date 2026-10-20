@@ -307,6 +307,43 @@ class YuyuTeiGUI:
             messagebox.showwarning("Warning", "Scraping is already in progress")
             return
         
+        # Check product key access BEFORE scraping
+        if not self.key_manager.has_scraping_access():
+            # Prompt for product key
+            key = simpledialog.askstring(
+                "🔑 Product Key Required",
+                "Please enter your product key to use the scraping feature:\n\n"
+                "• Scraping Only Key (SCRP-XXXX-XXXX-XXXX-XXXX)\n"
+                "• Full Access Key (FULL-XXXX-XXXX-XXXX-XXXX)",
+                parent=self.root
+            )
+            
+            if not key:
+                messagebox.showwarning("⚠️ Cancelled", "Product key is required to use this feature.")
+                return
+            
+            # Activate the key
+            success, key_type, message = self.key_manager.activate_key(key)
+            
+            if not success:
+                messagebox.showerror("❌ Invalid Key", message)
+                return
+            
+            # Show success message
+            key_type_name = "Scraping Only" if key_type == self.key_manager.KEY_TYPE_SCRAPING else "Full Access"
+            messagebox.showinfo("✅ Key Activated", f"Product key activated successfully!\n\nKey Type: {key_type_name}")
+            self.append_log(f"🔑 Product key activated: {key_type_name}\n", "green")
+            
+            # If scraping_only key, show info (but don't disable upload button to allow upgrade prompt)
+            if key_type == self.key_manager.KEY_TYPE_SCRAPING:
+                messagebox.showinfo(
+                    "ℹ️ Scraping Only Key",
+                    "You are using a Scraping Only key.\n\n"
+                    "To use Upload, you need a Full Access key (FULL-XXXX-XXXX-XXXX-XXXX).\n\n"
+                    "You will be prompted to enter a Full Access key when you click Upload."
+                )
+        # Note: Upload button remains enabled even with scraping key to allow upgrade prompt
+        
         params = self.validate_inputs()
         if not params:
             return
@@ -416,22 +453,28 @@ class YuyuTeiGUI:
 
     def open_upload_window(self):
         """Open the upload window for Yuyu-Tei data with product key validation"""
-        # Check product key access for upload
-        if not self.key_manager.has_upload_access():
-            # Check if user has scraping-only key
+        # Check if user has full access
+        # if self.key_manager.has_full_access():
+        if self.key_manager.has_upload_access():
+            # User already has full access, proceed directly
+            from upload_window import UploadWindow
+            UploadWindow(self.root, source='yuyutei')
+        else:
+            # Check if user has any key activated
             if self.key_manager.has_scraping_access():
-                # User has scraping key, prompt them to enter Full Access key
-                response = messagebox.askyesno(
+                # User has scraping key but not full access - prompt to enter full access key
+                result = messagebox.askyesno(
                     "🔑 Full Access Key Required",
                     "Your current key only allows scraping.\n\n"
                     "To use the Upload feature, you need a Full Access key.\n\n"
-                    "Would you like to enter a Full Access key now?"
+                    "Would you like to enter a Full Access key now?",
+                    icon='question'
                 )
                 
-                if not response:
+                if not result:
                     return
                 
-                # Prompt for Full Access key
+                # Prompt for full access key
                 key = simpledialog.askstring(
                     "🔑 Enter Full Access Key",
                     "Please enter your Full Access product key:\n\n"
@@ -459,9 +502,14 @@ class YuyuTeiGUI:
                     )
                     return
                 
-                # Show success message
+                # Show success message and enable upload button
                 messagebox.showinfo("✅ Key Activated", "Full Access key activated successfully!\n\nYou can now use both Scraping and Upload features.")
                 self.append_log("🔑 Full Access key activated\n", "green")
+                self.upload_btn.enable()
+                
+                # Open upload window (Yuyu-Tei source)
+                from upload_window import UploadWindow
+                UploadWindow(self.root, source='yuyutei')
             else:
                 # No key activated yet, prompt for full access key
                 key = simpledialog.askstring(
@@ -491,13 +539,14 @@ class YuyuTeiGUI:
                     )
                     return
                 
-                # Show success message
+                # Show success message and enable upload button
                 messagebox.showinfo("✅ Key Activated", "Full Access key activated successfully!\n\nYou can now use both Scraping and Upload features.")
                 self.append_log("🔑 Full Access key activated\n", "green")
-        
-        # Open upload window (Yuyu-Tei source)
-        from upload_window import UploadWindow
-        UploadWindow(self.root, source='yuyutei')
+                self.upload_btn.enable()
+                
+                # Open upload window (Yuyu-Tei source)
+                from upload_window import UploadWindow
+                UploadWindow(self.root, source='yuyutei')
 
     def go_back_to_selection(self):
         """Return to the selection window"""
